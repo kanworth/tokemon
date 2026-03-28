@@ -1,1 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOKEMON 承認者専用ページ</title>
+  <meta name="description" content="TOKEMON承認者専用ページです。モデル一覧・月額料金・利用条件をご確認いただけます。" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --bg2: #101116;
+      --panel: rgba(255,255,255,0.05);
+      --panel-strong: rgba(255,255,255,0.08);
+      --text: #f3f4f6;
+      --muted: #b8bcc7;
+      --line: rgba(255,255,255,0.12);
+      --gold: #c9a96e;
+      --gold-2: #e2c48e;
+      --ok: #7fd487;
+      --busy: #ff9a96;
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 20px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at top right, rgba(201,169,110,0.14), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(201,169,110,0.08), transparent 24%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .glass, .card, .product, .hero-box, .notice-box, .flow-item, .gate-box {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,169,110,0.30);
+      color: var(--gold-2);
+      background: rgba(201,169,110,0.10);
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .gate-box {
+      width: min(100%, 480px);
+      padding: 32px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+
+    .gate-box h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.3;
+    }
+
+    .gate-box p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .gate-box input {
+      width: 100%;
+      min-height: 54px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      padding: 0 16px;
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 14px;
+    }
+
+    .gate-box input:focus {
+      border-color: rgba(201,169,110,0.55);
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.12);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: .25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      color: #111216;
+      box-shadow: 0 10px 24px rgba(201,169,110,0.25);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(201,169,110,0.34);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .error {
+      min-height: 22px;
+      margin-top: 10px;
+      color: var(--busy);
+      font-size: 0.92rem;
+    }
+
+    #protectedContent { display: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(11,11,13,0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(201,169,110,0.45);
+      display: grid;
+      place-items: center;
+      color: var(--gold-2);
+      background: linear-gradient(135deg, rgba(201,169,110,0.22), rgba(255,255,255,0.04));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+      font-size: 0.95rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover { color: var(--text); }
+
+    .hero {
+      padding: 64px 0 26px;
+    }
+
+    .hero-box {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201,169,110,0.16), transparent 34%);
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.8vw, 4rem);
+      line-height: 1.14;
+      margin: 0 0 14px;
+      letter-spacing: 0.03em;
+      position: relative;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.04rem;
+      margin: 0;
+      max-width: 64ch;
+      position: relative;
+    }
+
+    section {
+      padding: 22px 0 16px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.5rem, 3vw, 2.3rem);
+      margin: 0 0 6px;
+      padding-left: 14px;
+      border-left: 5px solid var(--gold);
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .flow-item {
+      padding: 24px;
+      position: relative;
+    }
+
+    .flow-item .num {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      color: var(--gold-2);
+      background: rgba(201,169,110,0.10);
+      border: 1px solid rgba(201,169,110,0.28);
+      font-weight: 700;
+    }
+
+    .flow-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .flow-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 20px;
+    }
+
+    .product {
+      overflow: hidden;
+    }
+
+    .product-image {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .product:hover .product-image img {
+      transform: scale(1.03);
+    }
+
+    .product-body {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .product-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .product-title {
+      margin: 0;
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
+
+    .product-ref {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: 4px;
+    }
+
+    .product-price {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: var(--gold-2);
+      white-space: nowrap;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .status::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .status.available {
+      color: var(--ok);
+      background: rgba(76,175,80,0.14);
+      border: 1px solid rgba(76,175,80,0.24);
+    }
+
+    .status.rented {
+      color: var(--busy);
+      background: rgba(217,83,79,0.14);
+      border: 1px solid rgba(217,83,79,0.24);
+    }
+
+    .product-desc {
+      color: var(--muted);
+      margin: 0;
+      min-height: 58px;
+      font-size: 0.94rem;
+    }
+
+    .product-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .notice-box {
+      padding: 26px;
+      border: 1px solid rgba(201,169,110,0.24);
+    }
+
+    .notice-box h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      color: var(--gold-2);
+    }
+
+    .notice-box ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .cta {
+      padding: 36px 0 72px;
+    }
+
+    .cta-box {
+      padding: 34px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at right top, rgba(201,169,110,0.16), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(201,169,110,0.24);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .cta-box h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .footer {
+      padding: 26px 0 50px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+    }
+
+    @media (max-width: 1024px) {
+      .flow,
+      .products,
+      .info-grid,
+      .cta-box,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav { display: none; }
+      .topbar-inner { padding: 12px 0; }
+      .hero { padding-top: 40px; }
+      .hero-box,
+      .gate-box,
+      .card,
+      .notice-box,
+      .flow-item,
+      .cta-box { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="gate" class="gate">
+    <div class="gate-box">
+      <span class="eyebrow">TOKEMON 承認者専用</span>
+      <h1>専用ページへ進む</h1>
+      <p>本ページは承認された方のみ閲覧可能です。パスコードを入力してください。</p>
+      <input type="password" id="passcode" placeholder="パスコードを入力" onkeydown="if(event.key==='Enter'){checkPasscode();}">
+      <button type="button" class="btn btn-primary" onclick="checkPasscode()">ページを見る</button>
+      <div class="error" id="errorMessage"></div>
+    </div>
+  </div>
+
+  <div id="protectedContent">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a href="#top" class="brand">
+          <span class="brand-mark">TK</span>
+          <span>TOKEMON</span>
+        </a>
+        <nav class="nav">
+          <a href="#flow">ご利用の流れ</a>
+          <a href="#products">モデル一覧</a>
+          <a href="#conditions">ご利用条件</a>
+          <a href="#contact">お申し込み</a>
+        </nav>
+        <a href="#contact" class="btn btn-primary">希望モデルを連絡</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-box">
+            <span class="eyebrow">承認者専用ページ</span>
+            <h1>モデル・料金・ご利用条件を<br>ご確認いただけます</h1>
+            <p class="lead">ご希望のモデルをお選びいただき、在庫確認・内容確定後にSquare定期決済をご案内いたします。気になるモデルがございましたら、お申し込み欄よりご連絡ください。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="flow">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>ご利用の流れ</h2>
+              <p>承認後は、モデルの検討から決済・ご利用開始まで、以下の流れで進みます。</p>
+            </div>
+          </div>
+          <div class="flow">
+            <article class="flow-item">
+              <div class="num">01</div>
+              <h3>モデルを選ぶ</h3>
+              <p>一覧よりご希望の時計をお選びください。レンタル中モデルは空き待ちも可能です。</p>
+            </article>
+            <article class="flow-item">
+              <div class="num">02</div>
+              <h3>在庫確認</h3>
+              <p>お申し込み後、在庫状況やご利用開始時期を確認のうえご案内いたします。</p>
+            </article>
+            <article class="flow-item">
+              <div class="num">03</div>
+              <h3>内容確定</h3>
+              <p>モデル、料金、ご利用条件を確認し、内容を確定いたします。</p>
+            </article>
+            <article class="flow-item">
+              <div class="num">04</div>
+              <h3>定期決済</h3>
+              <p>内容確定後、Square定期決済をご案内し、お手続き完了後にご利用開始となります。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="products">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>モデル一覧</h2>
+              <p>掲載内容は承認者向けのご案内です。在庫状況は変動するため、最終確定は個別確認後となります。</p>
+            </div>
+          </div>
+
+          <div class="products">
+            <article class="product">
+              <div class="product-image"><img src="images/①.jpg" alt="BREITLING コルト パンダ"></div>
+              <div class="product-body">
+                <div class="product-top">
+                  <div>
+                    <h3 class="product-title">BREITLING コルト パンダ</h3>
+                    <div class="product-ref">パンダ文字盤</div>
+                  </div>
+                  <div class="product-price">¥20,000/月</div>
+                </div>
+                <span class="status available">在庫あり</span>
+                <p class="product-desc">白黒のコントラストが印象的で、存在感のあるモデルです。</p>
+                <div class="product-meta">
+                  <span>メーカー：BREITLING</span>
+                  <span>税抜表示</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="product-image"><img src="images/②.jpg" alt="BREITLING ヘッドウィンドウ"></div>
+              <div class="product-body">
+                <div class="product-top">
+                  <div>
+                    <h3 class="product-title">BREITLING ヘッドウィンドウ</h3>
+                    <div class="product-ref">ネイビー文字盤</div>
+                  </div>
+                  <div class="product-price">¥20,000/月</div>
+                </div>
+                <span class="status available">在庫あり</span>
+                <p class="product-desc">落ち着いたネイビー文字盤が魅力の、上品な印象の一本です。</p>
+                <div class="product-meta">
+                  <span>メーカー：BREITLING</span>
+                  <span>税抜表示</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="product-image"><img src="images/③.jpg" alt="G-SHOCK ソーラーブラック"></div>
+              <div class="product-body">
+                <div class="product-top">
+                  <div>
+                    <h3 class="product-title">G-SHOCK ソーラーブラック</h3>
+                    <div class="product-ref">ブラック文字盤 / チタン</div>
+                  </div>
+                  <div class="product-price">¥10,000/月</div>
+                </div>
+                <span class="status available">在庫あり</span>
+                <p class="product-desc">実用性と重厚感を兼ね備え、日常使いもしやすいモデルです。</p>
+                <div class="product-meta">
+                  <span>メーカー：G-SHOCK</span>
+                  <span>税抜表示</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="product-image"><img src="images/④.jpg" alt="ROLEX サブマリーナ"></div>
+              <div class="product-body">
+                <div class="product-top">
+                  <div>
+                    <h3 class="product-title">ROLEX サブマリーナ</h3>
+                    <div class="product-ref">ブラック文字盤</div>
+                  </div>
+                  <div class="product-price">¥24,000/月</div>
+                </div>
+                <span class="status rented">レンタル中</span>
+                <p class="product-desc">ロレックスを代表する人気モデルです。現在は空き待ち受付中です。</p>
+                <div class="product-meta">
+                  <span>メーカー：ROLEX</span>
+                  <span>空き待ち可</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="product-image"><img src="images/⑤.jpg" alt="TAGHeuer カレラ キャリバー5"></div>
+              <div class="product-body">
+                <div class="product-top">
+                  <div>
+                    <h3 class="product-title">TAGHeuer カレラ キャリバー5</h3>
+                    <div class="product-ref">ブラックパープル文字盤</div>
+                  </div>
+                  <div class="product-price">¥10,000/月</div>
+                </div>
+                <span class="status rented">レンタル中</span>
+                <p class="product-desc">スポーティさと上品さを兼ね備えた人気モデルです。</p>
+                <div class="product-meta">
+                  <span>メーカー：TAGHeuer</span>
+                  <span>空き待ち可</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="product-image"><img src="images/⑥.jpg" alt="ZENITH エルプリメロ オープン"></div>
+              <div class="product-body">
+                <div class="product-top">
+                  <div>
+                    <h3 class="product-title">ZENITH エルプリメロ オープン</h3>
+                    <div class="product-ref">ブラック文字盤</div>
+                  </div>
+                  <div class="product-price">¥20,000/月</div>
+                </div>
+                <span class="status available">在庫あり</span>
+                <p class="product-desc">機械式ならではの魅力を楽しめる、個性ある一本です。</p>
+                <div class="product-meta">
+                  <span>メーカー：ZENITH</span>
+                  <span>税抜表示</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="conditions">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>ご利用条件</h2>
+              <p>お申し込み前に、ご利用条件をご確認ください。</p>
+            </div>
+          </div>
+          <div class="info-grid">
+            <article class="card">
+              <h3>料金について</h3>
+              <ul>
+                <li>表示価格は月額・税抜です。</li>
+                <li>モデルにより料金が異なります。</li>
+                <li>内容確定後に定期決済のご案内をいたします。</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>在庫について</h3>
+              <ul>
+                <li>在庫状況は随時変動します。</li>
+                <li>レンタル中モデルは空き待ち受付が可能です。</li>
+                <li>最終確定は個別確認後となります。</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>お手続きについて</h3>
+              <ul>
+                <li>ご希望モデルをメールにてご連絡ください。</li>
+                <li>在庫・条件確認後に内容を確定いたします。</li>
+                <li>Square定期決済完了後にご利用開始となります。</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="notice-box">
+            <h2>ご案内</h2>
+            <ul>
+              <li>本ページの内容は承認者向けのご案内です。</li>
+              <li>モデルによりご利用条件が異なる場合がございます。</li>
+              <li>掲載内容は在庫・状態により変更となる場合がございます。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="cta">
+        <div class="container">
+          <div class="cta-box">
+            <div>
+              <h2>ご希望モデルをお知らせください</h2>
+              <p>ご希望の時計が決まりましたら、モデル名をメールにてご連絡ください。在庫確認後、内容確定とSquare定期決済をご案内いたします。</p>
+            </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="mailto:info@kan-worth.co.jp?subject=TOKEMON希望モデルについて" class="btn btn-primary">メールで申し込む</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <strong>TOKEMON 承認者専用ページ</strong>
+          <div>モデル一覧・月額料金・ご利用条件をご確認いただけます。</div>
+        </div>
+        <div>
+          <div><a href="privacy.html">プライバシーポリシー</a></div>
+          <div><a href="terms.html">利用規約</a></div>
+          <div><a href="law.html">特定商取引法に基づく表記</a></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const correctPasscode = "TOKEMON2026";
+    const sessionKey = "tokemon_member_access";
+
+    function checkPasscode() {
+      const input = document.getElementById("passcode").value;
+      const error = document.getElementById("errorMessage");
+
+      if (input === correctPasscode) {
+        document.getElementById("gate").style.display = "none";
+        document.getElementById("protectedContent").style.display = "block";
+        sessionStorage.setItem(sessionKey, "true");
+        error.textContent = "";
+      } else {
+        error.textContent = "パスコードが違います。";
+      }
+    }
+
+    window.onload = function() {
+      if (sessionStorage.getItem(sessionKey) === "true") {
+        document.getElementById("gate").style.display = "none";
+        document.getElementById("protectedContent").style.display = "block";
+      }
+    };
+  </script>
+</body>
+</html>
 
