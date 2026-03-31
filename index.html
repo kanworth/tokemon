@@ -416,7 +416,7 @@
       font-size: 1rem;
     }
 
-    .plan small { color: var(--muted); }
+    .plan small { color: var(--muted); display:block; }
 
     .plan ul {
       list-style: none;
@@ -752,18 +752,18 @@
         <div class="grid-3">
           <article class="feature">
             <div class="num">01</div>
-            <h3>ブランド感を重視</h3>
-            <p>高級時計の魅力が伝わるように、暗めの背景とゴールド系の配色で上質な印象にまとめています。</p>
+            <h3>上質な世界観</h3>
+            <p>高級感を大切にしたデザインで、特別な一本との出会いを演出します。</p>
           </article>
           <article class="feature">
             <div class="num">02</div>
-            <h3>メーカーで絞り込み</h3>
-            <p>商品数が増えても見やすいように、メーカーごとのフィルターで一覧表示を切り替えられます。</p>
+            <h3>ブランド別に比較しやすい</h3>
+            <p>ブランドごとに絞り込みながら、気になるモデルを比較してご覧いただけます。</p>
           </article>
           <article class="feature">
             <div class="num">03</div>
-            <h3>承認後に詳細案内</h3>
-            <p>公開ページではモデルと在庫状況をご案内し、料金や個別条件は承認後にご確認いただけます。</p>
+            <h3>承認後に詳細をご案内</h3>
+            <p>公開ページではモデルと在庫状況をご案内し、料金やご利用条件は承認後にご確認いただけます。</p>
           </article>
         </div>
       </div>
@@ -774,7 +774,7 @@
         <div class="section-head">
           <div>
             <h2>コース一覧</h2>
-            <p>ご希望のモデルや在庫状況に応じてご案内いたします。詳細条件・料金は承認後にご確認いただけます。</p>
+            <p>ご希望のモデルや在庫状況に応じてご案内いたします。料金・ご利用条件は承認後にご確認いただけます。</p>
           </div>
         </div>
 
@@ -788,7 +788,7 @@
               <li>エントリーモデル中心にご案内</li>
               <li>会員制で月額利用</li>
               <li>在庫状況に応じてご案内</li>
-              <li>申請後に必要書類の案内メールを送信</li>
+              <li>申請後に必要書類のご案内をお送りします</li>
             </ul>
             <a href="#apply" class="btn btn-secondary">スタンダードを申請</a>
           </article>
@@ -841,7 +841,7 @@
           </div>
           <div class="filter-buttons" id="filterButtons"></div>
           <p style="margin:0; color:var(--muted); font-size:0.92rem;">
-            商品を増やすときは、下のスクリプト内の <strong>products</strong> 配列に追加してください。
+            ご希望のブランドや在庫状況にあわせて、モデル一覧をご覧いただけます。
           </p>
         </div>
 
@@ -852,7 +852,7 @@
     <section>
       <div class="container">
         <div class="notice-box">
-          <h2 style="margin-top:0;">ご案内</h2>
+          <h2 style="margin-top:0; color:var(--gold-2);">ご案内</h2>
           <ul>
             <li>公開ページではモデル一覧と在庫状況をご案内しています。</li>
             <li>料金・ご利用条件・個別の詳細は承認後にご案内いたします。</li>
@@ -894,12 +894,11 @@
         <div><a href="law.html">特定商取引法に基づく表記</a></div>
       </div>
     </div>
-        <div style="margin-top:20px; font-size:0.85rem; color:#aaa; line-height:1.6;">
-        <div>運営会社：株式会社カンワース</div>
-        <div>事業担当：宮崎 法男</div>
-        <div>レンタル事業所在地：〒107-0061 東京都港区北青山2-7-20 猪瀬ビル2F</div>
-        <div>電話番号：050-5357-0937</div>
-      </div>
+    <div class="container" style="margin-top:20px; font-size:0.85rem; color:#aaa; line-height:1.6;">
+      <div>運営会社：株式会社カンワース</div>
+      <div>事業担当：宮崎 法男</div>
+      <div>レンタル事業所在地：〒107-0061 東京都港区北青山2-7-20 猪瀬ビル2F</div>
+      <div>電話番号：050-5357-0937</div>
     </div>
   </footer>
 
@@ -958,80 +957,81 @@
         status: "available",
         image: "⑥.jpg",
         description: "機械式の魅力が感じられるゼニス。個性のある一本として存在感があります。"
+      },
+      {
+        brand: "PANERAI",
+        name: "ルミノールサブマーシブル",
+        subname: "ブラック文字盤",
+        note: "料金・詳細は承認後にご案内",
+        status: "rented",
+        image: "⑦.jpg",
+        description: "パネライらしい存在感ある大型ケース。無骨で男らしい一本。"
+      },
+      {
+        brand: "ROLEX",
+        name: "エアキング ダイヤ",
+        subname: "ブラック文字盤",
+        note: "料金・詳細は承認後にご案内",
+        status: "available",
+        image: "⑧.jpg",
+        description: "ローマ数字とダイヤインデックスが特徴的なエアキング。上品な一本。"
+      },
+      {
+        brand: "HUBLOT",
+        name: "ビッグバンキング",
+        subname: "オールブラック",
+        note: "料金・詳細は承認後にご案内",
+        status: "rented",
+        image: "⑨.jpg",
+        description: "圧倒的な存在感を誇るウブロ。オールブラックで重厚な印象。"
+      },
+      {
+        brand: "ROLEX",
+        name: "GMTマスター",
+        subname: "ペプシベゼル",
+        note: "料金・詳細は承認後にご案内",
+        status: "rented",
+        image: "⑩.jpg",
+        description: "赤青ベゼルが特徴の人気モデル。資産性も高い一本。"
+      },
+      {
+        brand: "PANERAI",
+        name: "サブマーシブル",
+        subname: "ブラック文字盤",
+        note: "料金・詳細は承認後にご案内",
+        status: "rented",
+        image: "⑪.jpg",
+        description: "ダイバーズモデルの代表格。存在感と視認性に優れる一本。"
+      },
+      {
+        brand: "FRANCK MULLER",
+        name: "トノウカーベックス",
+        subname: "ブラック",
+        note: "料金・詳細は承認後にご案内",
+        status: "rented",
+        image: "⑫.jpg",
+        description: "独特なケース形状とデザインが特徴。個性を演出できる一本。"
+      },
+      {
+        brand: "HUBLOT",
+        name: "クラシックフュージョン",
+        subname: "グリーン",
+        note: "料金・詳細は承認後にご案内",
+        status: "rented",
+        image: "⑬.jpg",
+        description: "落ち着いたグリーン文字盤。シンプルで高級感のあるモデル。"
+      },
+      {
+        brand: "ROLEX",
+        name: "デイトジャスト",
+        subname: "ブルー文字盤 ゴールドコンビ",
+        note: "料金・詳細は承認後にご案内",
+        status: "rented",
+        image: "⑭.jpg",
+        description: "定番のドレスモデル。高級感と実用性を兼ね備えた一本。"
       }
     ];
-{
-  brand: "PANERAI",
-  name: "ルミノールサブマーシブル",
-  subname: "ブラック文字盤",
-  note: "料金・詳細は承認後にご案内",
-  status: "rented",
-  image: "⑦.jpg",
-  description: "パネライらしい存在感ある大型ケース。無骨で男らしい一本。"
-},
-{
-  brand: "ROLEX",
-  name: "エアキング ダイヤ",
-  subname: "ブラック文字盤",
-  note: "料金・詳細は承認後にご案内",
-  status: "available",
-  image: "⑧.jpg",
-  description: "ローマ数字とダイヤインデックスが特徴的なエアキング。上品な一本。"
-},
-{
-  brand: "HUBLOT",
-  name: "ビッグバンキング",
-  subname: "オールブラック",
-  note: "料金・詳細は承認後にご案内",
-  status: "rented",
-  image: "⑨.jpg",
-  description: "圧倒的な存在感を誇るウブロ。オールブラックで重厚な印象。"
-},
-{
-  brand: "ROLEX",
-  name: "GMTマスター",
-  subname: "ペプシベゼル",
-  note: "料金・詳細は承認後にご案内",
-  status: "rented",
-  image: "⑩.jpg",
-  description: "赤青ベゼルが特徴の人気モデル。資産性も高い一本。"
-},
-{
-  brand: "PANERAI",
-  name: "サブマーシブル",
-  subname: "ブラック文字盤",
-  note: "料金・詳細は承認後にご案内",
-  status: "rented",
-  image: "⑪.jpg",
-  description: "ダイバーズモデルの代表格。存在感と視認性に優れる一本。"
-},
-{
-  brand: "FRANCK MULLER",
-  name: "トノウカーベックス",
-  subname: "ブラック",
-  note: "料金・詳細は承認後にご案内",
-  status: "rented",
-  image: "⑫.jpg",
-  description: "独特なケース形状とデザインが特徴。個性を演出できる一本。"
-},
-{
-  brand: "HUBLOT",
-  name: "クラシックフュージョン",
-  subname: "グリーン",
-  note: "料金・詳細は承認後にご案内",
-  status: "rented",
-  image: "⑬.jpg",
-  description: "落ち着いたグリーン文字盤。シンプルで高級感のあるモデル。"
-},
-{
-  brand: "ROLEX",
-  name: "デイトジャスト",
-  subname: "ブルー文字盤 ゴールドコンビ",
-  note: "料金・詳細は承認後にご案内",
-  status: "rented",
-  image: "⑭.jpg",
-  description: "定番のドレスモデル。高級感と実用性を兼ね備えた一本。"
-}
+
     let currentBrand = "all";
 
     function getStatusLabel(status) {
