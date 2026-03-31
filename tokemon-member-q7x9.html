@@ -11,7 +11,6 @@
       --bg: #0b0b0d;
       --bg2: #101116;
       --panel: rgba(255,255,255,0.05);
-      --panel-strong: rgba(255,255,255,0.08);
       --text: #f3f4f6;
       --muted: #b8bcc7;
       --line: rgba(255,255,255,0.12);
@@ -46,7 +45,7 @@
       margin: 0 auto;
     }
 
-    .glass, .card, .product, .hero-box, .notice-box, .flow-item, .gate-box {
+    .glass, .card, .product, .hero-box, .notice-box, .flow-item, .gate-box, .filter-box {
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
@@ -291,6 +290,27 @@
       font-size: 0.94rem;
     }
 
+    .filter-box {
+      padding: 18px;
+      margin-bottom: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
     .products {
       display: grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
@@ -383,6 +403,19 @@
       border: 1px solid rgba(217,83,79,0.24);
     }
 
+    .course-tag {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gold-2);
+      background: rgba(201,169,110,0.10);
+      border: 1px solid rgba(201,169,110,0.26);
+    }
+
     .product-desc {
       color: var(--muted);
       margin: 0;
@@ -396,6 +429,12 @@
       flex-wrap: wrap;
       color: var(--muted);
       font-size: 0.85rem;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .info-grid {
@@ -478,6 +517,13 @@
       gap: 22px;
     }
 
+    .empty-message {
+      grid-column: 1 / -1;
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+    }
+
     @media (max-width: 1024px) {
       .flow,
       .products,
@@ -497,7 +543,8 @@
       .card,
       .notice-box,
       .flow-item,
-      .cta-box { padding: 22px; }
+      .cta-box,
+      .filter-box { padding: 22px; }
     }
   </style>
 </head>
@@ -583,248 +630,15 @@
             </div>
           </div>
 
-          <div class="products">
-            <article class="product">
-              <div class="product-image"><img src="images/①.jpg" alt="BREITLING コルト パンダ"></div>
-              <div class="product-body">
-                <div class="product-top">
-                  <div>
-                    <h3 class="product-title">BREITLING コルト パンダ</h3>
-                    <div class="product-ref">パンダ文字盤</div>
-                  </div>
-                  <div class="product-price">¥20,000/月</div>
-                </div>
-                <span class="status available">在庫あり</span>
-                <p class="product-desc">白黒のコントラストが印象的で、存在感のあるモデルです。</p>
-                <div class="product-meta">
-                  <span>メーカー：BREITLING</span>
-                  <span>税抜表示</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="product">
-              <div class="product-image"><img src="images/②.jpg" alt="BREITLING ヘッドウィンドウ"></div>
-              <div class="product-body">
-                <div class="product-top">
-                  <div>
-                    <h3 class="product-title">BREITLING ヘッドウィンドウ</h3>
-                    <div class="product-ref">ネイビー文字盤</div>
-                  </div>
-                  <div class="product-price">¥20,000/月</div>
-                </div>
-                <span class="status available">在庫あり</span>
-                <p class="product-desc">落ち着いたネイビー文字盤が魅力の、上品な印象の一本です。</p>
-                <div class="product-meta">
-                  <span>メーカー：BREITLING</span>
-                  <span>税抜表示</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="product">
-              <div class="product-image"><img src="images/③.jpg" alt="G-SHOCK ソーラーブラック"></div>
-              <div class="product-body">
-                <div class="product-top">
-                  <div>
-                    <h3 class="product-title">G-SHOCK ソーラーブラック</h3>
-                    <div class="product-ref">ブラック文字盤 / チタン</div>
-                  </div>
-                  <div class="product-price">¥10,000/月</div>
-                </div>
-                <span class="status available">在庫あり</span>
-                <p class="product-desc">実用性と重厚感を兼ね備え、日常使いもしやすいモデルです。</p>
-                <div class="product-meta">
-                  <span>メーカー：G-SHOCK</span>
-                  <span>税抜表示</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="product">
-              <div class="product-image"><img src="images/④.jpg" alt="ROLEX サブマリーナ"></div>
-              <div class="product-body">
-                <div class="product-top">
-                  <div>
-                    <h3 class="product-title">ROLEX サブマリーナ</h3>
-                    <div class="product-ref">ブラック文字盤</div>
-                  </div>
-                  <div class="product-price">¥24,000/月</div>
-                </div>
-                <span class="status rented">レンタル中</span>
-                <p class="product-desc">ロレックスを代表する人気モデルです。現在は空き待ち受付中です。</p>
-                <div class="product-meta">
-                  <span>メーカー：ROLEX</span>
-                  <span>空き待ち可</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="product">
-              <div class="product-image"><img src="images/⑤.jpg" alt="TAGHeuer カレラ キャリバー5"></div>
-              <div class="product-body">
-                <div class="product-top">
-                  <div>
-                    <h3 class="product-title">TAGHeuer カレラ キャリバー5</h3>
-                    <div class="product-ref">ブラックパープル文字盤</div>
-                  </div>
-                  <div class="product-price">¥10,000/月</div>
-                </div>
-                <span class="status rented">レンタル中</span>
-                <p class="product-desc">スポーティさと上品さを兼ね備えた人気モデルです。</p>
-                <div class="product-meta">
-                  <span>メーカー：TAGHeuer</span>
-                  <span>空き待ち可</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="product">
-              <div class="product-image"><img src="images/⑥.jpg" alt="ZENITH エルプリメロ オープン"></div>
-              <div class="product-body">
-                <div class="product-top">
-                  <div>
-                    <h3 class="product-title">ZENITH エルプリメロ オープン</h3>
-                    <div class="product-ref">ブラック文字盤</div>
-                  </div>
-                  <div class="product-price">¥20,000/月</div>
-                </div>
-                <span class="status available">在庫あり</span>
-                <p class="product-desc">機械式ならではの魅力を楽しめる、個性ある一本です。</p>
-                <div class="product-meta">
-                  <span>メーカー：ZENITH</span>
-                  <span>税抜表示</span>
-                </div>
-              </div>
-            </article>
-            <!-- ⑦ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑦.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">PANERAI ルミノールサブマーシブル</h3>
-        <div class="product-ref">ブラック文字盤</div>
-      </div>
-      <div class="product-price">¥24,000/月</div>
-    </div>
-    <span class="status rented">レンタル中</span>
-    <p class="product-desc">パネライらしい存在感ある大型ケース。無骨で男らしい一本。</p>
-  </div>
-</article>
-
-<!-- ⑧ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑧.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">ROLEX エアキング ダイヤ</h3>
-        <div class="product-ref">ブラック文字盤</div>
-      </div>
-      <div class="product-price">¥22,000/月</div>
-    </div>
-    <span class="status available">在庫あり</span>
-    <p class="product-desc">ローマ数字とダイヤが特徴的。上品で高級感のある一本。</p>
-  </div>
-</article>
-
-<!-- ⑨ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑨.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">HUBLOT ビッグバンキング</h3>
-        <div class="product-ref">オールブラック</div>
-      </div>
-      <div class="product-price">¥30,000/月</div>
-    </div>
-    <span class="status rented">レンタル中</span>
-    <p class="product-desc">圧倒的な存在感を誇るウブロ。重厚でインパクトある一本。</p>
-  </div>
-</article>
-
-<!-- ⑩ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑩.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">ROLEX GMTマスター</h3>
-        <div class="product-ref">ペプシベゼル</div>
-      </div>
-      <div class="product-price">¥28,000/月</div>
-    </div>
-    <span class="status rented">レンタル中</span>
-    <p class="product-desc">赤青ベゼルが特徴の人気モデル。資産性も高い一本。</p>
-  </div>
-</article>
-
-<!-- ⑪ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑪.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">PANERAI サブマーシブル</h3>
-        <div class="product-ref">ブラック文字盤</div>
-      </div>
-      <div class="product-price">¥24,000/月</div>
-    </div>
-    <span class="status rented">レンタル中</span>
-    <p class="product-desc">ダイバーズモデルの代表格。視認性と存在感が魅力。</p>
-  </div>
-</article>
-
-<!-- ⑫ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑫.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">FRANCK MULLER トノウカーベックス</h3>
-        <div class="product-ref">ブラック</div>
-      </div>
-      <div class="product-price">¥26,000/月</div>
-    </div>
-    <span class="status rented">レンタル中</span>
-    <p class="product-desc">独特なケースとデザイン。個性を演出できる一本。</p>
-  </div>
-</article>
-
-<!-- ⑬ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑬.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">HUBLOT クラシックフュージョン</h3>
-        <div class="product-ref">グリーン文字盤</div>
-      </div>
-      <div class="product-price">¥28,000/月</div>
-    </div>
-    <span class="status rented">レンタル中</span>
-    <p class="product-desc">落ち着いたグリーンが特徴。シンプルで高級感ある一本。</p>
-  </div>
-</article>
-
-<!-- ⑭ -->
-<article class="product">
-  <div class="product-image"><img src="images/⑭.jpg"></div>
-  <div class="product-body">
-    <div class="product-top">
-      <div>
-        <h3 class="product-title">ROLEX デイトジャスト</h3>
-        <div class="product-ref">ブルー文字盤 ゴールドコンビ</div>
-      </div>
-      <div class="product-price">¥25,000/月</div>
-    </div>
-    <span class="status rented">レンタル中</span>
-    <p class="product-desc">定番のドレスモデル。高級感と実用性を兼ね備えた一本。</p>
-  </div>
-</article>
+          <div class="filter-box">
+            <div class="filter-row">
+              <strong style="font-size:1rem;">メーカーで絞り込み</strong>
+              <div id="productCount" style="color:var(--muted); font-size:0.92rem;">0件表示</div>
+            </div>
+            <div class="filter-buttons" id="filterButtons"></div>
           </div>
+
+          <div class="products" id="productGrid"></div>
         </div>
       </section>
 
@@ -841,7 +655,7 @@
               <h3>料金について</h3>
               <ul>
                 <li>表示価格は月額・税抜です。</li>
-                <li>モデルにより料金が異なります。</li>
+                <li>コース料金は目安であり、商品ごとに個別価格が異なります。</li>
                 <li>内容確定後に定期決済のご案内をいたします。</li>
               </ul>
             </article>
@@ -871,7 +685,7 @@
             <h2>ご案内</h2>
             <ul>
               <li>本ページの内容は承認者向けのご案内です。</li>
-              <li>モデルによりご利用条件が異なる場合がございます。</li>
+              <li>参考コースは目安であり、商品ごとに料金が異なる場合がございます。</li>
               <li>掲載内容は在庫・状態により変更となる場合がございます。</li>
             </ul>
           </div>
@@ -909,8 +723,224 @@
   </div>
 
   <script>
+    const products = [
+      {
+        brand: "BREITLING",
+        name: "コルト パンダ",
+        subname: "パンダ文字盤",
+        price: "¥20,000/月",
+        status: "available",
+        image: "①.jpg",
+        course: "参考コース：プレミアム",
+        description: "白黒のコントラストが印象的で、存在感のあるモデルです。"
+      },
+      {
+        brand: "BREITLING",
+        name: "ヘッドウィンドウ",
+        subname: "ネイビー文字盤",
+        price: "¥20,000/月",
+        status: "available",
+        image: "②.jpg",
+        course: "参考コース：プレミアム",
+        description: "落ち着いたネイビー文字盤が魅力の、上品な印象の一本です。"
+      },
+      {
+        brand: "G-SHOCK",
+        name: "ソーラーブラック",
+        subname: "ブラック文字盤 / チタン",
+        price: "¥10,000/月",
+        status: "available",
+        image: "③.jpg",
+        course: "参考コース：スタンダード",
+        description: "実用性と重厚感を兼ね備え、日常使いもしやすいモデルです。"
+      },
+      {
+        brand: "ROLEX",
+        name: "サブマリーナ",
+        subname: "ブラック文字盤",
+        price: "¥24,000/月",
+        status: "rented",
+        image: "④.jpg",
+        course: "参考コース：プレミアム",
+        description: "ロレックスを代表する人気モデルです。現在は空き待ち受付中です。"
+      },
+      {
+        brand: "TAGHeuer",
+        name: "カレラ キャリバー5",
+        subname: "ブラックパープル文字盤",
+        price: "¥10,000/月",
+        status: "rented",
+        image: "⑤.jpg",
+        course: "参考コース：スタンダード",
+        description: "スポーティさと上品さを兼ね備えた人気モデルです。"
+      },
+      {
+        brand: "ZENITH",
+        name: "エルプリメロ オープン",
+        subname: "ブラック文字盤",
+        price: "¥20,000/月",
+        status: "available",
+        image: "⑥.jpg",
+        course: "参考コース：プレミアム",
+        description: "機械式ならではの魅力を楽しめる、個性ある一本です。"
+      },
+      {
+        brand: "PANERAI",
+        name: "ルミノールサブマーシブル",
+        subname: "ブラック文字盤",
+        price: "¥20,000/月",
+        status: "rented",
+        image: "⑦PNG.PNG",
+        course: "参考コース：プレミアム",
+        description: "パネライらしい存在感ある大型ケース。無骨で男らしい一本。"
+      },
+      {
+        brand: "ROLEX",
+        name: "エアキング ダイヤモンドインデックス",
+        subname: "ブラック文字盤",
+        price: "¥30,000/月",
+        status: "available",
+        image: "⑧.PNG",
+        course: "参考コース：ダイヤモンド",
+        description: "ローマ数字とダイヤインデックスが特徴的。上品で高級感のある一本。"
+      },
+      {
+        brand: "HUBLOT",
+        name: "ビッグバンキング",
+        subname: "オールブラック",
+        price: "¥26,000/月",
+        status: "rented",
+        image: "⑨.PNG",
+        course: "参考コース：プレミアム",
+        description: "圧倒的な存在感を誇るウブロ。オールブラックで重厚な印象。"
+      },
+      {
+        brand: "ROLEX",
+        name: "GMTマスター",
+        subname: "ペプシベゼル",
+        price: "¥34,000/月",
+        status: "rented",
+        image: "⑩.PNG",
+        course: "参考コース：ダイヤモンド",
+        description: "赤青ベゼルが特徴の人気モデル。資産性も高い一本。"
+      },
+      {
+        brand: "PANERAI",
+        name: "サブマーシブル",
+        subname: "ブラック文字盤",
+        price: "¥20,000/月",
+        status: "rented",
+        image: "⑪.PNG",
+        course: "参考コース：プレミアム",
+        description: "ダイバーズモデルの代表格。視認性と存在感が魅力。"
+      },
+      {
+        brand: "FRANCK MULLER",
+        name: "トノウカーベックス",
+        subname: "ブラック",
+        price: "¥20,000/月",
+        status: "rented",
+        image: "⑫.PNG",
+        course: "参考コース：プレミアム",
+        description: "独特なケースとデザイン。個性を演出できる一本。"
+      },
+      {
+        brand: "HUBLOT",
+        name: "クラシックフュージョンチタニウム",
+        subname: "グリーン",
+        price: "¥24,000/月",
+        status: "rented",
+        image: "⑬.PNG",
+        course: "参考コース：プレミアム",
+        description: "落ち着いたグリーン文字盤。シンプルで高級感ある一本。"
+      },
+      {
+        brand: "ROLEX",
+        name: "デイトジャスト",
+        subname: "ゴールドコンビ ブルー文字盤",
+        price: "¥28,000/月",
+        status: "rented",
+        image: "⑭.PNG",
+        course: "参考コース：プレミアム",
+        description: "定番のドレスモデル。高級感と実用性を兼ね備えた一本。"
+      }
+    ];
+
+    let currentBrand = "all";
     const correctPasscode = "TOKEMON2026";
     const sessionKey = "tokemon_member_access";
+
+    function getStatusLabel(status) {
+      if (status === "available") return "在庫あり";
+      if (status === "rented") return "レンタル中";
+      if (status === "maintenance") return "メンテナンス中";
+      return "";
+    }
+
+    function getActionLabel(status) {
+      if (status === "available") return "この時計を希望";
+      if (status === "rented") return "空き待ちを希望";
+      if (status === "maintenance") return "再開案内を希望";
+      return "詳細を確認";
+    }
+
+    function renderFilterButtons() {
+      const buttonsEl = document.getElementById("filterButtons");
+      const brands = ["all", ...new Set(products.map(item => item.brand))];
+
+      buttonsEl.innerHTML = brands.map(brand => {
+        const label = brand === "all" ? "すべて" : brand;
+        const className = brand === currentBrand ? "btn btn-primary" : "btn btn-secondary";
+        return `<button type="button" class="${className}" onclick="filterBrand('${brand.replace(/'/g, "\\'")}')">${label}</button>`;
+      }).join("");
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      const countEl = document.getElementById("productCount");
+
+      const filtered = currentBrand === "all"
+        ? products
+        : products.filter(item => item.brand === currentBrand);
+
+      countEl.textContent = `${filtered.length}件表示`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="card empty-message">該当する商品がありません。</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="product">
+          <div class="product-image"><img src="images/${item.image}" alt="${item.brand} ${item.name}"></div>
+          <div class="product-body">
+            <div class="product-top">
+              <div>
+                <h3 class="product-title">${item.brand} ${item.name}</h3>
+                <div class="product-ref">${item.subname}</div>
+              </div>
+              <div class="product-price">${item.price}</div>
+            </div>
+            <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
+            <span class="course-tag">${item.course}</span>
+            <p class="product-desc">${item.description}</p>
+            <div class="product-meta">
+              <span>メーカー：${item.brand}</span>
+              <span>税抜表示</span>
+            </div>
+            <div class="product-actions">
+              <a href="mailto:info@kan-worth.co.jp?subject=${encodeURIComponent('TOKEMON希望モデル：' + item.brand + ' ' + item.name)}" class="btn btn-primary">${getActionLabel(item.status)}</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function filterBrand(brand) {
+      currentBrand = brand;
+      renderFilterButtons();
+      renderProducts();
+    }
 
     function checkPasscode() {
       const input = document.getElementById("passcode").value;
@@ -921,6 +951,8 @@
         document.getElementById("protectedContent").style.display = "block";
         sessionStorage.setItem(sessionKey, "true");
         error.textContent = "";
+        renderFilterButtons();
+        renderProducts();
       } else {
         error.textContent = "パスコードが違います。";
       }
@@ -930,9 +962,10 @@
       if (sessionStorage.getItem(sessionKey) === "true") {
         document.getElementById("gate").style.display = "none";
         document.getElementById("protectedContent").style.display = "block";
+        renderFilterButtons();
+        renderProducts();
       }
     };
   </script>
 </body>
 </html>
-
