@@ -4,165 +4,175 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>利用規約｜TOKEMON</title>
+  <meta name="description" content="TOKEMONの利用規約です。審査、本人確認、月額料金、更新、延長料金、禁止事項などについて定めています。" />
   <style>
-    body{
-      margin:0;
-      font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-      background:#0f1115;
-      color:#fff;
-      line-height:1.85;
+    :root {
+      --bg: #0b0b0d;
+      --bg2: #101116;
+      --panel: rgba(255,255,255,0.05);
+      --text: #f3f4f6;
+      --muted: #b8bcc7;
+      --line: rgba(255,255,255,0.12);
+      --gold: #c9a96e;
+      --gold-2: #e2c48e;
+      --shadow: 0 16px 40px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --max: 1100px;
     }
-    .container{
-      width:min(900px, calc(100% - 32px));
-      margin:0 auto;
-      padding:40px 0 60px;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: var(--text);
+      line-height: 1.85;
+      background:
+        radial-gradient(circle at top right, rgba(201,169,110,0.12), transparent 26%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
     }
-    .box{
-      background:#171b22;
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:16px;
-      padding:28px;
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px);
+      background: rgba(11,11,13,0.82); border-bottom: 1px solid var(--line);
     }
-    h1,h2{
-      color:#f0d29a;
+    .topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.08em; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+      border: 1px solid rgba(201,169,110,0.45); color: var(--gold-2);
+      background: linear-gradient(135deg, rgba(201,169,110,0.22), rgba(255,255,255,0.04));
     }
-    h1{
-      margin-top:0;
+    .hero { padding: 56px 0 22px; }
+    .eyebrow {
+      display: inline-block; margin-bottom: 14px; padding: 8px 14px; border-radius: 999px;
+      border: 1px solid rgba(201,169,110,0.28); color: var(--gold-2); background: rgba(201,169,110,0.08);
+      font-size: 0.86rem; letter-spacing: 0.08em;
     }
-    a{
-      color:#f0d29a;
-      text-decoration:none;
+    h1 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.18; margin: 0 0 14px; }
+    .lead { color: var(--muted); margin: 0; max-width: 64ch; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 28px; margin-bottom: 18px;
     }
-    p, li{
-      color:#d0d5dc;
+    h2 {
+      margin: 0 0 12px; font-size: clamp(1.25rem, 2.5vw, 2rem); padding-left: 14px; border-left: 5px solid var(--gold);
     }
-    ol, ul{
-      padding-left:1.4em;
-    }
+    p { margin: 0 0 10px; color: var(--muted); }
+    ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); }
+    .footer { padding: 28px 0 44px; color: var(--muted); border-top: 1px solid var(--line); margin-top: 24px; font-size: 0.92rem; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="box">
-      <h1>利用規約</h1>
-
-      <p>
-        本利用規約（以下「本規約」といいます。）は、TOKEMON（以下「当サービス」といいます。）が提供する
-        高級時計レンタルサービスの利用条件を定めるものです。会員登録申請者および会員は、本規約に同意のうえ、
-        当サービスを利用するものとします。
-      </p>
-
-      <h2>第1条（適用）</h2>
-      <p>
-        本規約は、当サービスの申請、審査、契約、利用、返却、更新、解約その他一切の利用関係に適用されます。
-      </p>
-
-      <h2>第2条（会員登録申請）</h2>
-      <ol>
-        <li>当サービスの利用を希望する方は、当サービス所定の方法により会員登録申請を行うものとします。</li>
-        <li>当サービスは、申請内容、提出書類、在籍確認その他必要な審査を行った上で、登録可否を判断します。</li>
-        <li>審査基準および審査結果の詳細については、原則として開示しません。</li>
-      </ol>
-
-      <h2>第3条（提出書類および審査）</h2>
-      <p>会員登録申請に際し、当サービスは必要に応じて以下の資料等の提出を求めることがあります。</p>
-      <ul>
-        <li>本人確認書類</li>
-        <li>本人確認書類を持った顔写真</li>
-        <li>勤務先情報</li>
-        <li>社会保険証その他在籍確認に関連する資料</li>
-        <li>クレジットカード確認資料</li>
-        <li>給与明細、公共料金明細その他支払能力確認資料</li>
-      </ul>
-      <p>
-        当サービスは、必要に応じて勤務先への在籍確認その他の確認を行う場合があります。
-      </p>
-
-      <h2>第4条（サービス内容）</h2>
-      <ol>
-        <li>当サービスは、会員に対し、当サービス所定の時計を月額制で貸与するサービスです。</li>
-        <li>取扱商品、月額料金、貸出条件、在庫状況は、当サービスのウェブサイトその他当サービス所定の方法により表示します。</li>
-        <li>商品の在庫状況、整備状況その他の事情により、希望商品を貸与できない場合があります。</li>
-      </ol>
-
-      <h2>第5条（料金および支払方法）</h2>
-      <ol>
-        <li>会員は、当サービス所定の月額料金その他の費用を、当サービスが指定する方法で支払うものとします。</li>
-        <li>支払方法は、クレジットカード決済その他当サービスが別途認める方法とします。</li>
-        <li>決済不能、残高不足その他の理由により支払いが確認できない場合、当サービスは利用停止、契約解除その他必要な措置を取ることができます。</li>
-      </ol>
-
-      <h2>第6条（貸与商品の取扱い）</h2>
-      <ol>
-        <li>会員は、貸与商品を善良なる管理者の注意をもって使用・保管するものとします。</li>
-        <li>会員は、貸与商品について、第三者への転貸、譲渡、担保設定その他当サービスが不適切と判断する行為をしてはなりません。</li>
-        <li>会員は、貸与商品に改造、分解、部品交換、研磨、修理依頼その他現状を変更する行為を行ってはなりません。</li>
-      </ol>
-
-      <h2>第7条（禁止事項）</h2>
-      <p>会員は、以下の行為をしてはなりません。</p>
-      <ul>
-        <li>虚偽の情報による申請</li>
-        <li>第三者名義での申請または利用</li>
-        <li>貸与商品の転貸、転売、質入れ、担保提供</li>
-        <li>貸与商品の故意または重大な過失による破損、汚損、紛失</li>
-        <li>法令または公序良俗に反する行為</li>
-        <li>当サービスの運営を妨害する行為</li>
-      </ul>
-
-      <h2>第8条（破損・汚損・紛失等）</h2>
-      <ol>
-        <li>会員は、貸与商品の破損、汚損、故障、紛失、盗難等が発生した場合、直ちに当サービスへ連絡するものとします。</li>
-        <li>当サービスは、その原因、状態、過失の有無等を踏まえ、修理費用、補修費用、代替費用、その他損害賠償を請求することがあります。</li>
-        <li>通常使用の範囲を超える損耗または異常が認められる場合も、前項に準じて取り扱うことがあります。</li>
-      </ol>
-
-      <h2>第9条（返却）</h2>
-      <ol>
-        <li>会員は、契約終了時その他当サービスが返却を求めた場合、当サービス所定の方法により、速やかに貸与商品を返却するものとします。</li>
-        <li>返却遅延があった場合、当サービスは追加料金その他必要な措置を請求または実施できるものとします。</li>
-      </ol>
-
-      <h2>第10条（解約・利用停止・契約解除）</h2>
-      <ol>
-        <li>会員は、当サービス所定の方法により解約手続を行うことができます。</li>
-        <li>当サービスは、会員が本規約に違反した場合、支払遅延があった場合、申請内容に虚偽が判明した場合、その他当サービスが不適切と判断した場合、事前通知なく利用停止または契約解除できるものとします。</li>
-      </ol>
-
-      <h2>第11条（サービス内容の変更・停止）</h2>
-      <p>
-        当サービスは、商品の在庫状況、整備状況、運営上または技術上の都合その他の理由により、
-        サービス内容の変更、一時停止または終了を行うことがあります。
-      </p>
-
-      <h2>第12条（免責）</h2>
-      <ol>
-        <li>当サービスは、天災、配送事故、不可抗力、通信障害その他当サービスの責めに帰すべき事由によらない損害について責任を負いません。</li>
-        <li>当サービスは、会員が貸与商品を利用したことにより生じた間接損害、特別損害、逸失利益等について責任を負いません。</li>
-      </ol>
-
-      <h2>第13条（個人情報の取扱い）</h2>
-      <p>
-        当サービスにおける個人情報の取扱いは、別途定める
-        <a href="privacy.html">プライバシーポリシー</a>
-        に従うものとします。
-      </p>
-
-      <h2>第14条（規約の変更）</h2>
-      <p>
-        当サービスは、必要に応じて本規約を変更することができます。変更後の規約は、当サービスのウェブサイトに掲載した時点から効力を生じるものとします。
-      </p>
-
-      <h2>第15条（準拠法および管轄）</h2>
-      <p>
-        本規約は日本法に準拠し、本サービスに関して紛争が生じた場合は、
-        当サービス運営者の所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。
-      </p>
-
-      <p style="margin-top:30px;">
-        <a href="index.html">← TOKEMONトップへ戻る</a>
-      </p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">TK</span>
+        <span>TOKEMON</span>
+      </a>
+      <a href="index.html">トップへ戻る</a>
     </div>
-  </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">TERMS OF SERVICE</span>
+      <h1>利用規約</h1>
+      <p class="lead">本規約は、TOKEMONが提供するブランド時計レンタルサービスの利用条件を定めるものです。ご利用の際は、本規約に同意のうえお申し込みください。</p>
+    </section>
+
+    <div class="card">
+      <h2>第1条（適用）</h2>
+      <p>本規約は、株式会社カンワースが運営するTOKEMONの利用に関し、すべての利用者に適用されます。</p>
+    </div>
+
+    <div class="card">
+      <h2>第2条（サービス内容）</h2>
+      <p>当サービスは、ブランド時計の月額レンタルサービスです。商品ごとに個別価格が設定され、承認後に利用条件を確認のうえご利用いただきます。</p>
+    </div>
+
+    <div class="card">
+      <h2>第3条（審査・本人確認）</h2>
+      <p>当サービスは審査制です。審査にあたり、本人確認および勤務実態等の確認資料をご提出いただきます。</p>
+      <ul>
+        <li>マイナンバーカード</li>
+        <li>運転免許証</li>
+        <li>名刺</li>
+        <li>勤務先情報</li>
+        <li>給与明細表の写真</li>
+        <li>社会保険証</li>
+        <li>身分証を持った状態での本人撮影画像</li>
+        <li>直近の公共料金明細</li>
+        <li>勤務先への在籍確認</li>
+      </ul>
+      <p>一部提出が困難な場合は、提出可能な資料をもとに審査します。審査基準や審査結果の理由は開示しません。</p>
+    </div>
+
+    <div class="card">
+      <h2>第4条（料金）</h2>
+      <p>料金は、スタンダードコース、プレミアムコース、ダイヤモンドコースの月額目安を基準とします。ただし、各商品には個別の月額料金が設定されており、コース料金は目安です。</p>
+    </div>
+
+    <div class="card">
+      <h2>第5条（決済）</h2>
+      <p>決済は、Squareを利用した定期決済により行います。初回は商品確定後、以後は毎月の更新日に自動決済されます。</p>
+    </div>
+
+    <div class="card">
+      <h2>第6条（更新・延長料金）</h2>
+      <p>更新日に決済が完了しなかった場合、4日目までは猶予期間とします。</p>
+      <p>5日目以降は、1日ごとの延長料金へ自動的に切り替わります。</p>
+    </div>
+
+    <div class="card">
+      <h2>第7条（発送・返却）</h2>
+      <p>商品は決済確認後に発送します。返却方法、買取案内その他の詳細については、発送時に同封する書面にてご案内します。</p>
+    </div>
+
+    <div class="card">
+      <h2>第8条（禁止事項）</h2>
+      <ul>
+        <li>商品の転売、質入れ、譲渡、第三者貸与</li>
+        <li>商品の改造、分解、故意過失による破損</li>
+        <li>虚偽申請</li>
+        <li>反社会的行為または法令・公序良俗に反する行為</li>
+        <li>その他当社が不適切と判断する行為</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>第9条（破損・紛失・盗難）</h2>
+      <p>商品に破損、汚損、紛失、盗難が生じた場合は、直ちに当社へ連絡してください。状況に応じて修理費、実費、または代償金を請求する場合があります。</p>
+    </div>
+
+    <div class="card">
+      <h2>第10条（契約解除）</h2>
+      <p>未払い、虚偽申請、不正利用、連絡不能その他当社が不適切と判断した場合、事前通知なく利用承認を取り消すことがあります。</p>
+    </div>
+
+    <div class="card">
+      <h2>第11条（勤務先確認）</h2>
+      <p>審査時および必要に応じて、勤務先への在籍確認を行う場合があります。また、継続決済が完了しない場合も、勤務先へ連絡を行う場合があります。</p>
+    </div>
+
+    <div class="card">
+      <h2>第12条（免責）</h2>
+      <p>配送遅延、通信障害、外部サービス障害その他当社の責めに帰すべき事由によらない損害について、当社は責任を負いません。</p>
+    </div>
+
+    <div class="card">
+      <h2>第13条（規約変更）</h2>
+      <p>本規約は必要に応じて変更することがあります。変更後の規約は本ページに掲載した時点で効力を生じるものとします。</p>
+    </div>
+
+    <div class="card">
+      <h2>第14条（準拠法・管轄）</h2>
+      <p>本規約は日本法に準拠し、本サービスに関する紛争は当社所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">Copyright © TOKEMON</div>
+  </footer>
 </body>
 </html>
