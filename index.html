@@ -902,9 +902,8 @@
     </div>
   </footer>
 
-  <script>
-    const products = [
-
+ <script>
+const products = [
   {
     brand: "BREITLING",
     name: "コルト パンダ",
@@ -1031,8 +1030,6 @@
     image: "⑭.PNG",
     description: "定番ドレスモデル。"
   },
-
-  // 🔥 追加分ここから
   {
     brand: "HUBLOT",
     name: "クラシックオールブラック",
@@ -1055,7 +1052,7 @@
     brand: "FRANCK MULLER",
     name: "コンキスタドール レディース",
     subname: "ブラック文字盤",
-    note: "料金は承認後にご案内",
+    note: "月額 20,000円（税抜）",
     status: "rented",
     image: "⑰.PNG",
     description: "華やかなレディースモデル。"
@@ -1068,8 +1065,61 @@
     status: "rented",
     image: "⑱.PNG",
     description: "重厚感あるパネライの代表モデル。"
+  },
+  {
+    brand: "ROLEX",
+    name: "デイトジャスト2",
+    subname: "ブラック文字盤",
+    note: "月額 30,000円（税抜）",
+    status: "rented",
+    image: "⑲.PNG",
+    description: "存在感のあるケースサイズとブラック文字盤が魅力のロレックス。"
+  },
+  {
+    brand: "TAGHeuer",
+    name: "ホイヤー01 ブラック",
+    subname: "ブラック文字盤 / クロノグラフ",
+    note: "月額 20,000円（税抜）",
+    status: "rented",
+    image: "⑳.PNG",
+    description: "スケルトン感のあるダイヤルが印象的な、スポーティな一本。"
+  },
+  {
+    brand: "TUDOR",
+    name: "クロノタイム タイガー パンダ文字盤",
+    subname: "パンダ文字盤 / クロノグラフ",
+    note: "月額 28,000円（税抜）",
+    status: "rented",
+    image: "㉑.PNG",
+    description: "タイガーモデルらしい個性が光る、人気のクロノグラフ。"
+  },
+  {
+    brand: "HUBLOT",
+    name: "クラシックフュージョン オールブラック",
+    subname: "オールブラック",
+    note: "月額 28,000円（税抜）",
+    status: "rented",
+    image: "㉒.PNG",
+    description: "シンプルかつ精悍な印象で、ウブロらしい高級感を楽しめる一本。"
+  },
+  {
+    brand: "ROLEX",
+    name: "GMTマスター2 赤黒ベゼル",
+    subname: "赤黒ベゼル",
+    note: "月額 30,000円（税抜）",
+    status: "rented",
+    image: "㉓.PNG",
+    description: "赤黒ベゼルが目を引く、ロレックスの人気GMTモデル。"
+  },
+  {
+    brand: "ROLEX",
+    name: "ダイヤモンドベゼル レディース",
+    subname: "レディース / ダイヤモンドベゼル",
+    note: "月額 20,000円（税抜）",
+    status: "available",
+    image: "㉔.PNG",
+    description: "華やかなダイヤモンドベゼルが魅力のレディースロレックス。"
   }
-
 ];
 
 let currentBrand = "all";
@@ -1084,6 +1134,7 @@ function getStatusLabel(status) {
 function getActionLabel(status) {
   if (status === "available") return "会員申請へ";
   if (status === "rented") return "空き待ち希望";
+  if (status === "maintenance") return "再開案内を希望";
   return "詳細を見る";
 }
 
@@ -1094,7 +1145,7 @@ function renderFilterButtons() {
   buttonsEl.innerHTML = brands.map(brand => {
     const label = brand === "all" ? "すべて" : brand;
     const className = brand === currentBrand ? "btn btn-primary" : "btn btn-secondary";
-    return `<button class="${className}" onclick="filterBrand('${brand}')">${label}</button>`;
+    return `<button type="button" class="${className}" onclick="filterBrand('${brand}')">${label}</button>`;
   }).join("");
 }
 
@@ -1108,17 +1159,33 @@ function renderProducts() {
 
   countEl.textContent = `${filtered.length}件表示`;
 
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="card empty-message">該当する商品がありません。</div>`;
+    return;
+  }
+
   grid.innerHTML = filtered.map(item => `
     <article class="product-card">
       <div class="product-image">
-        <img src="images/${item.image}">
+        <img src="images/${item.image}" alt="${item.brand} ${item.name}">
       </div>
       <div class="product-body">
-        <h3>${item.brand} ${item.name}</h3>
-        <div>${item.subname}</div>
-        <div>${item.note}</div>
+        <div class="product-top">
+          <div>
+            <h3 class="product-title">${item.brand} ${item.name}</h3>
+            <div class="product-ref">${item.subname}</div>
+          </div>
+          <div class="product-note">${item.note}</div>
+        </div>
         <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
-        <p>${item.description}</p>
+        <p class="product-desc">${item.description}</p>
+        <div class="product-meta">
+          <span>メーカー：${item.brand}</span>
+          <span>審査制</span>
+        </div>
+        <div class="product-actions">
+          <a href="#apply" class="btn btn-primary">${getActionLabel(item.status)}</a>
+        </div>
       </div>
     </article>
   `).join("");
@@ -1132,6 +1199,6 @@ function filterBrand(brand) {
 
 renderFilterButtons();
 renderProducts();
-  </script>
+</script>
 </body>
 </html>
