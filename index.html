@@ -904,211 +904,234 @@
 
   <script>
     const products = [
-      {
-        brand: "BREITLING",
-        name: "コルト パンダ",
-        subname: "パンダ文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "available",
-        image: "①.jpg",
-        description: "白黒のコントラストが印象的なブライトリング。存在感のある一本です。"
-      },
-      {
-        brand: "BREITLING",
-        name: "ヘッドウィンドウ",
-        subname: "ネイビー文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "available",
-        image: "②.jpg",
-        description: "落ち着いたネイビー系文字盤が魅力のブライトリング。上品にまとまるモデルです。"
-      },
-      {
-        brand: "G-SHOCK",
-        name: "ソーラーブラック",
-        subname: "ブラック文字盤 / チタン",
-        note: "料金・詳細は承認後にご案内",
-        status: "available",
-        image: "③.jpg",
-        description: "実用性と重厚感を兼ね備えたG-SHOCK。カジュアルにも使いやすい一本です。"
-      },
-      {
-        brand: "ROLEX",
-        name: "サブマリーナ",
-        subname: "ブラック文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "④.jpg",
-        description: "ロレックスを代表する人気ダイバーズ。現在は貸出中のため空き待ち対象です。"
-      },
-      {
-        brand: "TAGHeuer",
-        name: "カレラ キャリバー5",
-        subname: "ブラックパープル文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑤.jpg",
-        description: "スポーティさと上品さを両立したタグ・ホイヤー。現在は貸出中です。"
-      },
-      {
-        brand: "ZENITH",
-        name: "エルプリメロ オープン",
-        subname: "ブラック文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "available",
-        image: "⑥.jpg",
-        description: "機械式の魅力が感じられるゼニス。個性のある一本として存在感があります。"
-      },
-           {
-        brand: "PANERAI",
-        name: "ルミノールサブマーシブル",
-        subname: "ブラック文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑦PNG.PNG",
-        description: "パネライらしい存在感ある大型ケース。無骨で男らしい一本。"
-      },
-      {
-        brand: "ROLEX",
-        name: "エアキング ダイヤ",
-        subname: "ブラック文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "available",
-        image: "⑧.PNG",
-        description: "ローマ数字とダイヤインデックスが特徴的なエアキング。上品な一本。"
-      },
-      {
-        brand: "HUBLOT",
-        name: "ビッグバンキング",
-        subname: "オールブラック",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑨.PNG",
-        description: "圧倒的な存在感を誇るウブロ。オールブラックで重厚な印象。"
-      },
-      {
-        brand: "ROLEX",
-        name: "GMTマスター",
-        subname: "ペプシベゼル",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑩.PNG",
-        description: "赤青ベゼルが特徴の人気モデル。資産性も高い一本。"
-      },
-      {
-        brand: "PANERAI",
-        name: "サブマーシブル",
-        subname: "ブラック文字盤",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑪.PNG",
-        description: "ダイバーズモデルの代表格。存在感と視認性に優れる一本。"
-      },
-      {
-        brand: "FRANCK MULLER",
-        name: "トノウカーベックス",
-        subname: "ブラック",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑫.PNG",
-        description: "独特なケース形状とデザインが特徴。個性を演出できる一本。"
-      },
-      {
-        brand: "HUBLOT",
-        name: "クラシックフュージョン",
-        subname: "グリーン",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑬.PNG",
-        description: "落ち着いたグリーン文字盤。シンプルで高級感のあるモデル。"
-      },
-      {
-        brand: "ROLEX",
-        name: "デイトジャスト",
-        subname: "ブルー文字盤 ゴールドコンビ",
-        note: "料金・詳細は承認後にご案内",
-        status: "rented",
-        image: "⑭.PNG",
-        description: "定番のドレスモデル。高級感と実用性を兼ね備えた一本。"
-      }
-    ];
 
-    let currentBrand = "all";
+  {
+    brand: "BREITLING",
+    name: "コルト パンダ",
+    subname: "パンダ文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "available",
+    image: "①.jpg",
+    description: "白黒のコントラストが印象的なブライトリング。"
+  },
+  {
+    brand: "BREITLING",
+    name: "ヘッドウィンドウ",
+    subname: "ネイビー文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "available",
+    image: "②.jpg",
+    description: "落ち着いたネイビー文字盤の上品モデル。"
+  },
+  {
+    brand: "G-SHOCK",
+    name: "ソーラーブラック",
+    subname: "ブラック文字盤 / チタン",
+    note: "料金・詳細は承認後にご案内",
+    status: "available",
+    image: "③.jpg",
+    description: "実用性と重厚感を兼ね備えた一本。"
+  },
+  {
+    brand: "ROLEX",
+    name: "サブマリーナ",
+    subname: "ブラック文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "④.jpg",
+    description: "ロレックス代表のダイバーズモデル。"
+  },
+  {
+    brand: "TAGHeuer",
+    name: "カレラ キャリバー5",
+    subname: "ブラックパープル文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑤.jpg",
+    description: "スポーティと上品さの融合モデル。"
+  },
+  {
+    brand: "ZENITH",
+    name: "エルプリメロ オープン",
+    subname: "ブラック文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "available",
+    image: "⑥.jpg",
+    description: "機械式の魅力を感じる一本。"
+  },
+  {
+    brand: "PANERAI",
+    name: "ルミノールサブマーシブル",
+    subname: "ブラック文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑦PNG.PNG",
+    description: "無骨で男らしい大型モデル。"
+  },
+  {
+    brand: "ROLEX",
+    name: "エアキング ダイヤ",
+    subname: "ブラック文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "available",
+    image: "⑧.PNG",
+    description: "上品なローマ数字モデル。"
+  },
+  {
+    brand: "HUBLOT",
+    name: "ビッグバンキング",
+    subname: "オールブラック",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑨.PNG",
+    description: "圧倒的存在感のウブロ。"
+  },
+  {
+    brand: "ROLEX",
+    name: "GMTマスター",
+    subname: "ペプシベゼル",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑩.PNG",
+    description: "赤青ベゼルの人気モデル。"
+  },
+  {
+    brand: "PANERAI",
+    name: "サブマーシブル",
+    subname: "ブラック文字盤",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑪.PNG",
+    description: "視認性抜群のダイバーズ。"
+  },
+  {
+    brand: "FRANCK MULLER",
+    name: "トノウカーベックス",
+    subname: "ブラック",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑫.PNG",
+    description: "個性あるデザイン。"
+  },
+  {
+    brand: "HUBLOT",
+    name: "クラシックフュージョン",
+    subname: "グリーン",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑬.PNG",
+    description: "高級感あるグリーン文字盤。"
+  },
+  {
+    brand: "ROLEX",
+    name: "デイトジャスト",
+    subname: "ブルー文字盤 ゴールドコンビ",
+    note: "料金・詳細は承認後にご案内",
+    status: "rented",
+    image: "⑭.PNG",
+    description: "定番ドレスモデル。"
+  },
 
-    function getStatusLabel(status) {
-      if (status === "available") return "受付中";
-      if (status === "rented") return "貸出中";
-      if (status === "maintenance") return "メンテナンス中";
-      return "";
-    }
+  // 🔥 追加分ここから
+  {
+    brand: "HUBLOT",
+    name: "クラシックオールブラック",
+    subname: "オールブラック",
+    note: "月額 20,000円（税抜）",
+    status: "rented",
+    image: "⑮.PNG",
+    description: "ブラックで統一された重厚な一本。"
+  },
+  {
+    brand: "IWC",
+    name: "パイロットウォッチ トップガン",
+    subname: "ブラック文字盤",
+    note: "月額 30,000円（税抜）",
+    status: "rented",
+    image: "⑯.PNG",
+    description: "無骨で視認性の高い人気モデル。"
+  },
+  {
+    brand: "FRANCK MULLER",
+    name: "コンキスタドール レディース",
+    subname: "ブラック文字盤",
+    note: "料金は承認後にご案内",
+    status: "rented",
+    image: "⑰.PNG",
+    description: "華やかなレディースモデル。"
+  },
+  {
+    brand: "PANERAI",
+    name: "ルミノールマリーナ ブラック",
+    subname: "ブラック文字盤",
+    note: "月額 24,000円（税抜）",
+    status: "rented",
+    image: "⑱.PNG",
+    description: "重厚感あるパネライの代表モデル。"
+  }
 
-    function getActionLabel(status) {
-      if (status === "available") return "会員申請へ";
-      if (status === "rented") return "空き待ち希望";
-      if (status === "maintenance") return "再開案内を希望";
-      return "詳細を見る";
-    }
+];
 
-    function renderFilterButtons() {
-      const buttonsEl = document.getElementById("filterButtons");
-      const brands = ["all", ...new Set(products.map(item => item.brand))];
+let currentBrand = "all";
 
-      buttonsEl.innerHTML = brands.map(brand => {
-        const label = brand === "all" ? "すべて" : brand;
-        const className = brand === currentBrand ? "btn btn-primary" : "btn btn-secondary";
-        return `<button type="button" class="${className}" onclick="filterBrand('${brand}')">${label}</button>`;
-      }).join("");
-    }
+function getStatusLabel(status) {
+  if (status === "available") return "受付中";
+  if (status === "rented") return "貸出中";
+  if (status === "maintenance") return "メンテナンス中";
+  return "";
+}
 
-    function renderProducts() {
-      const grid = document.getElementById("productGrid");
-      const countEl = document.getElementById("productCount");
+function getActionLabel(status) {
+  if (status === "available") return "会員申請へ";
+  if (status === "rented") return "空き待ち希望";
+  return "詳細を見る";
+}
 
-      const filtered = currentBrand === "all"
-        ? products
-        : products.filter(item => item.brand === currentBrand);
+function renderFilterButtons() {
+  const buttonsEl = document.getElementById("filterButtons");
+  const brands = ["all", ...new Set(products.map(item => item.brand))];
 
-      countEl.textContent = `${filtered.length}件表示`;
+  buttonsEl.innerHTML = brands.map(brand => {
+    const label = brand === "all" ? "すべて" : brand;
+    const className = brand === currentBrand ? "btn btn-primary" : "btn btn-secondary";
+    return `<button class="${className}" onclick="filterBrand('${brand}')">${label}</button>`;
+  }).join("");
+}
 
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div class="card empty-message">該当する商品がありません。</div>`;
-        return;
-      }
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+  const countEl = document.getElementById("productCount");
 
-      grid.innerHTML = filtered.map(item => `
-        <article class="product-card">
-          <div class="product-image">
-            <img src="images/${item.image}" alt="${item.brand} ${item.name}">
-          </div>
-          <div class="product-body">
-            <div class="product-top">
-              <div>
-                <h3 class="product-title">${item.brand} ${item.name}</h3>
-                <div class="product-ref">${item.subname}</div>
-              </div>
-              <div class="product-note">${item.note}</div>
-            </div>
-            <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
-            <p class="product-desc">${item.description}</p>
-            <div class="product-meta">
-              <span>メーカー：${item.brand}</span>
-              <span>審査制</span>
-            </div>
-            <div class="product-actions">
-              <a href="#apply" class="btn btn-primary">${getActionLabel(item.status)}</a>
-            </div>
-          </div>
-        </article>
-      `).join("");
-    }
+  const filtered = currentBrand === "all"
+    ? products
+    : products.filter(item => item.brand === currentBrand);
 
-    function filterBrand(brand) {
-      currentBrand = brand;
-      renderFilterButtons();
-      renderProducts();
-    }
+  countEl.textContent = `${filtered.length}件表示`;
 
-    renderFilterButtons();
-    renderProducts();
+  grid.innerHTML = filtered.map(item => `
+    <article class="product-card">
+      <div class="product-image">
+        <img src="images/${item.image}">
+      </div>
+      <div class="product-body">
+        <h3>${item.brand} ${item.name}</h3>
+        <div>${item.subname}</div>
+        <div>${item.note}</div>
+        <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
+        <p>${item.description}</p>
+      </div>
+    </article>
+  `).join("");
+}
+
+function filterBrand(brand) {
+  currentBrand = brand;
+  renderFilterButtons();
+  renderProducts();
+}
+
+renderFilterButtons();
+renderProducts();
   </script>
 </body>
 </html>
