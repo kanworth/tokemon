@@ -381,6 +381,11 @@
       max-height:96%;
     }
 
+    .product-card.big-watch.heuer-blue .product-image img{
+      max-width:100%;
+      max-height:100%;
+    }
+
     .badge-group{position:absolute;top:12px;left:12px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
     .badge{display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700;backdrop-filter:blur(10px)}
     .badge-featured{background:rgba(234,210,160,.95);color:#111}
@@ -666,6 +671,14 @@
 
     function isBigWatch(item){
       const text = `${item.brand} ${item.name} ${item.subname}`;
+      if(text.includes("ホイヤー01") && text.includes("ブルー")){
+        return "big-watch heuer-blue";
+      }
+      return [
+        "ターノグラフ ホワイト",
+        "エクスプローラー2"
+      ].some(keyword => text.includes(keyword)) ? "big-watch" : "";
+    } ${item.name} ${item.subname}`;
       return [
         "ホイヤー01",
         "ターノグラフ ホワイト",
@@ -756,7 +769,7 @@
       }
 
       grid.innerHTML = filtered.map(item => `
-        <article class="product-card ${isSmallWatch(item) ? 'small-watch' : ''} ${isBigWatch(item) ? 'big-watch' : ''}">
+        
           <div class="product-image">
             <div class="badge-group">
               ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
