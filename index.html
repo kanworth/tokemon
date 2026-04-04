@@ -352,7 +352,7 @@
 
     .product-image{
       aspect-ratio:4 / 3;
-      background:linear-gradient(#fff,#f8f8f8);
+      background:linear-gradient(180deg,#ffffff 0%, #f6f6f4 100%);
       position:relative;
       overflow:hidden;
       border-bottom:1px solid var(--line);
@@ -360,10 +360,12 @@
       align-items:center;
       justify-content:center;
       padding:20px;
-      border-radius:12px;
+      border-radius:14px;
+      border:1px solid rgba(202,165,106,.28);
       box-shadow:
-        0 4px 12px rgba(0,0,0,0.08),
-        inset 0 0 0 1px rgba(0,0,0,0.05);
+        0 10px 24px rgba(0,0,0,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.80),
+        inset 0 0 0 3px rgba(202,165,106,.08);
     }
 
     .product-image img{
@@ -372,7 +374,7 @@
       max-width:92%;
       max-height:92%;
       object-fit:contain;
-      filter:brightness(1.02) contrast(0.99);
+      filter:brightness(1.015) contrast(0.99) saturate(0.98);
     }
 
     .product-card.small-watch .product-image img{
