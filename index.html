@@ -152,9 +152,7 @@
       box-shadow:var(--shadow);
     }
 
-    .hero-copy{
-      padding:34px;
-    }
+    .hero-copy{padding:34px}
 
     .eyebrow{
       display:inline-block;
@@ -264,10 +262,7 @@
       display:grid;
       place-items:center;
       background:radial-gradient(circle at 40% 35%, #626672, #17181d 62%, #0d0f14 100%);
-      box-shadow:
-        0 18px 40px rgba(0,0,0,.36),
-        inset 0 0 0 2px rgba(255,255,255,.05),
-        inset 0 0 0 14px rgba(202,165,106,.11);
+      box-shadow:0 18px 40px rgba(0,0,0,.36), inset 0 0 0 2px rgba(255,255,255,.05), inset 0 0 0 14px rgba(202,165,106,.11);
     }
 
     .face{
@@ -292,15 +287,8 @@
       border-radius:4px;
     }
 
-    .face::before{
-      width:56px;
-      transform:translate(-2px,-2px) rotate(18deg);
-    }
-
-    .face::after{
-      width:40px;
-      transform:translate(-2px,-2px) rotate(296deg);
-    }
+    .face::before{width:56px;transform:translate(-2px,-2px) rotate(18deg)}
+    .face::after{width:40px;transform:translate(-2px,-2px) rotate(296deg)}
 
     .center-dot{
       position:absolute;
@@ -339,9 +327,7 @@
 
     .hero-caption strong{font-size:1.1rem}
 
-    section{
-      padding:32px 0 14px;
-    }
+    section{padding:32px 0 14px}
 
     .section-head{
       display:flex;
@@ -356,11 +342,7 @@
       font-size:clamp(1.55rem, 3vw, 2.35rem);
     }
 
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      max-width:60ch;
-    }
+    .section-head p{margin:0;color:var(--muted);max-width:60ch}
 
     .features{
       display:grid;
@@ -391,16 +373,8 @@
       gap:18px;
     }
 
-    .plan{
-      padding:26px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .plan.featured{
-      border-color:rgba(202,165,106,.42);
-    }
-
+    .plan{padding:26px;position:relative;overflow:hidden}
+    .plan.featured{border-color:rgba(202,165,106,.42)}
     .plan-badge{
       position:absolute;
       right:18px;
@@ -414,62 +388,15 @@
     }
 
     .plan h3{margin:0 0 8px;font-size:1.28rem}
-    .plan-note{
-      display:inline-block;
-      color:var(--gold2);
-      font-weight:700;
-      margin-bottom:8px;
-      font-size:1rem;
-    }
+    .plan-note{display:inline-block;color:var(--gold2);font-weight:700;margin-bottom:8px;font-size:1rem}
+    .plan small{display:block;color:var(--muted)}
+    .plan ul{list-style:none;padding:0;margin:20px 0 22px;display:grid;gap:10px}
+    .plan li{position:relative;padding-left:20px;color:var(--muted)}
+    .plan li::before{content:"•";position:absolute;left:0;top:0;color:var(--gold2)}
 
-    .plan small{
-      display:block;
-      color:var(--muted);
-    }
-
-    .plan ul{
-      list-style:none;
-      padding:0;
-      margin:20px 0 22px;
-      display:grid;
-      gap:10px;
-    }
-
-    .plan li{
-      position:relative;
-      padding-left:20px;
-      color:var(--muted);
-    }
-
-    .plan li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      top:0;
-      color:var(--gold2);
-    }
-
-    .filter-card{
-      padding:18px;
-      margin-bottom:18px;
-      display:grid;
-      gap:14px;
-    }
-
-    .filter-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .filter-grid{
-      display:grid;
-      grid-template-columns:1.45fr 1fr 1fr auto;
-      gap:12px;
-      align-items:center;
-    }
+    .filter-card{padding:18px;margin-bottom:18px;display:grid;gap:14px}
+    .filter-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .filter-grid{display:grid;grid-template-columns:1.45fr 1fr 1fr auto;gap:12px;align-items:center}
 
     .filter-card input[type="text"],
     .filter-card select{
@@ -487,22 +414,8 @@
     .filter-card input[type="text"]::placeholder{color:#b9bec8}
     .filter-card select option{color:#111}
 
-    .check-wrap{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      min-height:48px;
-      color:var(--muted);
-      font-size:.92rem;
-      white-space:nowrap;
-    }
-
-    .check-wrap input[type="checkbox"]{
-      width:18px;
-      height:18px;
-      margin:0;
-      accent-color:var(--gold);
-    }
+    .check-wrap{display:inline-flex;align-items:center;gap:8px;min-height:48px;color:var(--muted);font-size:.92rem;white-space:nowrap}
+    .check-wrap input[type="checkbox"]{width:18px;height:18px;margin:0;accent-color:var(--gold)}
 
     .products{
       display:grid;
@@ -514,7 +427,7 @@
       overflow:hidden;
       display:grid;
       grid-template-rows:auto 1fr;
-      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, opacity .2s ease;
       position:relative;
     }
 
@@ -524,155 +437,56 @@
       box-shadow:0 24px 52px rgba(0,0,0,.42);
     }
 
+    .product-card.rented{opacity:.82}
+
     .product-image{
       aspect-ratio:4 / 3;
       background:#fff;
       position:relative;
       overflow:hidden;
       border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
     }
 
     .product-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+      width:auto;
+      height:auto;
+      max-width:90%;
+      max-height:90%;
+      object-fit:contain;
     }
 
-    .badge-group{
-      position:absolute;
-      top:12px;
-      left:12px;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      z-index:2;
+    .product-card.small-watch .product-image img{
+      max-width:72%;
+      max-height:72%;
     }
 
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:7px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:700;
-      backdrop-filter:blur(10px);
-    }
+    .badge-group{position:absolute;top:12px;left:12px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
+    .badge{display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700;backdrop-filter:blur(10px)}
+    .badge-featured{background:rgba(234,210,160,.95);color:#111}
 
-    .badge-featured{
-      background:rgba(234,210,160,.95);
-      color:#111;
-    }
+    .status{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-size:.86rem;font-weight:700;width:fit-content}
+    .status::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(255,255,255,.04)}
+    .status.available{color:var(--ok);background:rgba(67,160,95,.14);border:1px solid rgba(67,160,95,.24)}
+    .status.rented{color:var(--ng);background:rgba(229,83,83,.14);border:1px solid rgba(229,83,83,.24)}
 
-    .status{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:.86rem;
-      font-weight:700;
-      width:fit-content;
-    }
+    .product-body{padding:20px;display:grid;gap:14px}
+    .product-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+    .product-title{margin:0;font-size:1.05rem;font-weight:700;line-height:1.45}
+    .product-ref{margin-top:4px;color:var(--muted);font-size:.88rem}
+    .product-note{color:var(--gold2);font-size:.94rem;font-weight:700;white-space:nowrap}
+    .product-desc{margin:0;color:var(--muted);font-size:.94rem;min-height:54px}
+    .product-meta{display:flex;flex-wrap:wrap;gap:10px}
+    .meta-chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:var(--gold-soft);border:1px solid rgba(202,165,106,.14);color:#ead9b4;font-size:.84rem}
+    .product-actions{display:flex;flex-wrap:wrap;gap:10px}
 
-    .status::before{
-      content:"";
-      width:9px;
-      height:9px;
-      border-radius:50%;
-      background:currentColor;
-      box-shadow:0 0 0 4px rgba(255,255,255,.04);
-    }
+    .notice-box{padding:24px}
+    .notice-box ul{margin:14px 0 0;padding-left:18px;color:var(--muted)}
 
-    .status.available{
-      color:var(--ok);
-      background:rgba(67,160,95,.14);
-      border:1px solid rgba(67,160,95,.24);
-    }
-
-    .status.rented{
-      color:var(--ng);
-      background:rgba(229,83,83,.14);
-      border:1px solid rgba(229,83,83,.24);
-    }
-
-    .product-body{
-      padding:20px;
-      display:grid;
-      gap:14px;
-    }
-
-    .product-top{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:start;
-    }
-
-    .product-title{
-      margin:0;
-      font-size:1.05rem;
-      font-weight:700;
-      line-height:1.45;
-    }
-
-    .product-ref{
-      margin-top:4px;
-      color:var(--muted);
-      font-size:.88rem;
-    }
-
-    .product-note{
-      color:var(--gold2);
-      font-size:.94rem;
-      font-weight:700;
-      white-space:nowrap;
-    }
-
-    .product-desc{
-      margin:0;
-      color:var(--muted);
-      font-size:.94rem;
-      min-height:54px;
-    }
-
-    .product-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .meta-chip{
-      display:inline-flex;
-      align-items:center;
-      padding:6px 10px;
-      border-radius:999px;
-      background:var(--gold-soft);
-      border:1px solid rgba(202,165,106,.14);
-      color:#ead9b4;
-      font-size:.84rem;
-    }
-
-    .product-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .notice-box{
-      padding:24px;
-    }
-
-    .notice-box ul{
-      margin:14px 0 0;
-      padding-left:18px;
-      color:var(--muted);
-    }
-
-    .cta{
-      padding:48px 0 72px;
-    }
-
+    .cta{padding:48px 0 72px}
     .cta-box{
       padding:34px;
       display:grid;
@@ -680,169 +494,41 @@
       gap:20px;
       align-items:center;
       border:1px solid rgba(202,165,106,.24);
-      background:
-        radial-gradient(circle at right top, rgba(202,165,106,.16), transparent 32%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background:radial-gradient(circle at right top, rgba(202,165,106,.16), transparent 32%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
     }
 
-    .cta-box h2{
-      margin:0 0 10px;
-      font-size:clamp(1.6rem, 3vw, 2.45rem);
+    .cta-box h2{margin:0 0 10px;font-size:clamp(1.6rem, 3vw, 2.45rem)}
+    .cta-box p{margin:0;color:var(--muted);max-width:62ch}
+
+    .footer{padding:26px 0 52px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+    .footer-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}
+    .footer small{display:block;margin-top:8px}
+    .empty-message{grid-column:1/-1;padding:28px;text-align:center;color:var(--muted);background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius)}
+    .back-to-top{position:fixed;right:18px;bottom:18px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg, var(--gold2), var(--gold));color:#111;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 24px rgba(202,165,106,.28);z-index:1200;font-size:22px;font-weight:700;transition:.2s ease;opacity:.95}
+    .back-to-top:hover{transform:translateY(-2px);opacity:1}
+
+    @media (max-width:1024px){
+      .hero-grid,.plans,.cta-box,.footer-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .products{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .filter-grid{grid-template-columns:1fr 1fr}
     }
 
-    .cta-box p{
-      margin:0;
-      color:var(--muted);
-      max-width:62ch;
-    }
-
-    .footer{
-      padding:26px 0 52px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:.92rem;
-    }
-
-    .footer-grid{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:22px;
-    }
-
-    .footer small{
-      display:block;
-      margin-top:8px;
-    }
-
-    .empty-message{
-      grid-column:1/-1;
-      padding:28px;
-      text-align:center;
-      color:var(--muted);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-    }
-
-    .back-to-top{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      width:52px;
-      height:52px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:50%;
-      background:linear-gradient(135deg, var(--gold2), var(--gold));
-      color:#111;
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow:0 10px 24px rgba(202,165,106,.28);
-      z-index:1200;
-      font-size:22px;
-      font-weight:700;
-      transition:.2s ease;
-      opacity:.95;
-    }
-
-    .back-to-top:hover{
-      transform:translateY(-2px);
-      opacity:1;
-    }
-
-    @media (max-width: 1024px){
-      .hero-grid,
-      .plans,
-      .cta-box,
-      .footer-grid{
-        grid-template-columns:1fr;
-      }
-
-      .features{
-        grid-template-columns:1fr;
-      }
-
-      .products{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-
-      .filter-grid{
-        grid-template-columns:1fr 1fr;
-      }
-    }
-
-    @media (max-width: 720px){
+    @media (max-width:720px){
       .nav{display:none}
       .hero{padding-top:46px}
-      .hero-points,
-      .products{
-        grid-template-columns:1fr;
-      }
-
-      .filter-grid{
-        grid-template-columns:1fr;
-        gap:10px;
-      }
-
-      .check-wrap{
-        width:100%;
-        min-height:44px;
-      }
-
+      .hero-points,.products{grid-template-columns:1fr}
+      .filter-grid{grid-template-columns:1fr;gap:10px}
+      .check-wrap{width:100%;min-height:44px}
       .hero-watch{min-height:420px}
-      .strap{
-        height:360px;
-        width:112px;
-      }
-      .watch-body{
-        width:220px;
-        height:220px;
-        top:92px;
-      }
-      .face{
-        width:148px;
-        height:148px;
-      }
-
+      .strap{height:360px;width:112px}
+      .watch-body{width:220px;height:220px;top:92px}
+      .face{width:148px;height:148px}
       .section-head{align-items:start}
       .topbar-inner{padding:12px 0}
-      .back-to-top{
-        right:14px;
-        bottom:14px;
-        width:48px;
-        height:48px;
-        font-size:20px;
-      }
+      .back-to-top{right:14px;bottom:14px;width:48px;height:48px;font-size:20px}
     }
-  .product-image {
-  width: 100%;
-  height: 250px;
-  object-fit: contain;
-  background: #ffffff;
-  padding: 10px;
-}
-
-/* 在庫状態スタイル */
-.product.available {
-  border: 2px solid #c9a96e;
-}
-
-.product.rented {
-  opacity: 0.5;
-}
-
-.product.rented::after {
-  content: "RENTED";
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 12px;
-}
-
-</style>
+  </style>
 </head>
 <body>
   <header class="topbar">
@@ -851,7 +537,6 @@
         <span class="brand-mark">TK</span>
         <span>TOKEMON</span>
       </a>
-
       <nav class="nav">
         <a href="#about">特徴</a>
         <a href="#plans">コース</a>
@@ -861,7 +546,6 @@
         <a href="terms.html">利用規約</a>
         <a href="law.html">特商法表記</a>
       </nav>
-
       <a href="#apply" class="btn btn-primary">会員申請はこちら</a>
     </div>
   </header>
@@ -872,44 +556,23 @@
         <div class="hero-copy">
           <span class="eyebrow">会員制・審査制 高級時計レンタル</span>
           <h1>憧れの一本を、<br>月額で楽しむ。</h1>
-          <p class="lead">
-            TOKEMONは、高級時計を安心して楽しみたい方向けの会員制サービスです。
-            公開LPではモデル一覧と在庫状況をご案内し、料金・詳細条件は承認後に個別でご案内いたします。
-          </p>
-
+          <p class="lead">TOKEMONは、高級時計を安心して楽しみたい方向けの会員制サービスです。公開LPではモデル一覧と在庫状況をご案内し、料金・詳細条件は承認後に個別でご案内いたします。</p>
           <div class="hero-actions">
             <a href="#products" class="btn btn-primary">商品一覧を見る</a>
             <a href="#plans" class="btn btn-secondary">コースを見る</a>
           </div>
-
           <div class="hero-points">
-            <div class="mini-card">
-              <strong>会員制・審査制</strong>
-              <span>申請後に必要事項を確認し、承認後に詳細をご案内します。</span>
-            </div>
-            <div class="mini-card">
-              <strong>公開LPは価格非表示</strong>
-              <span>高級感と安心感を保つため、料金は承認後にご案内します。</span>
-            </div>
-            <div class="mini-card">
-              <strong>在庫状況を明確表示</strong>
-              <span>在庫あり・レンタル中が一目でわかる構成です。</span>
-            </div>
+            <div class="mini-card"><strong>会員制・審査制</strong><span>申請後に必要事項を確認し、承認後に詳細をご案内します。</span></div>
+            <div class="mini-card"><strong>公開LPは価格非表示</strong><span>高級感と安心感を保つため、料金は承認後にご案内します。</span></div>
+            <div class="mini-card"><strong>在庫状況を明確表示</strong><span>在庫あり・レンタル中が一目でわかる構成です。</span></div>
           </div>
         </div>
-
         <div class="hero-visual">
           <div class="hero-watch">
             <div class="strap"></div>
-            <div class="watch-body">
-              <div class="face">
-                <div class="center-dot"></div>
-              </div>
-            </div>
+            <div class="watch-body"><div class="face"><div class="center-dot"></div></div></div>
             <div class="hero-tag">承認後に詳細をご案内</div>
-            <div class="hero-caption">
-              <strong>公開LPではモデルと在庫状況をご案内しています。</strong>
-            </div>
+            <div class="hero-caption"><strong>公開LPではモデルと在庫状況をご案内しています。</strong></div>
           </div>
         </div>
       </div>
@@ -917,125 +580,44 @@
 
     <section id="about">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>TOKEMONの特徴</h2>
-            <p>公開LPは見やすく、承認後LPは詳しく。役割を分けた導線設計で、上質に選べる構造にしています。</p>
-          </div>
-        </div>
-
+        <div class="section-head"><div><h2>TOKEMONの特徴</h2><p>公開LPは見やすく、承認後LPは詳しく。役割を分けた導線設計で、上質に選べる構造にしています。</p></div></div>
         <div class="features">
-          <article class="feature">
-            <div class="feature-num">01</div>
-            <h3>高級感のある公開LP</h3>
-            <p>価格を前面に出さず、モデルの魅力と世界観を重視した見せ方にしています。</p>
-          </article>
-
-          <article class="feature">
-            <div class="feature-num">02</div>
-            <h3>探しやすい商品一覧</h3>
-            <p>検索・メーカー絞り込み・並び替え・在庫ありのみ表示で、見たい時計を探しやすくしています。</p>
-          </article>
-
-          <article class="feature">
-            <div class="feature-num">03</div>
-            <h3>承認後に詳細開示</h3>
-            <p>料金・条件・詳しいご案内は承認後LPで案内するため、公開LPはすっきり見やすく保てます。</p>
-          </article>
+          <article class="feature"><div class="feature-num">01</div><h3>高級感のある公開LP</h3><p>価格を前面に出さず、モデルの魅力と世界観を重視した見せ方にしています。</p></article>
+          <article class="feature"><div class="feature-num">02</div><h3>探しやすい商品一覧</h3><p>検索・メーカー絞り込み・並び替え・在庫ありのみ表示で、見たい時計を探しやすくしています。</p></article>
+          <article class="feature"><div class="feature-num">03</div><h3>承認後に詳細開示</h3><p>料金・条件・詳しいご案内は承認後LPで案内するため、公開LPはすっきり見やすく保てます。</p></article>
         </div>
       </div>
     </section>
 
     <section id="plans">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>ご案内の流れ</h2>
-            <p>公開LPで気になるモデルを確認し、申請・承認後に詳細条件をご案内します。</p>
-          </div>
-        </div>
-
+        <div class="section-head"><div><h2>ご案内の流れ</h2><p>公開LPで気になるモデルを確認し、申請・承認後に詳細条件をご案内します。</p></div></div>
         <div class="plans">
-          <article class="plan">
-            <h3>公開LPを見る</h3>
-            <div class="plan-note">まずはモデル一覧を確認</div>
-            <small>価格は非表示 / 在庫状況を公開</small>
-            <ul>
-              <li>ブランドやモデルで比較しやすい</li>
-              <li>在庫あり・レンタル中を確認可能</li>
-              <li>高級感を重視した表示</li>
-            </ul>
-            <a href="#products" class="btn btn-secondary">商品一覧へ</a>
-          </article>
-
-          <article class="plan featured">
-            <span class="plan-badge">おすすめ</span>
-            <h3>会員申請</h3>
-            <div class="plan-note">承認後に詳細をご案内</div>
-            <small>審査制 / 条件確認あり</small>
-            <ul>
-              <li>公開LPでは価格を出しません</li>
-              <li>申請後に必要事項をご確認</li>
-              <li>承認後に料金・条件をご案内</li>
-            </ul>
-            <a href="#apply" class="btn btn-primary">会員申請へ</a>
-          </article>
-
-          <article class="plan">
-            <h3>承認後LPへ</h3>
-            <div class="plan-note">料金・条件を詳しく確認</div>
-            <small>承認者向けページでご案内</small>
-            <ul>
-              <li>レンタル条件を確認</li>
-              <li>詳しい料金を確認</li>
-              <li>対象モデルの詳細案内</li>
-            </ul>
-            <a href="#apply" class="btn btn-secondary">申請して確認</a>
-          </article>
+          <article class="plan"><h3>公開LPを見る</h3><div class="plan-note">まずはモデル一覧を確認</div><small>価格は非表示 / 在庫状況を公開</small><ul><li>ブランドやモデルで比較しやすい</li><li>在庫あり・レンタル中を確認可能</li><li>高級感を重視した表示</li></ul><a href="#products" class="btn btn-secondary">商品一覧へ</a></article>
+          <article class="plan featured"><span class="plan-badge">おすすめ</span><h3>会員申請</h3><div class="plan-note">承認後に詳細をご案内</div><small>審査制 / 条件確認あり</small><ul><li>公開LPでは価格を出しません</li><li>申請後に必要事項をご確認</li><li>承認後に料金・条件をご案内</li></ul><a href="#apply" class="btn btn-primary">会員申請へ</a></article>
+          <article class="plan"><h3>承認後LPへ</h3><div class="plan-note">料金・条件を詳しく確認</div><small>承認者向けページでご案内</small><ul><li>レンタル条件を確認</li><li>詳しい料金を確認</li><li>対象モデルの詳細案内</li></ul><a href="#apply" class="btn btn-secondary">申請して確認</a></article>
         </div>
       </div>
     </section>
 
     <section id="products">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>商品一覧</h2>
-            <p>メーカー・モデル・在庫状況で探せます。価格や詳細条件は承認後にご案内いたします。</p>
-          </div>
-        </div>
-
+        <div class="section-head"><div><h2>商品一覧</h2><p>メーカー・モデル・在庫状況で探せます。価格や詳細条件は承認後にご案内いたします。</p></div></div>
         <div class="filter-card">
-          <div class="filter-head">
-            <strong>条件で探す</strong>
-            <div id="productCount" style="color:var(--muted); font-size:.92rem;">0件表示</div>
-          </div>
-
+          <div class="filter-head"><strong>条件で探す</strong><div id="productCount" style="color:var(--muted); font-size:.92rem;">0件表示</div></div>
           <div class="filter-grid">
             <input type="text" id="searchInput" placeholder="ブランド名・モデル名・説明文で検索" />
-
-            <select id="brandSelect">
-              <option value="all">メーカーを選択</option>
-            </select>
-
+            <select id="brandSelect"><option value="all">メーカーを選択</option></select>
             <select id="sortSelect">
               <option value="recommended">おすすめ順</option>
               <option value="available">在庫あり優先</option>
               <option value="brand">メーカー順</option>
               <option value="name">モデル名順</option>
             </select>
-
-            <label class="check-wrap" for="stockOnly">
-              <input type="checkbox" id="stockOnly" />
-              <span>在庫ありのみ</span>
-            </label>
+            <label class="check-wrap" for="stockOnly"><input type="checkbox" id="stockOnly" /><span>在庫ありのみ</span></label>
           </div>
-
-          <p style="margin:0; color:var(--muted); font-size:.92rem;">
-            公開LPでは、モデルの魅力と在庫状況を中心にご案内しています。
-          </p>
+          <p style="margin:0; color:var(--muted); font-size:.92rem;">公開LPでは、モデルの魅力と在庫状況を中心にご案内しています。</p>
         </div>
-
         <div class="products" id="productGrid"></div>
       </div>
     </section>
@@ -1059,9 +641,7 @@
         <div class="cta-box">
           <div>
             <h2>会員申請受付中</h2>
-            <p>
-              会員登録は審査制です。申請後、必要事項を確認のうえ、承認後に料金・条件・対象モデルの詳細をご案内いたします。
-            </p>
+            <p>会員登録は審査制です。申請後、必要事項を確認のうえ、承認後に料金・条件・対象モデルの詳細をご案内いたします。</p>
           </div>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScxXpx9BkI4H_DYBw20eUea6L6yEXPRc0Coqxh_KHSgv6c2PQ/viewform?usp=publish-editor" class="btn btn-primary">会員申請フォーム</a>
@@ -1074,17 +654,9 @@
 
   <footer class="footer">
     <div class="container footer-grid">
-      <div>
-        <strong>TOKEMON</strong>
-        <small>高級時計の会員制レンタルサービス</small>
-      </div>
-      <div>
-        <div><a href="privacy.html">プライバシーポリシー</a></div>
-        <div><a href="terms.html">利用規約</a></div>
-        <div><a href="law.html">特定商取引法に基づく表記</a></div>
-      </div>
+      <div><strong>TOKEMON</strong><small>高級時計の会員制レンタルサービス</small></div>
+      <div><div><a href="privacy.html">プライバシーポリシー</a></div><div><a href="terms.html">利用規約</a></div><div><a href="law.html">特定商取引法に基づく表記</a></div></div>
     </div>
-
     <div class="container" style="margin-top:20px; font-size:.85rem; color:#aaa; line-height:1.6;">
       <div>運営会社：株式会社カンワース</div>
       <div>事業担当：宮崎 法男</div>
@@ -1145,7 +717,6 @@
       { brand:"Cartier", name:"ロードスター クロノグラフ", subname:"ブラック文字盤", status:"rented", image:"㊻.PNG", description:"力強さと上品さをあわせ持つクロノグラフ。" },
       { brand:"FRANCK MULLER", name:"コンキスタドール", subname:"ホワイト文字盤", status:"rented", image:"㊼.PNG", description:"フランクミュラーらしい曲線美が魅力。" },
       { brand:"Cartier", name:"ロードスター", subname:"ブラック文字盤", status:"rented", image:"㊽.PNG", description:"カルティエらしい個性を感じる一本。" },
-
       { brand:"PANERAI", name:"ルミノール GMT", subname:"ブラック文字盤 自動巻き", status:"rented", image:"50 IMG_9395 (1).PNG", description:"GMT機能を備えた存在感抜群のパネライ。", featured:true },
       { brand:"PANERAI", name:"ルミノール マリーナ", subname:"ネイビー文字盤 自動巻き", status:"rented", image:"51 IMG_9395 (2).PNG", description:"深みのあるネイビー文字盤が上質感を引き立てる人気モデル。" },
       { brand:"BREGUET", name:"タイプXX", subname:"クロノグラフ ブラック文字盤", status:"rented", image:"52 IMG_9395 (3).PNG", description:"ブレゲらしいクラシックさとスポーティさを兼ね備えた一本。", featured:true },
@@ -1166,6 +737,19 @@
 
     function getActionLabel(status){
       return status === "available" ? "会員申請へ" : "空き待ち相談";
+    }
+
+    function isSmallWatch(item){
+      const names = [
+        "ナビタイマー",
+        "ビッグバンキング",
+        "トップガン",
+        "クラシックオールブラック",
+        "デイトジャスト2",
+        "ターノグラフ",
+        "ホイヤー01"
+      ];
+      return names.some(keyword => `${item.brand} ${item.name} ${item.subname}`.includes(keyword));
     }
 
     function renderBrandSelect(){
@@ -1241,14 +825,13 @@
       }
 
       grid.innerHTML = filtered.map(item => `
-        <article class="product-card">
+        <article class="product-card ${item.status} ${isSmallWatch(item) ? 'small-watch' : ''}">
           <div class="product-image">
             <div class="badge-group">
               ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
             </div>
             <img src="images/${item.image}" alt="${item.brand} ${item.name}" loading="lazy" onerror="this.style.display='none'">
           </div>
-
           <div class="product-body">
             <div class="product-top">
               <div>
@@ -1257,19 +840,13 @@
               </div>
               <div class="product-note">詳細は承認後</div>
             </div>
-
-            <span class="status ${item.status}">
-              ${getStatusLabel(item.status)}
-            </span>
-
+            <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
             <p class="product-desc">${item.description}</p>
-
             <div class="product-meta">
               <span class="meta-chip">メーカー：${item.brand}</span>
               <span class="meta-chip">会員制</span>
               <span class="meta-chip">審査制</span>
             </div>
-
             <div class="product-actions">
               <a href="#apply" class="btn btn-primary">${getActionLabel(item.status)}</a>
             </div>
