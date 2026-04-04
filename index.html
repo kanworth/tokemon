@@ -3,857 +3,817 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TOKEMON｜高級時計 月額サブスクリプション</title>
-  <meta name="description" content="TOKEMONは、株式会社カンワースが展開する高級時計の月額サブスクリプションサービスです。会員制・審査制で、高級時計を月額で楽しめます。" />
+  <title>TOKEMON｜高級時計レンタル・会員制サービス</title>
+  <meta name="description" content="TOKEMONは高級時計の会員制レンタルサービスです。公開LPではモデル一覧と在庫状況をご案内し、料金・詳細条件は承認後にご案内します。" />
   <style>
-    :root {
-      --bg: #0b0b0d;
-      --panel: rgba(255,255,255,0.04);
-      --text: #f3f4f6;
-      --muted: #b8bcc7;
-      --line: rgba(255,255,255,0.12);
-      --gold: #c9a96e;
-      --gold-2: #e2c48e;
-      --gold-soft: rgba(201,169,110,0.12);
-      --ok: #89d88d;
-      --busy: #ff938f;
-      --maint: #c7ccd6;
-      --shadow: 0 18px 40px rgba(0,0,0,0.35);
-      --radius: 20px;
-      --max: 1180px;
+    :root{
+      --bg:#0a0a0c;
+      --bg2:#121317;
+      --panel:rgba(255,255,255,.045);
+      --panel-strong:rgba(255,255,255,.065);
+      --line:rgba(255,255,255,.10);
+      --text:#f4f4f6;
+      --muted:#b9bec8;
+      --gold:#caa56a;
+      --gold2:#ead2a0;
+      --gold-soft:rgba(202,165,106,.12);
+      --ok:#82d79a;
+      --ng:#ff9a92;
+      --shadow:0 22px 50px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1200px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Segoe UI", sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Segoe UI",sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at top right, rgba(201,169,110,0.12), transparent 28%),
-        linear-gradient(180deg, #0b0b0d 0%, #101116 100%);
-      color: var(--text);
-      line-height: 1.7;
+        radial-gradient(circle at top right, rgba(202,165,106,.12), transparent 28%),
+        radial-gradient(circle at top left, rgba(255,255,255,.04), transparent 20%),
+        linear-gradient(180deg, #08080a 0%, #101116 100%);
+      line-height:1.7;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    .container{
+      width:min(calc(100% - 32px), var(--max));
+      margin:0 auto;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(8,8,10,.78);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
     }
 
-    .container {
-      width: min(100% - 32px, var(--max));
-      margin: 0 auto;
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(16px);
-      background: rgba(11,11,13,0.82);
-      border-bottom: 1px solid var(--line);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.08em;
     }
 
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
+    .brand-mark{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(202,165,106,.24), rgba(255,255,255,.04));
+      color:var(--gold2);
+      border:1px solid rgba(202,165,106,.45);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+    .nav{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
     }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      border: 1px solid rgba(201,169,110,0.45);
-      display: grid;
-      place-items: center;
-      color: var(--gold-2);
-      background: linear-gradient(135deg, rgba(201,169,110,0.22), rgba(255,255,255,0.04));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
-      font-size: 0.95rem;
+    .nav a{
+      color:var(--muted);
+      font-size:.95rem;
     }
 
-    .nav {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      flex-wrap: wrap;
+    .nav a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:700;
+      cursor:pointer;
+      transition:.22s ease;
+      white-space:nowrap;
     }
 
-    .nav a {
-      color: var(--muted);
-      font-size: 0.95rem;
+    .btn-primary{
+      color:#111;
+      background:linear-gradient(135deg, var(--gold2), var(--gold));
+      box-shadow:0 10px 24px rgba(202,165,106,.24);
     }
 
-    .nav a:hover {
-      color: var(--text);
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-secondary{
+      color:var(--text);
+      border-color:rgba(202,165,106,.35);
+      background:rgba(255,255,255,.02);
+    }
+    .btn-secondary:hover{
+      border-color:rgba(202,165,106,.7);
+      background:rgba(255,255,255,.04);
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      transition: 0.25s ease;
-      cursor: pointer;
+    .hero{
+      padding:74px 0 36px;
     }
 
-    .btn-primary {
-      color: #111216;
-      background: linear-gradient(135deg, var(--gold-2), var(--gold));
-      box-shadow: 0 10px 24px rgba(201,169,110,0.25);
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      gap:28px;
+      align-items:stretch;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      color: var(--text);
-      border-color: rgba(201,169,110,0.35);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(201,169,110,0.65);
-    }
-
-    .hero {
-      padding: 78px 0 40px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(201,169,110,0.28);
-      color: var(--gold-2);
-      font-size: 0.86rem;
-      letter-spacing: 0.08em;
-      background: rgba(201,169,110,0.08);
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      font-size: clamp(2.1rem, 4.8vw, 4.3rem);
-      line-height: 1.14;
-      margin: 0 0 16px;
-      letter-spacing: 0.03em;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 1.06rem;
-      margin: 0 0 24px;
-      max-width: 58ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .hero-points {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .mini-card,
-    .card,
+    .hero-copy,
+    .hero-visual,
     .feature,
     .plan,
+    .filter-card,
     .product-card,
     .notice-box,
-    .filter-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .cta-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
 
-    .mini-card {
-      padding: 16px;
+    .hero-copy{
+      padding:34px;
     }
 
-    .mini-card strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 4px;
+    .eyebrow{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(202,165,106,.10);
+      border:1px solid rgba(202,165,106,.24);
+      color:var(--gold2);
+      font-size:.86rem;
+      margin-bottom:16px;
+      letter-spacing:.08em;
     }
 
-    .mini-card span {
-      color: var(--muted);
-      font-size: 0.92rem;
+    h1{
+      margin:0 0 16px;
+      font-size:clamp(2.1rem, 4.6vw, 4.1rem);
+      line-height:1.12;
+      letter-spacing:.03em;
     }
 
-    .hero-visual {
-      position: relative;
-      overflow: hidden;
-      padding: 24px;
-      min-height: 100%;
+    .lead{
+      margin:0 0 24px;
+      color:var(--muted);
+      font-size:1.04rem;
+      max-width:58ch;
     }
 
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .mini-card{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    .mini-card strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:1rem;
+    }
+
+    .mini-card span{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .hero-visual{
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+      min-height:100%;
+    }
+
+    .hero-visual::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at top left, rgba(201,169,110,0.22), transparent 36%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-      pointer-events: none;
+        radial-gradient(circle at top left, rgba(202,165,106,.22), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      pointer-events:none;
     }
 
-    .watch-frame {
-      position: relative;
-      border-radius: 24px;
-      min-height: 520px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
+    .hero-watch{
+      position:relative;
+      min-height:520px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 50% 30%, rgba(255,255,255,0.18), transparent 20%),
-        linear-gradient(160deg, #1f2128 0%, #0f1014 100%);
+        radial-gradient(circle at 50% 28%, rgba(255,255,255,.15), transparent 22%),
+        linear-gradient(160deg, #1e2027 0%, #0d0f14 100%);
+      overflow:hidden;
     }
 
-    .watch-strap {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 144px;
-      height: 470px;
-      top: 24px;
-      border-radius: 80px;
-      background: linear-gradient(180deg, #2f3138, #0f1014);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    .strap{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      top:20px;
+      width:144px;
+      height:470px;
+      border-radius:80px;
+      background:linear-gradient(180deg,#31343c,#0d0f14);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
     }
 
-    .watch-body {
-      position: absolute;
-      left: 50%;
-      top: 108px;
-      transform: translateX(-50%);
-      width: 290px;
-      height: 290px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 35%, #5d6069, #17181d 62%, #0f1014 100%);
+    .watch-body{
+      position:absolute;
+      left:50%;
+      top:104px;
+      transform:translateX(-50%);
+      width:294px;
+      height:294px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(circle at 40% 35%, #626672, #17181d 62%, #0d0f14 100%);
       box-shadow:
-        0 18px 40px rgba(0,0,0,0.35),
-        inset 0 0 0 2px rgba(255,255,255,0.05),
-        inset 0 0 0 14px rgba(201,169,110,0.11);
-      display: grid;
-      place-items: center;
+        0 18px 40px rgba(0,0,0,.36),
+        inset 0 0 0 2px rgba(255,255,255,.05),
+        inset 0 0 0 14px rgba(202,165,106,.11);
     }
 
-    .watch-face {
-      width: 190px;
-      height: 190px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #333744, #0d0f14 70%);
-      border: 1px solid rgba(255,255,255,0.08);
-      position: relative;
-      box-shadow: inset 0 0 0 8px rgba(255,255,255,0.03);
+    .face{
+      width:188px;
+      height:188px;
+      border-radius:50%;
+      position:relative;
+      background:radial-gradient(circle at 35% 30%, #363a46, #0c0f14 70%);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:inset 0 0 0 8px rgba(255,255,255,.03);
     }
 
-    .watch-face::before,
-    .watch-face::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform-origin: left center;
-      background: var(--gold-2);
-      border-radius: 4px;
+    .face::before,
+    .face::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform-origin:left center;
+      height:4px;
+      background:var(--gold2);
+      border-radius:4px;
     }
 
-    .watch-face::before {
-      width: 56px;
-      height: 4px;
-      transform: translate(-2px, -2px) rotate(18deg);
+    .face::before{
+      width:56px;
+      transform:translate(-2px,-2px) rotate(18deg);
     }
 
-    .watch-face::after {
-      width: 40px;
-      height: 4px;
-      transform: translate(-2px, -2px) rotate(298deg);
+    .face::after{
+      width:40px;
+      transform:translate(-2px,-2px) rotate(296deg);
     }
 
-    .watch-center {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--gold-2);
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 4px rgba(201,169,110,0.15);
+    .center-dot{
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:var(--gold2);
+      box-shadow:0 0 0 4px rgba(202,165,106,.16);
     }
 
-    .watch-tag {
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(11,11,13,0.7);
-      border: 1px solid rgba(201,169,110,0.35);
-      color: var(--gold-2);
-      font-size: 0.9rem;
+    .hero-tag{
+      position:absolute;
+      top:18px;
+      right:18px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(8,8,10,.72);
+      border:1px solid rgba(202,165,106,.32);
+      color:var(--gold2);
+      font-size:.9rem;
     }
 
-    .watch-caption {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
-      display: grid;
-      gap: 8px;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(11,11,13,0.72);
-      border: 1px solid rgba(255,255,255,0.08);
+    .hero-caption{
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:22px;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(8,8,10,.72);
+      border:1px solid rgba(255,255,255,.08);
     }
 
-    .watch-caption strong {
-      font-size: 1.1rem;
+    .hero-caption strong{font-size:1.1rem}
+
+    section{
+      padding:32px 0 14px;
     }
 
-    section {
-      padding: 34px 0 16px;
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:18px;
+      margin-bottom:22px;
     }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 18px;
-      margin-bottom: 22px;
+    .section-head h2{
+      margin:0 0 6px;
+      font-size:clamp(1.55rem, 3vw, 2.35rem);
     }
 
-    .section-head h2 {
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
-      margin: 0 0 6px;
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:60ch;
     }
 
-    .section-head p {
-      color: var(--muted);
-      margin: 0;
-      max-width: 58ch;
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+    .feature{padding:24px}
+    .feature-num{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      margin-bottom:16px;
+      color:var(--gold2);
+      background:rgba(202,165,106,.1);
+      border:1px solid rgba(202,165,106,.26);
+      font-weight:700;
     }
 
-    .feature {
-      padding: 24px;
+    .feature h3{margin:0 0 10px;font-size:1.06rem}
+    .feature p{margin:0;color:var(--muted);font-size:.96rem}
+
+    .plans{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
     }
 
-    .feature .num {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      color: var(--gold-2);
-      background: rgba(201,169,110,0.1);
-      border: 1px solid rgba(201,169,110,0.26);
-      font-weight: 700;
+    .plan{
+      padding:26px;
+      position:relative;
+      overflow:hidden;
     }
 
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 1.06rem;
+    .plan.featured{
+      border-color:rgba(202,165,106,.42);
     }
 
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.96rem;
+    .plan-badge{
+      position:absolute;
+      right:18px;
+      top:18px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(202,165,106,.10);
+      border:1px solid rgba(202,165,106,.24);
+      color:var(--gold2);
+      font-size:.84rem;
     }
 
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+    .plan h3{margin:0 0 8px;font-size:1.28rem}
+    .plan-note{
+      display:inline-block;
+      color:var(--gold2);
+      font-weight:700;
+      margin-bottom:8px;
+      font-size:1rem;
     }
 
-    .plan {
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
+    .plan small{
+      display:block;
+      color:var(--muted);
     }
 
-    .plan.featured {
-      border-color: rgba(201,169,110,0.42);
+    .plan ul{
+      list-style:none;
+      padding:0;
+      margin:20px 0 22px;
+      display:grid;
+      gap:10px;
     }
 
-    .plan-badge {
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      font-size: 0.84rem;
-      color: var(--gold-2);
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(201,169,110,0.09);
-      border: 1px solid rgba(201,169,110,0.25);
+    .plan li{
+      position:relative;
+      padding-left:20px;
+      color:var(--muted);
     }
 
-    .plan h3 {
-      margin: 0 0 8px;
-      font-size: 1.3rem;
+    .plan li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--gold2);
     }
 
-    .plan-note {
-      display: inline-block;
-      margin-bottom: 6px;
-      color: var(--gold-2);
-      font-weight: 700;
-      font-size: 1rem;
+    .filter-card{
+      padding:18px;
+      margin-bottom:18px;
+      display:grid;
+      gap:14px;
     }
 
-    .plan small {
-      color: var(--muted);
-      display: block;
+    .filter-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .plan ul {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0 22px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .plan li {
-      color: var(--muted);
-      padding-left: 22px;
-      position: relative;
-    }
-
-    .plan li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--gold-2);
-    }
-
-    .filter-card {
-      padding: 18px;
-      margin-bottom: 18px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .filter-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .filter-head strong {
-      font-size: 1rem;
-    }
-
-    .filter-grid {
-      display: grid;
-      grid-template-columns: 1.45fr 1fr 1fr auto;
-      gap: 12px;
-      align-items: center;
+    .filter-grid{
+      display:grid;
+      grid-template-columns:1.45fr 1fr 1fr auto;
+      gap:12px;
+      align-items:center;
     }
 
     .filter-card input[type="text"],
-    .filter-card select {
-      width: 100%;
-      min-height: 48px;
-      padding: 0 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      font-size: 14px;
+    .filter-card select{
+      width:100%;
+      min-height:48px;
+      padding:0 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-size:14px;
+      outline:none;
     }
 
-    .filter-card input[type="text"]::placeholder {
-      color: #b8bcc7;
+    .filter-card input[type="text"]::placeholder{color:#b9bec8}
+    .filter-card select option{color:#111}
+
+    .check-wrap{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:48px;
+      color:var(--muted);
+      font-size:.92rem;
+      white-space:nowrap;
     }
 
-    .filter-card select option {
-      color: #111;
+    .check-wrap input[type="checkbox"]{
+      width:18px;
+      height:18px;
+      margin:0;
+      accent-color:var(--gold);
     }
 
-    .check-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      min-height: 48px;
-      white-space: nowrap;
-      line-height: 1;
+    .products{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
     }
 
-    .check-wrap input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      margin: 0;
-      flex: 0 0 auto;
-      accent-color: var(--gold);
+    .product-card{
+      overflow:hidden;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position:relative;
     }
 
-    .check-wrap span {
-      display: inline-block;
-      white-space: nowrap;
+    .product-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(202,165,106,.35);
+      box-shadow:0 24px 52px rgba(0,0,0,.42);
     }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+    .product-image{
+      aspect-ratio:4 / 3;
+      background:#fff;
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
     }
 
-    .product-card {
-      overflow: hidden;
-      display: grid;
-      grid-template-rows: auto 1fr;
+    .product-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .product-image {
-      aspect-ratio: 4 / 3;
-      background: #fff;
-      position: relative;
-      border-bottom: 1px solid var(--line);
-      overflow: hidden;
+    .badge-group{
+      position:absolute;
+      top:12px;
+      left:12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      z-index:2;
     }
 
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      backdrop-filter:blur(10px);
     }
 
-    .badge-group {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      z-index: 2;
+    .badge-featured{
+      background:rgba(234,210,160,.95);
+      color:#111;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
+    .status{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.86rem;
+      font-weight:700;
+      width:fit-content;
     }
 
-    .badge-featured {
-      background: rgba(226,196,142,0.95);
-      color: #111;
+    .status::before{
+      content:"";
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:currentColor;
+      box-shadow:0 0 0 4px rgba(255,255,255,.04);
     }
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 0.86rem;
-      font-weight: 700;
-      width: fit-content;
+    .status.available{
+      color:var(--ok);
+      background:rgba(67,160,95,.14);
+      border:1px solid rgba(67,160,95,.24);
     }
 
-    .status::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: currentColor;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.04);
+    .status.rented{
+      color:var(--ng);
+      background:rgba(229,83,83,.14);
+      border:1px solid rgba(229,83,83,.24);
     }
 
-    .status.available {
-      color: var(--ok);
-      background: rgba(76,175,80,0.14);
-      border: 1px solid rgba(76,175,80,0.24);
+    .product-body{
+      padding:20px;
+      display:grid;
+      gap:14px;
     }
 
-    .status.rented {
-      color: var(--busy);
-      background: rgba(217,83,79,0.14);
-      border: 1px solid rgba(217,83,79,0.26);
+    .product-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:start;
     }
 
-    .status.maintenance {
-      color: var(--maint);
-      background: rgba(138,143,152,0.16);
-      border: 1px solid rgba(138,143,152,0.24);
+    .product-title{
+      margin:0;
+      font-size:1.05rem;
+      font-weight:700;
+      line-height:1.45;
     }
 
-    .product-body {
-      padding: 20px;
-      display: grid;
-      gap: 14px;
+    .product-ref{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:.88rem;
     }
 
-    .product-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: start;
+    .product-note{
+      color:var(--gold2);
+      font-size:.94rem;
+      font-weight:700;
+      white-space:nowrap;
     }
 
-    .product-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin: 0;
+    .product-desc{
+      margin:0;
+      color:var(--muted);
+      font-size:.94rem;
+      min-height:54px;
     }
 
-    .product-ref {
-      color: var(--muted);
-      font-size: 0.86rem;
-      margin-top: 4px;
+    .product-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
     }
 
-    .product-note {
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--gold-2);
-      white-space: nowrap;
+    .meta-chip{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--gold-soft);
+      border:1px solid rgba(202,165,106,.14);
+      color:#ead9b4;
+      font-size:.84rem;
     }
 
-    .product-desc {
-      color: var(--muted);
-      font-size: 0.94rem;
-      margin: 0;
-      min-height: 64px;
+    .product-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
     }
 
-    .product-meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .notice-box{
+      padding:24px;
     }
 
-    .meta-chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--gold-soft);
-      border: 1px solid rgba(201,169,110,0.14);
-      color: #ead7b0;
-      font-size: 0.84rem;
+    .notice-box ul{
+      margin:14px 0 0;
+      padding-left:18px;
+      color:var(--muted);
     }
 
-    .product-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .cta{
+      padding:48px 0 72px;
     }
 
-    .notice-box {
-      padding: 24px;
-    }
-
-    .notice-box ul {
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .cta {
-      padding: 48px 0 72px;
-    }
-
-    .cta-box {
-      padding: 34px;
+    .cta-box{
+      padding:34px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+      border:1px solid rgba(202,165,106,.24);
       background:
-        radial-gradient(circle at right top, rgba(201,169,110,0.16), transparent 32%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border: 1px solid rgba(201,169,110,0.24);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
+        radial-gradient(circle at right top, rgba(202,165,106,.16), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
     }
 
-    .cta-box h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.6rem, 3vw, 2.5rem);
+    .cta-box h2{
+      margin:0 0 10px;
+      font-size:clamp(1.6rem, 3vw, 2.45rem);
     }
 
-    .cta-box p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 60ch;
+    .cta-box p{
+      margin:0;
+      color:var(--muted);
+      max-width:62ch;
     }
 
-    .footer {
-      padding: 26px 0 50px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      font-size: 0.92rem;
+    .footer{
+      padding:26px 0 52px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:.92rem;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
     }
 
-    .footer small {
-      display: block;
-      margin-top: 8px;
+    .footer small{
+      display:block;
+      margin-top:8px;
     }
 
-    .empty-message {
-      grid-column: 1 / -1;
-      padding: 28px;
-      text-align: center;
-      color: var(--muted);
+    .empty-message{
+      grid-column:1/-1;
+      padding:28px;
+      text-align:center;
+      color:var(--muted);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
     }
 
-    @media (max-width: 1024px) {
+    .back-to-top{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      width:52px;
+      height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--gold2), var(--gold));
+      color:#111;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 10px 24px rgba(202,165,106,.28);
+      z-index:1200;
+      font-size:22px;
+      font-weight:700;
+      transition:.2s ease;
+      opacity:.95;
+    }
+
+    .back-to-top:hover{
+      transform:translateY(-2px);
+      opacity:1;
+    }
+
+    @media (max-width: 1024px){
       .hero-grid,
       .plans,
       .cta-box,
-      .footer-grid {
-        grid-template-columns: 1fr;
+      .footer-grid{
+        grid-template-columns:1fr;
       }
 
-      .products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .features{
+        grid-template-columns:1fr;
       }
 
-      .grid-3 {
-        grid-template-columns: 1fr;
+      .products{
+        grid-template-columns:repeat(2, minmax(0,1fr));
       }
 
-      .filter-grid {
-        grid-template-columns: 1fr 1fr;
+      .filter-grid{
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    @media (max-width: 720px) {
-      .nav {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 46px;
-      }
-
+    @media (max-width: 720px){
+      .nav{display:none}
+      .hero{padding-top:46px}
       .hero-points,
-      .products {
-        grid-template-columns: 1fr;
+      .products{
+        grid-template-columns:1fr;
       }
 
-      .filter-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
+      .filter-grid{
+        grid-template-columns:1fr;
+        gap:10px;
       }
 
-      .check-wrap {
-        width: 100%;
-        min-height: 44px;
+      .check-wrap{
+        width:100%;
+        min-height:44px;
       }
 
-      .watch-frame {
-        min-height: 420px;
+      .hero-watch{min-height:420px}
+      .strap{
+        height:360px;
+        width:112px;
+      }
+      .watch-body{
+        width:220px;
+        height:220px;
+        top:92px;
+      }
+      .face{
+        width:148px;
+        height:148px;
       }
 
-      .watch-strap {
-        height: 360px;
-        width: 110px;
-      }
-
-      .watch-body {
-        width: 220px;
-        height: 220px;
-        top: 94px;
-      }
-
-      .watch-face {
-        width: 150px;
-        height: 150px;
-      }
-
-      .section-head {
-        align-items: start;
-      }
-
-      .topbar-inner {
-        padding: 12px 0;
+      .section-head{align-items:start}
+      .topbar-inner{padding:12px 0}
+      .back-to-top{
+        right:14px;
+        bottom:14px;
+        width:48px;
+        height:48px;
+        font-size:20px;
       }
     }
-    .back-to-top {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-2), var(--gold));
-  color: #111216;
-  box-shadow: 0 10px 24px rgba(201,169,110,0.28);
-  border: 1px solid rgba(255,255,255,0.18);
-  z-index: 200;
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.back-to-top:hover {
-  transform: translateY(-2px);
-}
   </style>
 </head>
 <body>
@@ -881,12 +841,12 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">株式会社カンワースが展開する時計サブスク</span>
-          <h1>高級時計を、<br>月額で楽しむ。</h1>
+        <div class="hero-copy">
+          <span class="eyebrow">会員制・審査制 高級時計レンタル</span>
+          <h1>憧れの一本を、<br>月額で楽しむ。</h1>
           <p class="lead">
-            TOKEMONは、審査制・会員制でご利用いただく高級時計の月額サブスクリプションサービスです。
-            一本ずつの個性を楽しみながら、自分に合ったモデルを安心してご検討いただけます。
+            TOKEMONは、高級時計を安心して楽しみたい方向けの会員制サービスです。
+            公開LPではモデル一覧と在庫状況をご案内し、料金・詳細条件は承認後に個別でご案内いたします。
           </p>
 
           <div class="hero-actions">
@@ -896,31 +856,31 @@
 
           <div class="hero-points">
             <div class="mini-card">
-              <strong>審査制・会員制</strong>
-              <span>申請後に必要書類をご案内し、確認後にご利用手続きへ進みます。</span>
+              <strong>会員制・審査制</strong>
+              <span>申請後に必要事項を確認し、承認後に詳細をご案内します。</span>
             </div>
             <div class="mini-card">
-              <strong>在庫表示あり</strong>
-              <span>受付中・貸出中・メンテナンス中を一覧で確認できます。</span>
+              <strong>公開LPは価格非表示</strong>
+              <span>高級感と安心感を保つため、料金は承認後にご案内します。</span>
             </div>
             <div class="mini-card">
-              <strong>詳細は承認後にご案内</strong>
-              <span>料金・個別条件は承認者専用ページにてご確認いただけます。</span>
+              <strong>在庫状況を明確表示</strong>
+              <span>在庫あり・レンタル中が一目でわかる構成です。</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-visual card">
-          <div class="watch-frame">
-            <div class="watch-strap"></div>
+        <div class="hero-visual">
+          <div class="hero-watch">
+            <div class="strap"></div>
             <div class="watch-body">
-              <div class="watch-face">
-                <div class="watch-center"></div>
+              <div class="face">
+                <div class="center-dot"></div>
               </div>
             </div>
-            <div class="watch-tag">会員制 / 審査制</div>
-            <div class="watch-caption">
-              <strong>憧れの一本を、もっと身近に。</strong>
+            <div class="hero-tag">承認後に詳細をご案内</div>
+            <div class="hero-caption">
+              <strong>公開LPではモデルと在庫状況をご案内しています。</strong>
             </div>
           </div>
         </div>
@@ -932,24 +892,27 @@
         <div class="section-head">
           <div>
             <h2>TOKEMONの特徴</h2>
+            <p>公開LPは見やすく、承認後LPは詳しく。役割を分けた導線設計で、上質に選べる構造にしています。</p>
           </div>
         </div>
 
-        <div class="grid-3">
+        <div class="features">
           <article class="feature">
-            <div class="num">01</div>
-            <h3>上質な世界観</h3>
-            <p>高級感を大切にしたデザインで、特別な一本との出会いを演出します。</p>
+            <div class="feature-num">01</div>
+            <h3>高級感のある公開LP</h3>
+            <p>価格を前面に出さず、モデルの魅力と世界観を重視した見せ方にしています。</p>
           </article>
+
           <article class="feature">
-            <div class="num">02</div>
+            <div class="feature-num">02</div>
             <h3>探しやすい商品一覧</h3>
-            <p>検索・メーカー絞り込み・在庫ありのみ表示で、見たいモデルを探しやすくしています。</p>
+            <p>検索・メーカー絞り込み・並び替え・在庫ありのみ表示で、見たい時計を探しやすくしています。</p>
           </article>
+
           <article class="feature">
-            <div class="num">03</div>
-            <h3>承認後に詳細をご案内</h3>
-            <p>公開ページではモデルと在庫状況をご案内し、料金やご利用条件は承認後にご確認いただけます。</p>
+            <div class="feature-num">03</div>
+            <h3>承認後に詳細開示</h3>
+            <p>料金・条件・詳しいご案内は承認後LPで案内するため、公開LPはすっきり見やすく保てます。</p>
           </article>
         </div>
       </div>
@@ -959,53 +922,47 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>コース一覧</h2>
-            <p>ご希望のモデルや在庫状況に応じてご案内いたします。料金・ご利用条件は承認後にご確認いただけます。</p>
+            <h2>ご案内の流れ</h2>
+            <p>公開LPで気になるモデルを確認し、申請・承認後に詳細条件をご案内します。</p>
           </div>
         </div>
 
         <div class="plans">
           <article class="plan">
-            <h3>スタンダードコース</h3>
-            <div class="plan-note">月額 10,000円〜</div>
-            <small>※モデルにより変動 / 詳細は承認後にご案内</small>
-            <small>月額制 / 審査制</small>
+            <h3>公開LPを見る</h3>
+            <div class="plan-note">まずはモデル一覧を確認</div>
+            <small>価格は非表示 / 在庫状況を公開</small>
             <ul>
-              <li>エントリーモデル中心にご案内</li>
-              <li>会員制で月額利用</li>
-              <li>在庫状況に応じてご案内</li>
-              <li>申請後に必要書類のご案内をお送りします</li>
+              <li>ブランドやモデルで比較しやすい</li>
+              <li>在庫あり・レンタル中を確認可能</li>
+              <li>高級感を重視した表示</li>
             </ul>
-            <a href="#apply" class="btn btn-secondary">スタンダードを申請</a>
+            <a href="#products" class="btn btn-secondary">商品一覧へ</a>
           </article>
 
           <article class="plan featured">
-            <span class="plan-badge">人気</span>
-            <h3>プレミアムコース</h3>
-            <div class="plan-note">月額 20,000円〜</div>
-            <small>※モデルにより変動 / 詳細は承認後にご案内</small>
-            <small>月額制 / 審査制</small>
+            <span class="plan-badge">おすすめ</span>
+            <h3>会員申請</h3>
+            <div class="plan-note">承認後に詳細をご案内</div>
+            <small>審査制 / 条件確認あり</small>
             <ul>
-              <li>人気ブランドを中心にご案内</li>
-              <li>会員限定で月額利用</li>
-              <li>空き待ち受付にも対応</li>
-              <li>承認後に詳細条件をご案内</li>
+              <li>公開LPでは価格を出しません</li>
+              <li>申請後に必要事項をご確認</li>
+              <li>承認後に料金・条件をご案内</li>
             </ul>
-            <a href="#apply" class="btn btn-primary">プレミアムを申請</a>
+            <a href="#apply" class="btn btn-primary">会員申請へ</a>
           </article>
 
           <article class="plan">
-            <h3>ダイヤモンドコース</h3>
-            <div class="plan-note">月額 30,000円〜</div>
-            <small>※モデルにより変動 / 詳細は承認後にご案内</small>
-            <small>月額制 / 審査制</small>
+            <h3>承認後LPへ</h3>
+            <div class="plan-note">料金・条件を詳しく確認</div>
+            <small>承認者向けページでご案内</small>
             <ul>
-              <li>上位モデルを中心にご案内</li>
-              <li>特別感のあるラインナップに対応</li>
-              <li>在庫・審査状況に応じて個別案内</li>
-              <li>承認後に詳細条件をご案内</li>
+              <li>レンタル条件を確認</li>
+              <li>詳しい料金を確認</li>
+              <li>対象モデルの詳細案内</li>
             </ul>
-            <a href="#apply" class="btn btn-secondary">ダイヤモンドを申請</a>
+            <a href="#apply" class="btn btn-secondary">申請して確認</a>
           </article>
         </div>
       </div>
@@ -1016,14 +973,14 @@
         <div class="section-head">
           <div>
             <h2>商品一覧</h2>
-            <p>検索やメーカー絞り込みで、在庫状況を確認しながらモデルを探せます。料金・詳細条件は承認後にご案内いたします。</p>
+            <p>メーカー・モデル・在庫状況で探せます。価格や詳細条件は承認後にご案内いたします。</p>
           </div>
         </div>
 
         <div class="filter-card">
           <div class="filter-head">
             <strong>条件で探す</strong>
-            <div id="productCount" style="color:var(--muted); font-size:0.92rem;">0件表示</div>
+            <div id="productCount" style="color:var(--muted); font-size:.92rem;">0件表示</div>
           </div>
 
           <div class="filter-grid">
@@ -1046,8 +1003,8 @@
             </label>
           </div>
 
-          <p style="margin:0; color:var(--muted); font-size:0.92rem;">
-            ご希望のモデルや在庫状況にあわせて、一覧から比較してご覧いただけます。
+          <p style="margin:0; color:var(--muted); font-size:.92rem;">
+            公開LPでは、モデルの魅力と在庫状況を中心にご案内しています。
           </p>
         </div>
 
@@ -1058,12 +1015,12 @@
     <section>
       <div class="container">
         <div class="notice-box">
-          <h2 style="margin-top:0; color:var(--gold-2);">ご案内</h2>
+          <h2 style="margin-top:0; color:var(--gold2);">公開LPのご案内</h2>
           <ul>
-            <li>公開ページではモデル一覧と在庫状況をご案内しています。</li>
-            <li>料金・ご利用条件・個別の詳細は承認後にご案内いたします。</li>
-            <li>在庫状況は随時変動するため、最終確定は個別確認後となります。</li>
-            <li>レンタル中モデルは空き待ちのご相談も可能です。</li>
+            <li>このページでは、モデル一覧と在庫状況を中心にご案内しています。</li>
+            <li>料金・詳細条件・個別のご案内は承認後LPでご確認いただきます。</li>
+            <li>在庫状況は変動するため、最終確定は個別確認後となります。</li>
+            <li>レンタル中モデルも空き待ちのご相談が可能です。</li>
           </ul>
         </div>
       </div>
@@ -1075,8 +1032,7 @@
           <div>
             <h2>会員申請受付中</h2>
             <p>
-              会員登録は審査制となります。申請後、必要書類のご案内をお送りします。
-              承認後、料金・ご利用条件・対象モデルの詳細をご確認いただけます。
+              会員登録は審査制です。申請後、必要事項を確認のうえ、承認後に料金・条件・対象モデルの詳細をご案内いたします。
             </p>
           </div>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -1092,7 +1048,7 @@
     <div class="container footer-grid">
       <div>
         <strong>TOKEMON</strong>
-        <small>高級時計の月額サブスクリプションサービス</small>
+        <small>高級時計の会員制レンタルサービス</small>
       </div>
       <div>
         <div><a href="privacy.html">プライバシーポリシー</a></div>
@@ -1100,183 +1056,198 @@
         <div><a href="law.html">特定商取引法に基づく表記</a></div>
       </div>
     </div>
-    <div class="container" style="margin-top:20px; font-size:0.85rem; color:#aaa; line-height:1.6;">
+
+    <div class="container" style="margin-top:20px; font-size:.85rem; color:#aaa; line-height:1.6;">
       <div>運営会社：株式会社カンワース</div>
       <div>事業担当：宮崎 法男</div>
       <div>レンタル事業所在地：〒107-0061 東京都港区北青山2-7-20 猪瀬ビル2F</div>
       <div>電話番号：050-5357-0937</div>
     </div>
   </footer>
-<a href="#top" class="back-to-top" aria-label="トップへ戻る">
-  <span>⌃</span>
-</a>
-<script>
-const products = [
-  { brand:"BREITLING",name:"コルト パンダ",subname:"パンダ文字盤",note:"料金・詳細は承認後にご案内",status:"available",image:"①.jpg",description:"白黒のコントラストが印象的なブライトリング。",featured:true },
-  { brand:"BREITLING",name:"ヘッドウィンドウ",subname:"ネイビー文字盤",note:"料金・詳細は承認後にご案内",status:"available",image:"②.jpg",description:"落ち着いたネイビー文字盤の上品モデル。" },
-  { brand:"G-SHOCK",name:"ソーラーブラック",subname:"ブラック文字盤 / チタン",note:"料金・詳細は承認後にご案内",status:"available",image:"③.jpg",description:"実用性と重厚感を兼ね備えた一本。" },
-  { brand:"ROLEX",name:"サブマリーナ",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"④.jpg",description:"ロレックス代表のダイバーズモデル。",featured:true },
-  { brand:"TAGHeuer",name:"カレラ キャリバー5",subname:"ブラックパープル文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑤.jpg",description:"スポーティと上品さの融合モデル。" },
-  { brand:"ZENITH",name:"エルプリメロ オープン",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"available",image:"⑥.jpg",description:"機械式の魅力を感じる一本。",featured:true },
-  { brand:"PANERAI",name:"ルミノールサブマーシブル",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑦PNG.PNG",description:"無骨で男らしい大型モデル。",featured:true },
-  { brand:"ROLEX",name:"エアキング ダイヤ",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"available",image:"⑧.PNG",description:"上品なローマ数字モデル。" },
-  { brand:"HUBLOT",name:"ビッグバンキング",subname:"オールブラック",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑨.PNG",description:"圧倒的存在感のウブロ。",featured:true },
-  { brand:"ROLEX",name:"GMTマスター",subname:"ペプシベゼル",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑩.PNG",description:"赤青ベゼルの人気モデル。",featured:true },
-  { brand:"PANERAI",name:"サブマーシブル",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑪.PNG",description:"視認性抜群のダイバーズ。" },
-  { brand:"FRANCK MULLER",name:"トノウカーベックス",subname:"ブラック",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑫.PNG",description:"個性あるデザイン。" },
-  { brand:"HUBLOT",name:"クラシックフュージョン",subname:"グリーン",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑬.PNG",description:"高級感あるグリーン文字盤。" },
-  { brand:"ROLEX",name:"デイトジャスト",subname:"ブルー文字盤 ゴールドコンビ",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑭.PNG",description:"定番ドレスモデル。" },
-  { brand:"HUBLOT",name:"クラシックオールブラック",subname:"オールブラック",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑮.PNG",description:"ブラックで統一された重厚な一本。" },
-  { brand:"IWC",name:"パイロットウォッチ トップガン",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑯.PNG",description:"無骨で視認性の高い人気モデル。",featured:true },
-  { brand:"FRANCK MULLER",name:"コンキスタドール レディース",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑰.PNG",description:"華やかなレディースモデル。" },
-  { brand:"PANERAI",name:"ルミノールマリーナ ブラック",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑱.PNG",description:"重厚感あるパネライの代表モデル。" },
-  { brand:"ROLEX",name:"デイトジャスト2",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑲.PNG",description:"存在感のあるケースサイズ。" },
-  { brand:"TAGHeuer",name:"ホイヤー01 ブラック",subname:"クロノグラフ",note:"料金・詳細は承認後にご案内",status:"rented",image:"⑳.PNG",description:"スケルトンデザインが魅力。" },
-  { brand:"TUDOR",name:"クロノタイム タイガー",subname:"パンダ文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉑.PNG",description:"個性が光るクロノグラフ。",featured:true },
-  { brand:"HUBLOT",name:"クラシックフュージョン",subname:"オールブラック",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉒.PNG",description:"精悍なブラックモデル。" },
-  { brand:"ROLEX",name:"GMTマスター2",subname:"赤黒ベゼル",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉓.PNG",description:"人気GMTモデル。",featured:true },
-  { brand:"ROLEX",name:"ダイヤベゼル レディース",subname:"レディース",note:"料金・詳細は承認後にご案内",status:"available",image:"㉔.PNG",description:"華やかなレディースモデル。" },
-  { brand:"PANERAI",name:"フェラーリ",subname:"ブラック",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉕PANERAI.PNG",description:"個性派パネライ。" },
-  { brand:"ROLEX",name:"デイトジャスト",subname:"ダーク文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉖ROLEX.PNG",description:"落ち着いた印象。" },
-  { brand:"BREITLING",name:"ナビタイマー",subname:"クロノグラフ",note:"料金・詳細は承認後にご案内",status:"available",image:"㉗BREITLING.PNG",description:"航空時計の代表モデル。",featured:true },
-  { brand:"HUBLOT",name:"クラシックフュージョン",subname:"ホワイト",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉘HUBLOT.PNG",description:"高級感あるホワイト。" },
-  { brand:"ROLEX",name:"サブマリーナ",subname:"ブラック ゴールド",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉙ROLEX.PNG",description:"存在感あるモデル。",featured:true },
-  { brand:"ROLEX",name:"ターノグラフ",subname:"ブルー",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉚ROLEX.PNG",description:"赤針が特徴。" },
-  { brand:"PANERAI",name:"ブラック チタン",subname:"ブラック文字盤",note:"料金・詳細は承認後にご案内",status:"rented",image:"㉛PANERAI.PNG",description:"軽さと重厚感を両立。" }
-];
-function getStatusLabel(status) {
-  if (status === "available") return "受付中";
-  if (status === "rented") return "貸出中";
-  if (status === "maintenance") return "メンテナンス中";
-  return "";
-}
 
-function getActionLabel(status) {
-  if (status === "available") return "会員申請へ";
-  if (status === "rented") return "空き待ち希望";
-  if (status === "maintenance") return "再開案内を希望";
-  return "詳細を見る";
-}
+  <a href="#top" class="back-to-top" aria-label="トップへ戻る">⌃</a>
 
-function renderBrandSelect() {
-  const brandSelect = document.getElementById("brandSelect");
-  const brands = [...new Set(products.map(item => item.brand))].sort((a, b) => a.localeCompare(b, "ja"));
+  <script>
+    const products = [
+      { brand:"BREITLING", name:"コルト パンダ", subname:"パンダ文字盤", status:"available", image:"①.jpg", description:"白黒のコントラストが印象的なブライトリング。", featured:true },
+      { brand:"BREITLING", name:"ヘッドウィンドウ", subname:"ネイビー文字盤", status:"available", image:"②.jpg", description:"落ち着いたネイビー文字盤の上品モデル。" },
+      { brand:"G-SHOCK", name:"ソーラーブラック", subname:"ブラック文字盤 / チタン", status:"available", image:"③.jpg", description:"実用性と重厚感を兼ね備えた一本。" },
+      { brand:"ROLEX", name:"サブマリーナ", subname:"ブラック文字盤", status:"rented", image:"④.jpg", description:"ロレックス代表のダイバーズモデル。", featured:true },
+      { brand:"TAGHeuer", name:"カレラ キャリバー5", subname:"ブラックパープル文字盤", status:"rented", image:"⑤.jpg", description:"スポーティと上品さの融合モデル。" },
+      { brand:"ZENITH", name:"エルプリメロ オープン", subname:"ブラック文字盤", status:"available", image:"⑥.jpg", description:"機械式の魅力を感じる一本。", featured:true },
+      { brand:"PANERAI", name:"ルミノールサブマーシブル", subname:"ブラック文字盤", status:"rented", image:"⑦PNG.PNG", description:"無骨で男らしい大型モデル。", featured:true },
+      { brand:"ROLEX", name:"エアキング ダイヤ", subname:"ブラック文字盤", status:"available", image:"⑧.PNG", description:"上品なローマ数字モデル。" },
+      { brand:"HUBLOT", name:"ビッグバンキング", subname:"オールブラック", status:"rented", image:"⑨.PNG", description:"圧倒的存在感のウブロ。", featured:true },
+      { brand:"ROLEX", name:"GMTマスター", subname:"ペプシベゼル", status:"rented", image:"⑩.PNG", description:"赤青ベゼルの人気モデル。", featured:true },
+      { brand:"PANERAI", name:"サブマーシブル", subname:"ブラック文字盤", status:"rented", image:"⑪.PNG", description:"視認性抜群のダイバーズ。" },
+      { brand:"FRANCK MULLER", name:"トノウカーベックス", subname:"ブラック", status:"rented", image:"⑫.PNG", description:"個性あるデザイン。" },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"グリーン", status:"rented", image:"⑬.PNG", description:"高級感あるグリーン文字盤。" },
+      { brand:"ROLEX", name:"デイトジャスト", subname:"ブルー文字盤 ゴールドコンビ", status:"rented", image:"⑭.PNG", description:"定番ドレスモデル。" },
+      { brand:"HUBLOT", name:"クラシックオールブラック", subname:"オールブラック", status:"rented", image:"⑮.PNG", description:"ブラックで統一された重厚な一本。" },
+      { brand:"IWC", name:"パイロットウォッチ トップガン", subname:"ブラック文字盤", status:"rented", image:"⑯.PNG", description:"無骨で視認性の高い人気モデル。", featured:true },
+      { brand:"FRANCK MULLER", name:"コンキスタドール レディース", subname:"ブラック文字盤", status:"rented", image:"⑰.PNG", description:"華やかなレディースモデル。" },
+      { brand:"PANERAI", name:"ルミノールマリーナ ブラック", subname:"ブラック文字盤", status:"rented", image:"⑱.PNG", description:"重厚感あるパネライの代表モデル。" },
+      { brand:"ROLEX", name:"デイトジャスト2", subname:"ブラック文字盤", status:"rented", image:"⑲.PNG", description:"存在感のあるケースサイズ。" },
+      { brand:"TAGHeuer", name:"ホイヤー01 ブラック", subname:"クロノグラフ", status:"rented", image:"⑳.PNG", description:"スケルトンデザインが魅力。" },
+      { brand:"TUDOR", name:"クロノタイム タイガー", subname:"パンダ文字盤", status:"rented", image:"㉑.PNG", description:"個性が光るクロノグラフ。", featured:true },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"オールブラック", status:"rented", image:"㉒.PNG", description:"精悍なブラックモデル。" },
+      { brand:"ROLEX", name:"GMTマスター2", subname:"赤黒ベゼル", status:"rented", image:"㉓.PNG", description:"人気GMTモデル。", featured:true },
+      { brand:"ROLEX", name:"ダイヤベゼル レディース", subname:"レディース", status:"available", image:"㉔.PNG", description:"華やかなレディースモデル。" },
+      { brand:"PANERAI", name:"フェラーリ", subname:"ブラック", status:"rented", image:"㉕PANERAI.PNG", description:"個性派パネライ。" },
+      { brand:"ROLEX", name:"デイトジャスト", subname:"ダーク文字盤", status:"rented", image:"㉖ROLEX.PNG", description:"落ち着いた印象。" },
+      { brand:"BREITLING", name:"ナビタイマー", subname:"クロノグラフ", status:"available", image:"㉗BREITLING.PNG", description:"航空時計の代表モデル。", featured:true },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"ホワイト", status:"rented", image:"㉘HUBLOT.PNG", description:"高級感あるホワイト。" },
+      { brand:"ROLEX", name:"サブマリーナ", subname:"ブラック ゴールド", status:"rented", image:"㉙ROLEX.PNG", description:"存在感あるモデル。", featured:true },
+      { brand:"ROLEX", name:"ターノグラフ", subname:"ブルー", status:"rented", image:"㉚ROLEX.PNG", description:"赤針が特徴。" },
+      { brand:"PANERAI", name:"ブラック チタン", subname:"ブラック文字盤", status:"rented", image:"㉛PANERAI.PNG", description:"軽さと重厚感を両立。" },
 
-  brands.forEach(brand => {
-    const option = document.createElement("option");
-    option.value = brand;
-    option.textContent = brand;
-    brandSelect.appendChild(option);
-  });
-}
+      { brand:"HUBLOT", name:"ダイヤベゼル 11Pダイヤモンド", subname:"ブルーシェル文字盤", status:"available", image:"㉜.PNG", description:"華やかさと上品さを兼ね備えたウブロ。" },
+      { brand:"Cartier", name:"ロードスター", subname:"ブラック文字盤", status:"rented", image:"㉝.PNG", description:"カルティエらしい個性を感じる一本。" },
+      { brand:"SEIKO", name:"プルミエ", subname:"ブラック 自動巻 SS", status:"available", image:"㉞.PNG", description:"多機能感のある精悍なデザイン。" },
+      { brand:"HUBLOT", name:"ブラック ゴールド コンビ", subname:"レディース", status:"rented", image:"㉟.PNG", description:"ゴールドのアクセントが美しいレディースモデル。" },
+      { brand:"BVLGARI", name:"アショーマ", subname:"48mm YGコンビ", status:"rented", image:"㊱.PNG", description:"スクエアフォルムが印象的なブルガリ。" },
+      { brand:"TAGHeuer", name:"ホイヤー01", subname:"ブルー", status:"available", image:"㊲.PNG", description:"力強いブルーが映えるスポーティモデル。" },
+      { brand:"BREITLING", name:"ベントレー", subname:"ブラック クロノグラフ", status:"available", image:"㊳.PNG", description:"重厚感あるベゼルと精悍なブラック文字盤。" },
+      { brand:"BREITLING", name:"トランスオーシャン", subname:"ホワイト 44mm", status:"rented", image:"㊴.PNG", description:"洗練されたホワイトフェイスの上品モデル。" },
+      { brand:"BREITLING", name:"アベンジャー", subname:"ブラック", status:"available", image:"㊵.PNG", description:"無骨さと実用性を備えた一本。" },
+      { brand:"PANERAI", name:"ルミノールマリーナ", subname:"ブラック文字盤 44mm", status:"available", image:"㊶.PNG", description:"パネライらしい存在感を楽しめる定番モデル。" },
+      { brand:"ROLEX", name:"ターノグラフ", subname:"ホワイト", status:"rented", image:"㊷.PNG", description:"ホワイト文字盤と赤針が魅力のロレックス。" },
+      { brand:"BREITLING", name:"クロノグラフ", subname:"ブラック 40mm", status:"rented", image:"㊸.PNG", description:"ブラックフェイスが映えるクロノグラフ。" },
+      { brand:"BVLGARI", name:"ディアゴノ GMT", subname:"GMT40SG", status:"available", image:"㊹.PNG", description:"ゴールドベゼルが目を引くGMTモデル。" },
+      { brand:"ROLEX", name:"エクスプローラー2", subname:"42mm ホワイト", status:"rented", image:"㊺.PNG", description:"ホワイトフェイスが印象的な人気モデル。" },
+      { brand:"CHANEL", name:"J12", subname:"ブルー", status:"rented", image:"㊻.PNG", description:"シャネルらしい洗練を感じるブルーモデル。" },
+      { brand:"FRANCK MULLER", name:"コンキスタドール", subname:"ホワイト文字盤", status:"available", image:"㊼.PNG", description:"フランクミュラーらしい曲線美が魅力。" },
+      { brand:"Cartier", name:"ロードスター クロノグラフ", subname:"ブラック文字盤", status:"rented", image:"㊽.PNG", description:"力強さと上品さをあわせ持つクロノグラフ。" }
+    ];
 
-function getFilteredProducts() {
-  const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
-  const brand = document.getElementById("brandSelect").value;
-  const sort = document.getElementById("sortSelect").value;
-  const stockOnly = document.getElementById("stockOnly").checked;
+    function getStatusLabel(status){
+      return status === "available" ? "在庫あり" : "レンタル中";
+    }
 
-  let filtered = [...products];
+    function getActionLabel(status){
+      return status === "available" ? "会員申請へ" : "空き待ち相談";
+    }
 
-  if (brand !== "all") {
-    filtered = filtered.filter(item => item.brand === brand);
-  }
+    function renderBrandSelect(){
+      const brandSelect = document.getElementById("brandSelect");
+      const brands = [...new Set(products.map(item => item.brand))].sort((a,b)=>a.localeCompare(b,"ja"));
+      brands.forEach(brand=>{
+        const option = document.createElement("option");
+        option.value = brand;
+        option.textContent = brand;
+        brandSelect.appendChild(option);
+      });
+    }
 
-  if (keyword) {
-    filtered = filtered.filter(item => {
-      const text = `${item.brand} ${item.name} ${item.subname} ${item.description} ${item.note}`.toLowerCase();
-      return text.includes(keyword);
-    });
-  }
+    function getFilteredProducts(){
+      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+      const brand = document.getElementById("brandSelect").value;
+      const sort = document.getElementById("sortSelect").value;
+      const stockOnly = document.getElementById("stockOnly").checked;
 
-  if (stockOnly) {
-    filtered = filtered.filter(item => item.status === "available");
-  }
+      let filtered = [...products];
 
-  if (sort === "available") {
-    filtered.sort((a, b) => {
-      const aVal = a.status === "available" ? 1 : 0;
-      const bVal = b.status === "available" ? 1 : 0;
-      if (bVal !== aVal) return bVal - aVal;
-      return a.brand.localeCompare(b.brand, "ja");
-    });
-  } else if (sort === "brand") {
-    filtered.sort((a, b) => a.brand.localeCompare(b.brand, "ja"));
-  } else if (sort === "name") {
-    filtered.sort((a, b) => a.name.localeCompare(b.name, "ja"));
-  } else {
-    filtered.sort((a, b) => {
-      const aFeat = a.featured ? 1 : 0;
-      const bFeat = b.featured ? 1 : 0;
-      if (bFeat !== aFeat) return bFeat - aFeat;
-      const aAvail = a.status === "available" ? 1 : 0;
-      const bAvail = b.status === "available" ? 1 : 0;
-      if (bAvail !== aAvail) return bAvail - aAvail;
-      return a.brand.localeCompare(b.brand, "ja");
-    });
-  }
+      if(brand !== "all"){
+        filtered = filtered.filter(item => item.brand === brand);
+      }
 
-  return filtered;
-}
+      if(keyword){
+        filtered = filtered.filter(item => {
+          const text = `${item.brand} ${item.name} ${item.subname} ${item.description}`.toLowerCase();
+          return text.includes(keyword);
+        });
+      }
 
-function renderProducts() {
-  const grid = document.getElementById("productGrid");
-  const countEl = document.getElementById("productCount");
-  const filtered = getFilteredProducts();
+      if(stockOnly){
+        filtered = filtered.filter(item => item.status === "available");
+      }
 
-  countEl.textContent = `${filtered.length}件表示`;
+      if(sort === "available"){
+        filtered.sort((a,b)=>{
+          const aVal = a.status === "available" ? 1 : 0;
+          const bVal = b.status === "available" ? 1 : 0;
+          if(bVal !== aVal) return bVal - aVal;
+          return a.brand.localeCompare(b.brand,"ja");
+        });
+      }else if(sort === "brand"){
+        filtered.sort((a,b)=>a.brand.localeCompare(b.brand,"ja"));
+      }else if(sort === "name"){
+        filtered.sort((a,b)=>a.name.localeCompare(b.name,"ja"));
+      }else{
+        filtered.sort((a,b)=>{
+          const aFeat = a.featured ? 1 : 0;
+          const bFeat = b.featured ? 1 : 0;
+          if(bFeat !== aFeat) return bFeat - aFeat;
+          const aAvail = a.status === "available" ? 1 : 0;
+          const bAvail = b.status === "available" ? 1 : 0;
+          if(bAvail !== aAvail) return bAvail - aAvail;
+          return a.brand.localeCompare(b.brand,"ja");
+        });
+      }
 
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="card empty-message">該当する商品がありません。</div>`;
-    return;
-  }
+      return filtered;
+    }
 
-  grid.innerHTML = filtered.map(item => `
-    <article class="product-card">
-      <div class="product-image">
-        <div class="badge-group">
-          ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
-        </div>
-        <img src="images/${item.image}" alt="${item.brand} ${item.name}" loading="lazy" onerror="this.src='images/noimage.jpg'">
-      </div>
+    function renderProducts(){
+      const grid = document.getElementById("productGrid");
+      const countEl = document.getElementById("productCount");
+      const filtered = getFilteredProducts();
 
-      <div class="product-body">
-        <div class="product-top">
-          <div>
-            <h3 class="product-title">${item.brand} ${item.name}</h3>
-            <div class="product-ref">${item.subname}</div>
+      countEl.textContent = `${filtered.length}件表示`;
+
+      if(filtered.length === 0){
+        grid.innerHTML = `<div class="empty-message">該当する商品がありません。</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="product-card">
+          <div class="product-image">
+            <div class="badge-group">
+              ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
+            </div>
+            <img src="images/${item.image}" alt="${item.brand} ${item.name}" loading="lazy" onerror="this.style.display='none'">
           </div>
-          <div class="product-note">${item.note}</div>
-        </div>
 
-        <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
+          <div class="product-body">
+            <div class="product-top">
+              <div>
+                <h3 class="product-title">${item.brand} ${item.name}</h3>
+                <div class="product-ref">${item.subname}</div>
+              </div>
+              <div class="product-note">詳細は承認後</div>
+            </div>
 
-        <p class="product-desc">${item.description}</p>
+            <span class="status ${item.status}">
+              ${getStatusLabel(item.status)}
+            </span>
 
-        <div class="product-meta">
-          <span class="meta-chip">メーカー：${item.brand}</span>
-          <span class="meta-chip">審査制</span>
-          ${item.status === "available" ? `<span class="meta-chip">受付可能</span>` : ``}
-        </div>
+            <p class="product-desc">${item.description}</p>
 
-        <div class="product-actions">
-          <a href="#apply" class="btn btn-primary">${getActionLabel(item.status)}</a>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
+            <div class="product-meta">
+              <span class="meta-chip">メーカー：${item.brand}</span>
+              <span class="meta-chip">会員制</span>
+              <span class="meta-chip">審査制</span>
+            </div>
 
-function attachEvents() {
-  document.getElementById("searchInput").addEventListener("input", renderProducts);
-  document.getElementById("brandSelect").addEventListener("change", renderProducts);
-  document.getElementById("sortSelect").addEventListener("change", renderProducts);
-  document.getElementById("stockOnly").addEventListener("change", renderProducts);
-}
+            <div class="product-actions">
+              <a href="#apply" class="btn btn-primary">${getActionLabel(item.status)}</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
 
-renderBrandSelect();
-renderProducts();
-attachEvents();
-</script>
+    function attachEvents(){
+      document.getElementById("searchInput").addEventListener("input", renderProducts);
+      document.getElementById("brandSelect").addEventListener("change", renderProducts);
+      document.getElementById("sortSelect").addEventListener("change", renderProducts);
+      document.getElementById("stockOnly").addEventListener("change", renderProducts);
+    }
+
+    renderBrandSelect();
+    renderProducts();
+    attachEvents();
+  </script>
 </body>
 </html>
