@@ -9,7 +9,6 @@
     :root {
       --bg: #0b0b0d;
       --panel: rgba(255,255,255,0.04);
-      --panel-strong: rgba(255,255,255,0.06);
       --text: #f3f4f6;
       --muted: #b8bcc7;
       --line: rgba(255,255,255,0.12);
@@ -500,21 +499,19 @@
       align-items: center;
     }
 
-    .filter-card input,
+    .filter-card input[type="text"],
     .filter-card select {
-      .filter-card input[type="text"],
-.filter-card select {
-  width: 100%;
-  min-height: 48px;
-  padding: 0 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.03);
-  color: var(--text);
-  font-size: 14px;
-}
+      width: 100%;
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 14px;
+    }
 
-    .filter-card input::placeholder {
+    .filter-card input[type="text"]::placeholder {
       color: #b8bcc7;
     }
 
@@ -535,8 +532,11 @@
     }
 
     .check-wrap input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
       margin: 0;
       flex: 0 0 auto;
+      accent-color: var(--gold);
     }
 
     .check-wrap span {
