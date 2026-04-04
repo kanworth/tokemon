@@ -352,7 +352,7 @@
 
     .product-image{
       aspect-ratio:4 / 3;
-      background:#fff;
+      background:linear-gradient(#fff,#f8f8f8);
       position:relative;
       overflow:hidden;
       border-bottom:1px solid var(--line);
@@ -360,6 +360,10 @@
       align-items:center;
       justify-content:center;
       padding:20px;
+      border-radius:12px;
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.08),
+        inset 0 0 0 1px rgba(0,0,0,0.05);
     }
 
     .product-image img{
