@@ -789,7 +789,7 @@ function isHublotBlack(item){
       }
 
       grid.innerHTML = filtered.map(item => `
-        <article class="product-card ${isSmallWatch(item) ? 'small-watch' : ''} ${isBigWatch(item)}">
+       <article class="product-card ${isSmallWatch(item) ? 'small-watch' : ''} ${isBigWatch(item)} ${isHublotBlack(item) ? 'hublot-black' : ''}">
           <div class="product-image">
             <div class="badge-group">
               ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
