@@ -372,8 +372,13 @@
     }
 
     .product-card.small-watch .product-image img{
-      max-width:80%;
-      max-height:80%;
+      max-width:78%;
+      max-height:78%;
+    }
+
+    .product-card.big-watch .product-image img{
+      max-width:96%;
+      max-height:96%;
     }
 
     .badge-group{position:absolute;top:12px;left:12px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
@@ -653,6 +658,21 @@
     function isSmallWatch(item){
       const text = `${item.brand} ${item.name} ${item.subname}`;
       return [
+        "クラシックオールブラック",
+        "GMTマスター2",
+        "コンキスタドール レディース"
+      ].some(keyword => text.includes(keyword));
+    }
+
+    function isBigWatch(item){
+      const text = `${item.brand} ${item.name} ${item.subname}`;
+      return [
+        "ホイヤー01",
+        "ターノグラフ ホワイト",
+        "エクスプローラー2"
+      ].some(keyword => text.includes(keyword));
+    } ${item.name} ${item.subname}`;
+      return [
         "ナビタイマー",
         "ビッグバンキング",
         "トップガン",
@@ -736,7 +756,7 @@
       }
 
       grid.innerHTML = filtered.map(item => `
-        <article class="product-card ${isSmallWatch(item) ? 'small-watch' : ''}">
+        <article class="product-card ${isSmallWatch(item) ? 'small-watch' : ''} ${isBigWatch(item) ? 'big-watch' : ''}">
           <div class="product-image">
             <div class="badge-group">
               ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
