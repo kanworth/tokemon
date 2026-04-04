@@ -10,7 +10,6 @@
       --bg:#0a0a0c;
       --bg2:#121317;
       --panel:rgba(255,255,255,.045);
-      --panel-strong:rgba(255,255,255,.065);
       --line:rgba(255,255,255,.10);
       --text:#f4f4f6;
       --muted:#b9bec8;
@@ -89,11 +88,7 @@
       flex-wrap:wrap;
     }
 
-    .nav a{
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
+    .nav a{color:var(--muted);font-size:.95rem}
     .nav a:hover{color:var(--text)}
 
     .btn{
@@ -127,10 +122,7 @@
       background:rgba(255,255,255,.04);
     }
 
-    .hero{
-      padding:74px 0 36px;
-    }
-
+    .hero{padding:74px 0 36px}
     .hero-grid{
       display:grid;
       grid-template-columns:1.06fr .94fr;
@@ -180,18 +172,8 @@
       max-width:58ch;
     }
 
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:24px;
-    }
-
-    .hero-points{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+    .hero-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 
     .mini-card{
       padding:16px;
@@ -200,24 +182,10 @@
       background:rgba(255,255,255,.03);
     }
 
-    .mini-card strong{
-      display:block;
-      margin-bottom:6px;
-      font-size:1rem;
-    }
+    .mini-card strong{display:block;margin-bottom:6px;font-size:1rem}
+    .mini-card span{color:var(--muted);font-size:.92rem}
 
-    .mini-card span{
-      color:var(--muted);
-      font-size:.92rem;
-    }
-
-    .hero-visual{
-      padding:28px;
-      position:relative;
-      overflow:hidden;
-      min-height:100%;
-    }
-
+    .hero-visual{padding:28px;position:relative;overflow:hidden;min-height:100%}
     .hero-visual::before{
       content:"";
       position:absolute;
@@ -328,65 +296,23 @@
     .hero-caption strong{font-size:1.1rem}
 
     section{padding:32px 0 14px}
-
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:18px;
-      margin-bottom:22px;
-    }
-
-    .section-head h2{
-      margin:0 0 6px;
-      font-size:clamp(1.55rem, 3vw, 2.35rem);
-    }
-
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:22px}
+    .section-head h2{margin:0 0 6px;font-size:clamp(1.55rem, 3vw, 2.35rem)}
     .section-head p{margin:0;color:var(--muted);max-width:60ch}
 
-    .features{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
-
+    .features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     .feature{padding:24px}
     .feature-num{
-      width:42px;
-      height:42px;
-      display:grid;
-      place-items:center;
-      border-radius:12px;
-      margin-bottom:16px;
-      color:var(--gold2);
-      background:rgba(202,165,106,.1);
-      border:1px solid rgba(202,165,106,.26);
-      font-weight:700;
+      width:42px;height:42px;display:grid;place-items:center;border-radius:12px;margin-bottom:16px;
+      color:var(--gold2);background:rgba(202,165,106,.1);border:1px solid rgba(202,165,106,.26);font-weight:700;
     }
-
     .feature h3{margin:0 0 10px;font-size:1.06rem}
     .feature p{margin:0;color:var(--muted);font-size:.96rem}
 
-    .plans{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
-
+    .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     .plan{padding:26px;position:relative;overflow:hidden}
     .plan.featured{border-color:rgba(202,165,106,.42)}
-    .plan-badge{
-      position:absolute;
-      right:18px;
-      top:18px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(202,165,106,.10);
-      border:1px solid rgba(202,165,106,.24);
-      color:var(--gold2);
-      font-size:.84rem;
-    }
-
+    .plan-badge{position:absolute;right:18px;top:18px;padding:8px 12px;border-radius:999px;background:rgba(202,165,106,.10);border:1px solid rgba(202,165,106,.24);color:var(--gold2);font-size:.84rem}
     .plan h3{margin:0 0 8px;font-size:1.28rem}
     .plan-note{display:inline-block;color:var(--gold2);font-weight:700;margin-bottom:8px;font-size:1rem}
     .plan small{display:block;color:var(--muted)}
@@ -400,34 +326,21 @@
 
     .filter-card input[type="text"],
     .filter-card select{
-      width:100%;
-      min-height:48px;
-      padding:0 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font-size:14px;
-      outline:none;
+      width:100%;min-height:48px;padding:0 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);color:var(--text);font-size:14px;outline:none;
     }
-
     .filter-card input[type="text"]::placeholder{color:#b9bec8}
     .filter-card select option{color:#111}
-
     .check-wrap{display:inline-flex;align-items:center;gap:8px;min-height:48px;color:var(--muted);font-size:.92rem;white-space:nowrap}
     .check-wrap input[type="checkbox"]{width:18px;height:18px;margin:0;accent-color:var(--gold)}
 
-    .products{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
+    .products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 
     .product-card{
       overflow:hidden;
       display:grid;
       grid-template-rows:auto 1fr;
-      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, opacity .2s ease;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
       position:relative;
     }
 
@@ -436,8 +349,6 @@
       border-color:rgba(202,165,106,.35);
       box-shadow:0 24px 52px rgba(0,0,0,.42);
     }
-
-    .product-card.rented{opacity:.82}
 
     .product-image{
       aspect-ratio:4 / 3;
@@ -448,20 +359,21 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:16px;
+      padding:28px;
     }
 
     .product-image img{
       width:auto;
       height:auto;
-      max-width:90%;
-      max-height:90%;
+      max-width:85%;
+      max-height:85%;
       object-fit:contain;
+      filter:brightness(1.03) contrast(0.98);
     }
 
     .product-card.small-watch .product-image img{
-      max-width:72%;
-      max-height:72%;
+      max-width:70%;
+      max-height:70%;
     }
 
     .badge-group{position:absolute;top:12px;left:12px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
@@ -496,7 +408,6 @@
       border:1px solid rgba(202,165,106,.24);
       background:radial-gradient(circle at right top, rgba(202,165,106,.16), transparent 32%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
     }
-
     .cta-box h2{margin:0 0 10px;font-size:clamp(1.6rem, 3vw, 2.45rem)}
     .cta-box p{margin:0;color:var(--muted);max-width:62ch}
 
@@ -510,7 +421,7 @@
     @media (max-width:1024px){
       .hero-grid,.plans,.cta-box,.footer-grid{grid-template-columns:1fr}
       .features{grid-template-columns:1fr}
-      .products{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .products{grid-template-columns:repeat(2,minmax(0,1fr))}
       .filter-grid{grid-template-columns:1fr 1fr}
     }
 
@@ -740,7 +651,8 @@
     }
 
     function isSmallWatch(item){
-      const names = [
+      const text = `${item.brand} ${item.name} ${item.subname}`;
+      return [
         "ナビタイマー",
         "ビッグバンキング",
         "トップガン",
@@ -748,8 +660,7 @@
         "デイトジャスト2",
         "ターノグラフ",
         "ホイヤー01"
-      ];
-      return names.some(keyword => `${item.brand} ${item.name} ${item.subname}`.includes(keyword));
+      ].some(keyword => text.includes(keyword));
     }
 
     function renderBrandSelect(){
@@ -825,7 +736,7 @@
       }
 
       grid.innerHTML = filtered.map(item => `
-        <article class="product-card ${item.status} ${isSmallWatch(item) ? 'small-watch' : ''}">
+        <article class="product-card ${isSmallWatch(item) ? 'small-watch' : ''}">
           <div class="product-image">
             <div class="badge-group">
               ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
