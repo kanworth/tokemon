@@ -8,19 +8,19 @@
   <style>
     :root {
       --bg: #0b0b0d;
-      --panel: #15161a;
-      --panel-2: #1e2026;
+      --panel: rgba(255,255,255,0.04);
+      --panel-strong: rgba(255,255,255,0.06);
       --text: #f3f4f6;
       --muted: #b8bcc7;
       --line: rgba(255,255,255,0.12);
       --gold: #c9a96e;
       --gold-2: #e2c48e;
-      --gold-soft: rgba(201,169,110,0.10);
-      --ok: #4caf50;
-      --busy: #d9534f;
-      --maint: #8a8f98;
-      --shadow: 0 16px 40px rgba(0,0,0,0.35);
-      --radius: 18px;
+      --gold-soft: rgba(201,169,110,0.12);
+      --ok: #89d88d;
+      --busy: #ff938f;
+      --maint: #c7ccd6;
+      --shadow: 0 18px 40px rgba(0,0,0,0.35);
+      --radius: 20px;
       --max: 1180px;
     }
 
@@ -37,8 +37,15 @@
       line-height: 1.7;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
     .container {
       width: min(100% - 32px, var(--max));
@@ -48,7 +55,7 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
       backdrop-filter: blur(16px);
       background: rgba(11,11,13,0.82);
       border-bottom: 1px solid var(--line);
@@ -95,7 +102,9 @@
       font-size: 0.95rem;
     }
 
-    .nav a:hover { color: var(--text); }
+    .nav a:hover {
+      color: var(--text);
+    }
 
     .btn {
       display: inline-flex;
@@ -116,7 +125,9 @@
       box-shadow: 0 10px 24px rgba(201,169,110,0.25);
     }
 
-    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
 
     .btn-secondary {
       color: var(--text);
@@ -130,12 +141,12 @@
     }
 
     .hero {
-      padding: 72px 0 34px;
+      padding: 78px 0 40px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 28px;
       align-items: stretch;
     }
@@ -153,7 +164,7 @@
     }
 
     h1 {
-      font-size: clamp(2rem, 4.8vw, 4.2rem);
+      font-size: clamp(2.1rem, 4.8vw, 4.3rem);
       line-height: 1.14;
       margin: 0 0 16px;
       letter-spacing: 0.03em;
@@ -179,7 +190,13 @@
       gap: 14px;
     }
 
-    .mini-card, .card, .feature, .plan, .product-card, .notice-box, .search-box {
+    .mini-card,
+    .card,
+    .feature,
+    .plan,
+    .product-card,
+    .notice-box,
+    .filter-card {
       background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -328,7 +345,9 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .watch-caption strong { font-size: 1.1rem; }
+    .watch-caption strong {
+      font-size: 1.1rem;
+    }
 
     section {
       padding: 34px 0 16px;
@@ -376,8 +395,16 @@
       font-weight: 700;
     }
 
-    .feature h3 { margin: 0 0 10px; font-size: 1.06rem; }
-    .feature p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.06rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
 
     .plans {
       display: grid;
@@ -407,7 +434,10 @@
       border: 1px solid rgba(201,169,110,0.25);
     }
 
-    .plan h3 { margin: 0 0 8px; font-size: 1.3rem; }
+    .plan h3 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+    }
 
     .plan-note {
       display: inline-block;
@@ -417,7 +447,10 @@
       font-size: 1rem;
     }
 
-    .plan small { color: var(--muted); display:block; }
+    .plan small {
+      color: var(--muted);
+      display: block;
+    }
 
     .plan ul {
       list-style: none;
@@ -441,20 +474,34 @@
       color: var(--gold-2);
     }
 
-    .search-box {
+    .filter-card {
       padding: 18px;
       margin-bottom: 18px;
+      display: grid;
+      gap: 14px;
     }
 
-    .search-grid {
+    .filter-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-head strong {
+      font-size: 1rem;
+    }
+
+    .filter-grid {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr auto;
+      grid-template-columns: 1.45fr 1fr 1fr auto;
       gap: 12px;
       align-items: center;
     }
 
-    .search-box input,
-    .search-box select {
+    .filter-card input,
+    .filter-card select {
       width: 100%;
       min-height: 48px;
       padding: 0 14px;
@@ -465,57 +512,34 @@
       font-size: 14px;
     }
 
-    .search-box input::placeholder {
+    .filter-card input::placeholder {
       color: #b8bcc7;
     }
 
-    .search-box select option {
+    .filter-card select option {
       color: #111;
     }
 
     .check-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 0.92rem;
-  min-height: 48px;
-  white-space: normal;
-  line-height: 1.4;
-}
-
-.check-wrap input[type="checkbox"] {
-  margin: 0;
-  flex: 0 0 auto;
-}
-
-@media (max-width: 720px) {
-  .check-wrap {
-    min-height: auto;
-    padding: 6px 0;
-    justify-content: flex-start;
-  }
-}
-
-    .filter-box {
-      padding: 18px;
-      margin-bottom: 18px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      min-height: 48px;
+      white-space: nowrap;
+      line-height: 1;
     }
 
-    .filter-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .check-wrap input[type="checkbox"] {
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .check-wrap span {
+      display: inline-block;
+      white-space: nowrap;
     }
 
     .products {
@@ -546,8 +570,8 @@
 
     .badge-group {
       position: absolute;
-      left: 12px;
       top: 12px;
+      left: 12px;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -590,19 +614,19 @@
     }
 
     .status.available {
-      color: #89d88d;
+      color: var(--ok);
       background: rgba(76,175,80,0.14);
       border: 1px solid rgba(76,175,80,0.24);
     }
 
     .status.rented {
-      color: #ff938f;
+      color: var(--busy);
       background: rgba(217,83,79,0.14);
       border: 1px solid rgba(217,83,79,0.26);
     }
 
     .status.maintenance {
-      color: #c7ccd6;
+      color: var(--maint);
       background: rgba(138,143,152,0.16);
       border: 1px solid rgba(138,143,152,0.24);
     }
@@ -650,8 +674,6 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 0.86rem;
     }
 
     .meta-chip {
@@ -662,6 +684,7 @@
       background: var(--gold-soft);
       border: 1px solid rgba(201,169,110,0.14);
       color: #ead7b0;
+      font-size: 0.84rem;
     }
 
     .product-actions {
@@ -750,25 +773,62 @@
         grid-template-columns: 1fr;
       }
 
-      .search-grid {
+      .filter-grid {
         grid-template-columns: 1fr 1fr;
       }
     }
 
     @media (max-width: 720px) {
-      .nav { display: none; }
-      .hero { padding-top: 46px; }
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
       .hero-points,
-      .products,
-      .search-grid {
+      .products {
         grid-template-columns: 1fr;
       }
-      .watch-frame { min-height: 420px; }
-      .watch-strap { height: 360px; width: 110px; }
-      .watch-body { width: 220px; height: 220px; top: 94px; }
-      .watch-face { width: 150px; height: 150px; }
-      .section-head { align-items: start; }
-      .topbar-inner { padding: 12px 0; }
+
+      .filter-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .check-wrap {
+        width: 100%;
+        min-height: 44px;
+      }
+
+      .watch-frame {
+        min-height: 420px;
+      }
+
+      .watch-strap {
+        height: 360px;
+        width: 110px;
+      }
+
+      .watch-body {
+        width: 220px;
+        height: 220px;
+        top: 94px;
+      }
+
+      .watch-face {
+        width: 150px;
+        height: 150px;
+      }
+
+      .section-head {
+        align-items: start;
+      }
+
+      .topbar-inner {
+        padding: 12px 0;
+      }
     }
   </style>
 </head>
@@ -779,6 +839,7 @@
         <span class="brand-mark">TK</span>
         <span>TOKEMON</span>
       </a>
+
       <nav class="nav">
         <a href="#about">特徴</a>
         <a href="#plans">コース</a>
@@ -788,6 +849,7 @@
         <a href="terms.html">利用規約</a>
         <a href="law.html">特商法表記</a>
       </nav>
+
       <a href="#apply" class="btn btn-primary">会員申請はこちら</a>
     </div>
   </header>
@@ -802,10 +864,12 @@
             TOKEMONは、審査制・会員制でご利用いただく高級時計の月額サブスクリプションサービスです。
             一本ずつの個性を楽しみながら、自分に合ったモデルを安心してご検討いただけます。
           </p>
+
           <div class="hero-actions">
             <a href="#products" class="btn btn-primary">商品一覧を見る</a>
             <a href="#plans" class="btn btn-secondary">コースを見る</a>
           </div>
+
           <div class="hero-points">
             <div class="mini-card">
               <strong>審査制・会員制</strong>
@@ -846,6 +910,7 @@
             <h2>TOKEMONの特徴</h2>
           </div>
         </div>
+
         <div class="grid-3">
           <article class="feature">
             <div class="num">01</div>
@@ -854,8 +919,8 @@
           </article>
           <article class="feature">
             <div class="num">02</div>
-            <h3>ブランド別に比較しやすい</h3>
-            <p>ブランドごとに絞り込みながら、気になるモデルを比較してご覧いただけます。</p>
+            <h3>探しやすい商品一覧</h3>
+            <p>検索・メーカー絞り込み・在庫ありのみ表示で、見たいモデルを探しやすくしています。</p>
           </article>
           <article class="feature">
             <div class="num">03</div>
@@ -927,37 +992,38 @@
         <div class="section-head">
           <div>
             <h2>商品一覧</h2>
-            <p>メーカーごとに絞り込みながら、在庫状況をご確認いただけます。料金・詳細条件は承認後にご案内いたします。</p>
+            <p>検索やメーカー絞り込みで、在庫状況を確認しながらモデルを探せます。料金・詳細条件は承認後にご案内いたします。</p>
           </div>
         </div>
 
-        <div class="search-box">
-          <div class="search-grid">
+        <div class="filter-card">
+          <div class="filter-head">
+            <strong>条件で探す</strong>
+            <div id="productCount" style="color:var(--muted); font-size:0.92rem;">0件表示</div>
+          </div>
+
+          <div class="filter-grid">
             <input type="text" id="searchInput" placeholder="ブランド名・モデル名・説明文で検索" />
+
+            <select id="brandSelect">
+              <option value="all">メーカーを選択</option>
+            </select>
+
             <select id="sortSelect">
               <option value="recommended">おすすめ順</option>
               <option value="available">在庫あり優先</option>
-              <option value="brand">ブランド順</option>
+              <option value="brand">メーカー順</option>
               <option value="name">モデル名順</option>
             </select>
-            <select id="brandSelect">
-              <option value="all">プルダウンからブランド選択</option>
-            </select>
-            <label class="check-wrap">
+
+            <label class="check-wrap" for="stockOnly">
               <input type="checkbox" id="stockOnly" />
-              在庫ありのみ
+              <span>在庫ありのみ</span>
             </label>
           </div>
-        </div>
 
-        <div class="card filter-box">
-          <div class="filter-row">
-            <strong style="font-size:1rem;">メーカーで絞り込み</strong>
-            <div id="productCount" style="color:var(--muted); font-size:0.92rem;">0件表示</div>
-          </div>
-          <div class="filter-buttons" id="filterButtons"></div>
           <p style="margin:0; color:var(--muted); font-size:0.92rem;">
-            ご希望のブランドや在庫状況にあわせて、モデル一覧をご覧いただけます。
+            ご希望のモデルや在庫状況にあわせて、一覧から比較してご覧いただけます。
           </p>
         </div>
 
@@ -1053,8 +1119,6 @@ const products = [
   { brand: "PANERAI", name: "ブラック チタン", subname: "ブラック文字盤", note: "月額 20,000円（税抜）", status: "rented", image: "㉛PANERAI.PNG", description: "チタンの軽さとパネライの重厚感を両立。", featured: false }
 ];
 
-let currentBrand = "all";
-
 function getStatusLabel(status) {
   if (status === "available") return "受付中";
   if (status === "rented") return "貸出中";
@@ -1081,31 +1145,16 @@ function renderBrandSelect() {
   });
 }
 
-function renderFilterButtons() {
-  const buttonsEl = document.getElementById("filterButtons");
-  const brands = ["all", ...new Set(products.map(item => item.brand))];
-
-  buttonsEl.innerHTML = brands.map(brand => {
-    const label = brand === "all" ? "すべて" : brand;
-    const className = brand === currentBrand ? "btn btn-primary" : "btn btn-secondary";
-    return `<button type="button" class="${className}" onclick="filterBrand('${brand}')">${label}</button>`;
-  }).join("");
-}
-
 function getFilteredProducts() {
   const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+  const brand = document.getElementById("brandSelect").value;
   const sort = document.getElementById("sortSelect").value;
-  const brandSelect = document.getElementById("brandSelect").value;
   const stockOnly = document.getElementById("stockOnly").checked;
 
   let filtered = [...products];
 
-  if (currentBrand !== "all") {
-    filtered = filtered.filter(item => item.brand === currentBrand);
-  }
-
-  if (brandSelect !== "all") {
-    filtered = filtered.filter(item => item.brand === brandSelect);
+  if (brand !== "all") {
+    filtered = filtered.filter(item => item.brand === brand);
   }
 
   if (keyword) {
@@ -1148,7 +1197,6 @@ function getFilteredProducts() {
 function renderProducts() {
   const grid = document.getElementById("productGrid");
   const countEl = document.getElementById("productCount");
-
   const filtered = getFilteredProducts();
 
   countEl.textContent = `${filtered.length}件表示`;
@@ -1166,6 +1214,7 @@ function renderProducts() {
         </div>
         <img src="images/${item.image}" alt="${item.brand} ${item.name}" loading="lazy" onerror="this.src='images/noimage.jpg'">
       </div>
+
       <div class="product-body">
         <div class="product-top">
           <div>
@@ -1174,13 +1223,17 @@ function renderProducts() {
           </div>
           <div class="product-note">${item.note}</div>
         </div>
+
         <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
+
         <p class="product-desc">${item.description}</p>
+
         <div class="product-meta">
           <span class="meta-chip">メーカー：${item.brand}</span>
           <span class="meta-chip">審査制</span>
           ${item.status === "available" ? `<span class="meta-chip">受付可能</span>` : ``}
         </div>
+
         <div class="product-actions">
           <a href="#apply" class="btn btn-primary">${getActionLabel(item.status)}</a>
         </div>
@@ -1189,21 +1242,14 @@ function renderProducts() {
   `).join("");
 }
 
-function filterBrand(brand) {
-  currentBrand = brand;
-  renderFilterButtons();
-  renderProducts();
-}
-
 function attachEvents() {
   document.getElementById("searchInput").addEventListener("input", renderProducts);
-  document.getElementById("sortSelect").addEventListener("change", renderProducts);
   document.getElementById("brandSelect").addEventListener("change", renderProducts);
+  document.getElementById("sortSelect").addEventListener("change", renderProducts);
   document.getElementById("stockOnly").addEventListener("change", renderProducts);
 }
 
 renderBrandSelect();
-renderFilterButtons();
 renderProducts();
 attachEvents();
 </script>
