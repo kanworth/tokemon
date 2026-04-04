@@ -15,6 +15,7 @@
       --line: rgba(255,255,255,0.12);
       --gold: #c9a96e;
       --gold-2: #e2c48e;
+      --gold-soft: rgba(201,169,110,0.10);
       --ok: #4caf50;
       --busy: #d9534f;
       --maint: #8a8f98;
@@ -178,7 +179,7 @@
       gap: 14px;
     }
 
-    .mini-card, .card, .feature, .plan, .product-card, .notice-box {
+    .mini-card, .card, .feature, .plan, .product-card, .notice-box, .search-box {
       background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -440,6 +441,48 @@
       color: var(--gold-2);
     }
 
+    .search-box {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .search-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search-box input,
+    .search-box select {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .search-box input::placeholder {
+      color: #b8bcc7;
+    }
+
+    .search-box select option {
+      color: #111;
+    }
+
+    .check-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 0.92rem;
+      min-height: 48px;
+    }
+
     .filter-box {
       padding: 18px;
       margin-bottom: 18px;
@@ -485,6 +528,31 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .badge-group {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .badge-featured {
+      background: rgba(226,196,142,0.95);
+      color: #111;
     }
 
     .status {
@@ -572,6 +640,16 @@
       font-size: 0.86rem;
     }
 
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      border: 1px solid rgba(201,169,110,0.14);
+      color: #ead7b0;
+    }
+
     .product-actions {
       display: flex;
       gap: 10px;
@@ -657,13 +735,18 @@
       .grid-3 {
         grid-template-columns: 1fr;
       }
+
+      .search-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 720px) {
       .nav { display: none; }
       .hero { padding-top: 46px; }
       .hero-points,
-      .products {
+      .products,
+      .search-grid {
         grid-template-columns: 1fr;
       }
       .watch-frame { min-height: 420px; }
@@ -834,6 +917,25 @@
           </div>
         </div>
 
+        <div class="search-box">
+          <div class="search-grid">
+            <input type="text" id="searchInput" placeholder="ブランド名・モデル名・説明文で検索" />
+            <select id="sortSelect">
+              <option value="recommended">おすすめ順</option>
+              <option value="available">在庫あり優先</option>
+              <option value="brand">ブランド順</option>
+              <option value="name">モデル名順</option>
+            </select>
+            <select id="brandSelect">
+              <option value="all">プルダウンからブランド選択</option>
+            </select>
+            <label class="check-wrap">
+              <input type="checkbox" id="stockOnly" />
+              在庫ありのみ
+            </label>
+          </div>
+        </div>
+
         <div class="card filter-box">
           <div class="filter-row">
             <strong style="font-size:1rem;">メーカーで絞り込み</strong>
@@ -904,285 +1006,37 @@
 
 <script>
 const products = [
-  {
-    brand: "BREITLING",
-    name: "コルト パンダ",
-    subname: "パンダ文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "available",
-    image: "①.jpg",
-    description: "白黒のコントラストが印象的なブライトリング。"
-  },
-  {
-    brand: "BREITLING",
-    name: "ヘッドウィンドウ",
-    subname: "ネイビー文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "available",
-    image: "②.jpg",
-    description: "落ち着いたネイビー文字盤の上品モデル。"
-  },
-  {
-    brand: "G-SHOCK",
-    name: "ソーラーブラック",
-    subname: "ブラック文字盤 / チタン",
-    note: "料金・詳細は承認後にご案内",
-    status: "available",
-    image: "③.jpg",
-    description: "実用性と重厚感を兼ね備えた一本。"
-  },
-  {
-    brand: "ROLEX",
-    name: "サブマリーナ",
-    subname: "ブラック文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "④.jpg",
-    description: "ロレックス代表のダイバーズモデル。"
-  },
-  {
-    brand: "TAGHeuer",
-    name: "カレラ キャリバー5",
-    subname: "ブラックパープル文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑤.jpg",
-    description: "スポーティと上品さの融合モデル。"
-  },
-  {
-    brand: "ZENITH",
-    name: "エルプリメロ オープン",
-    subname: "ブラック文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "available",
-    image: "⑥.jpg",
-    description: "機械式の魅力を感じる一本。"
-  },
-  {
-    brand: "PANERAI",
-    name: "ルミノールサブマーシブル",
-    subname: "ブラック文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑦PNG.PNG",
-    description: "無骨で男らしい大型モデル。"
-  },
-  {
-    brand: "ROLEX",
-    name: "エアキング ダイヤ",
-    subname: "ブラック文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "available",
-    image: "⑧.PNG",
-    description: "上品なローマ数字モデル。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "ビッグバンキング",
-    subname: "オールブラック",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑨.PNG",
-    description: "圧倒的存在感のウブロ。"
-  },
-  {
-    brand: "ROLEX",
-    name: "GMTマスター",
-    subname: "ペプシベゼル",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑩.PNG",
-    description: "赤青ベゼルの人気モデル。"
-  },
-  {
-    brand: "PANERAI",
-    name: "サブマーシブル",
-    subname: "ブラック文字盤",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑪.PNG",
-    description: "視認性抜群のダイバーズ。"
-  },
-  {
-    brand: "FRANCK MULLER",
-    name: "トノウカーベックス",
-    subname: "ブラック",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑫.PNG",
-    description: "個性あるデザイン。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "クラシックフュージョン",
-    subname: "グリーン",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑬.PNG",
-    description: "高級感あるグリーン文字盤。"
-  },
-  {
-    brand: "ROLEX",
-    name: "デイトジャスト",
-    subname: "ブルー文字盤 ゴールドコンビ",
-    note: "料金・詳細は承認後にご案内",
-    status: "rented",
-    image: "⑭.PNG",
-    description: "定番ドレスモデル。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "クラシックオールブラック",
-    subname: "オールブラック",
-    note: "月額 20,000円（税抜）",
-    status: "rented",
-    image: "⑮.PNG",
-    description: "ブラックで統一された重厚な一本。"
-  },
-  {
-    brand: "IWC",
-    name: "パイロットウォッチ トップガン",
-    subname: "ブラック文字盤",
-    note: "月額 30,000円（税抜）",
-    status: "rented",
-    image: "⑯.PNG",
-    description: "無骨で視認性の高い人気モデル。"
-  },
-  {
-    brand: "FRANCK MULLER",
-    name: "コンキスタドール レディース",
-    subname: "ブラック文字盤",
-    note: "月額 20,000円（税抜）",
-    status: "rented",
-    image: "⑰.PNG",
-    description: "華やかなレディースモデル。"
-  },
-  {
-    brand: "PANERAI",
-    name: "ルミノールマリーナ ブラック",
-    subname: "ブラック文字盤",
-    note: "月額 24,000円（税抜）",
-    status: "rented",
-    image: "⑱.PNG",
-    description: "重厚感あるパネライの代表モデル。"
-  },
-  {
-    brand: "ROLEX",
-    name: "デイトジャスト2",
-    subname: "ブラック文字盤",
-    note: "月額 30,000円（税抜）",
-    status: "rented",
-    image: "⑲.PNG",
-    description: "存在感のあるケースサイズとブラック文字盤が魅力のロレックス。"
-  },
-  {
-    brand: "TAGHeuer",
-    name: "ホイヤー01 ブラック",
-    subname: "ブラック文字盤 / クロノグラフ",
-    note: "月額 20,000円（税抜）",
-    status: "rented",
-    image: "⑳.PNG",
-    description: "スケルトン感のあるダイヤルが印象的な、スポーティな一本。"
-  },
-  {
-    brand: "TUDOR",
-    name: "クロノタイム タイガー パンダ文字盤",
-    subname: "パンダ文字盤 / クロノグラフ",
-    note: "月額 28,000円（税抜）",
-    status: "rented",
-    image: "㉑.PNG",
-    description: "タイガーモデルらしい個性が光る、人気のクロノグラフ。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "クラシックフュージョン オールブラック",
-    subname: "オールブラック",
-    note: "月額 28,000円（税抜）",
-    status: "rented",
-    image: "㉒.PNG",
-    description: "シンプルかつ精悍な印象で、ウブロらしい高級感を楽しめる一本。"
-  },
-  {
-    brand: "ROLEX",
-    name: "GMTマスター2 赤黒ベゼル",
-    subname: "赤黒ベゼル",
-    note: "月額 30,000円（税抜）",
-    status: "rented",
-    image: "㉓.PNG",
-    description: "赤黒ベゼルが目を引く、ロレックスの人気GMTモデル。"
-  },
-  {
-    brand: "ROLEX",
-    name: "ダイヤモンドベゼル レディース",
-    subname: "レディース / ダイヤモンドベゼル",
-    note: "月額 20,000円（税抜）",
-    status: "available",
-    image: "㉔.PNG",
-    description: "華やかなダイヤモンドベゼルが魅力のレディースロレックス。"
-  },
- {
-  brand: "PANERAI",
-  name: "フェラーリ ブラック",
-  subname: "ブラック文字盤",
-  note: "月額 22,000円（税抜）",
-  status: "rented",
-  image: "㉕PANERAI.PNG",
-  description: "フェラーリネームが印象的な個性派パネライ。存在感のある一本です。"
-},
-{
-  brand: "ROLEX",
-  name: "デイトジャスト ダークペストリー",
-  subname: "ダーク文字盤",
-  note: "月額 28,000円（税抜）",
-  status: "rented",
-  image: "㉖ROLEX.PNG",
-  description: "落ち着いたダークトーンが魅力のデイトジャスト。"
-},
-{
-  brand: "BREITLING",
-  name: "ナビタイマーアビエーション",
-  subname: "クロノグラフ",
-  note: "月額 22,000円（税抜）",
-  status: "available",
-  image: "㉗BREITLING.PNG",
-  description: "航空時計らしいブライトリングの代表モデル。"
-},
-{
-  brand: "HUBLOT",
-  name: "クラシックフュージョン チタニウム ホワイト",
-  subname: "ホワイト文字盤",
-  note: "月額 20,000円（税抜）",
-  status: "rented",
-  image: "㉘HUBLOT.PNG",
-  description: "ホワイト×チタンの高級感ある一本。"
-},
-{
-  brand: "ROLEX",
-  name: "サブマリーナ ブラック ゴールドコンビ",
-  subname: "ブラック文字盤",
-  note: "月額 30,000円（税抜）",
-  status: "rented",
-  image: "㉙ROLEX.PNG",
-  description: "ブラック×ゴールドの存在感あるモデル。"
-},
-{
-  brand: "ROLEX",
-  name: "ターノグラフ ブルー",
-  subname: "ブルー文字盤",
-  note: "月額 28,000円（税抜）",
-  status: "rented",
-  image: "㉚ROLEX.PNG",
-  description: "ブルー文字盤と赤針が特徴的な一本。"
-},
-{
-  brand: "PANERAI",
-  name: "ブラック チタン",
-  subname: "ブラック文字盤",
-  note: "月額 20,000円（税抜）",
-  status: "rented",
-  image: "㉛PANERAI.PNG",
-  description: "チタンの軽さとパネライの重厚感を両立。"
-}
+  { brand: "BREITLING", name: "コルト パンダ", subname: "パンダ文字盤", note: "料金・詳細は承認後にご案内", status: "available", image: "①.jpg", description: "白黒のコントラストが印象的なブライトリング。", featured: true },
+  { brand: "BREITLING", name: "ヘッドウィンドウ", subname: "ネイビー文字盤", note: "料金・詳細は承認後にご案内", status: "available", image: "②.jpg", description: "落ち着いたネイビー文字盤の上品モデル。", featured: false },
+  { brand: "G-SHOCK", name: "ソーラーブラック", subname: "ブラック文字盤 / チタン", note: "料金・詳細は承認後にご案内", status: "available", image: "③.jpg", description: "実用性と重厚感を兼ね備えた一本。", featured: false },
+  { brand: "ROLEX", name: "サブマリーナ", subname: "ブラック文字盤", note: "料金・詳細は承認後にご案内", status: "rented", image: "④.jpg", description: "ロレックス代表のダイバーズモデル。", featured: true },
+  { brand: "TAGHeuer", name: "カレラ キャリバー5", subname: "ブラックパープル文字盤", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑤.jpg", description: "スポーティと上品さの融合モデル。", featured: false },
+  { brand: "ZENITH", name: "エルプリメロ オープン", subname: "ブラック文字盤", note: "料金・詳細は承認後にご案内", status: "available", image: "⑥.jpg", description: "機械式の魅力を感じる一本。", featured: true },
+  { brand: "PANERAI", name: "ルミノールサブマーシブル", subname: "ブラック文字盤", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑦PNG.PNG", description: "無骨で男らしい大型モデル。", featured: true },
+  { brand: "ROLEX", name: "エアキング ダイヤ", subname: "ブラック文字盤", note: "料金・詳細は承認後にご案内", status: "available", image: "⑧.PNG", description: "上品なローマ数字モデル。", featured: false },
+  { brand: "HUBLOT", name: "ビッグバンキング", subname: "オールブラック", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑨.PNG", description: "圧倒的存在感のウブロ。", featured: true },
+  { brand: "ROLEX", name: "GMTマスター", subname: "ペプシベゼル", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑩.PNG", description: "赤青ベゼルの人気モデル。", featured: true },
+  { brand: "PANERAI", name: "サブマーシブル", subname: "ブラック文字盤", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑪.PNG", description: "視認性抜群のダイバーズ。", featured: false },
+  { brand: "FRANCK MULLER", name: "トノウカーベックス", subname: "ブラック", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑫.PNG", description: "個性あるデザイン。", featured: false },
+  { brand: "HUBLOT", name: "クラシックフュージョン", subname: "グリーン", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑬.PNG", description: "高級感あるグリーン文字盤。", featured: false },
+  { brand: "ROLEX", name: "デイトジャスト", subname: "ブルー文字盤 ゴールドコンビ", note: "料金・詳細は承認後にご案内", status: "rented", image: "⑭.PNG", description: "定番ドレスモデル。", featured: false },
+  { brand: "HUBLOT", name: "クラシックオールブラック", subname: "オールブラック", note: "月額 20,000円（税抜）", status: "rented", image: "⑮.PNG", description: "ブラックで統一された重厚な一本。", featured: false },
+  { brand: "IWC", name: "パイロットウォッチ トップガン", subname: "ブラック文字盤", note: "月額 30,000円（税抜）", status: "rented", image: "⑯.PNG", description: "無骨で視認性の高い人気モデル。", featured: true },
+  { brand: "FRANCK MULLER", name: "コンキスタドール レディース", subname: "ブラック文字盤", note: "月額 20,000円（税抜）", status: "rented", image: "⑰.PNG", description: "華やかなレディースモデル。", featured: false },
+  { brand: "PANERAI", name: "ルミノールマリーナ ブラック", subname: "ブラック文字盤", note: "月額 24,000円（税抜）", status: "rented", image: "⑱.PNG", description: "重厚感あるパネライの代表モデル。", featured: false },
+  { brand: "ROLEX", name: "デイトジャスト2", subname: "ブラック文字盤", note: "月額 30,000円（税抜）", status: "rented", image: "⑲.PNG", description: "存在感のあるケースサイズとブラック文字盤が魅力のロレックス。", featured: false },
+  { brand: "TAGHeuer", name: "ホイヤー01 ブラック", subname: "ブラック文字盤 / クロノグラフ", note: "月額 20,000円（税抜）", status: "rented", image: "⑳.PNG", description: "スケルトン感のあるダイヤルが印象的な、スポーティな一本。", featured: false },
+  { brand: "TUDOR", name: "クロノタイム タイガー パンダ文字盤", subname: "パンダ文字盤 / クロノグラフ", note: "月額 28,000円（税抜）", status: "rented", image: "㉑.PNG", description: "タイガーモデルらしい個性が光る、人気のクロノグラフ。", featured: true },
+  { brand: "HUBLOT", name: "クラシックフュージョン オールブラック", subname: "オールブラック", note: "月額 28,000円（税抜）", status: "rented", image: "㉒.PNG", description: "シンプルかつ精悍な印象で、ウブロらしい高級感を楽しめる一本。", featured: false },
+  { brand: "ROLEX", name: "GMTマスター2 赤黒ベゼル", subname: "赤黒ベゼル", note: "月額 30,000円（税抜）", status: "rented", image: "㉓.PNG", description: "赤黒ベゼルが目を引く、ロレックスの人気GMTモデル。", featured: true },
+  { brand: "ROLEX", name: "ダイヤモンドベゼル レディース", subname: "レディース / ダイヤモンドベゼル", note: "月額 20,000円（税抜）", status: "available", image: "㉔.PNG", description: "華やかなダイヤモンドベゼルが魅力のレディースロレックス。", featured: false },
+  { brand: "PANERAI", name: "フェラーリ ブラック", subname: "ブラック文字盤", note: "月額 22,000円（税抜）", status: "rented", image: "㉕PANERAI.PNG", description: "フェラーリネームが印象的な個性派パネライ。存在感のある一本です。", featured: false },
+  { brand: "ROLEX", name: "デイトジャスト ダークペストリー", subname: "ダーク文字盤", note: "月額 28,000円（税抜）", status: "rented", image: "㉖ROLEX.PNG", description: "落ち着いたダークトーンが魅力のデイトジャスト。", featured: false },
+  { brand: "BREITLING", name: "ナビタイマーアビエーション", subname: "クロノグラフ", note: "月額 22,000円（税抜）", status: "available", image: "㉗BREITLING.PNG", description: "航空時計らしいブライトリングの代表モデル。", featured: true },
+  { brand: "HUBLOT", name: "クラシックフュージョン チタニウム ホワイト", subname: "ホワイト文字盤", note: "月額 20,000円（税抜）", status: "rented", image: "㉘HUBLOT.PNG", description: "ホワイト×チタンの高級感ある一本。", featured: false },
+  { brand: "ROLEX", name: "サブマリーナ ブラック ゴールドコンビ", subname: "ブラック文字盤", note: "月額 30,000円（税抜）", status: "rented", image: "㉙ROLEX.PNG", description: "ブラック×ゴールドの存在感あるモデル。", featured: true },
+  { brand: "ROLEX", name: "ターノグラフ ブルー", subname: "ブルー文字盤", note: "月額 28,000円（税抜）", status: "rented", image: "㉚ROLEX.PNG", description: "ブルー文字盤と赤針が特徴的な一本。", featured: false },
+  { brand: "PANERAI", name: "ブラック チタン", subname: "ブラック文字盤", note: "月額 20,000円（税抜）", status: "rented", image: "㉛PANERAI.PNG", description: "チタンの軽さとパネライの重厚感を両立。", featured: false }
 ];
 
 let currentBrand = "all";
@@ -1201,6 +1055,18 @@ function getActionLabel(status) {
   return "詳細を見る";
 }
 
+function renderBrandSelect() {
+  const brandSelect = document.getElementById("brandSelect");
+  const brands = [...new Set(products.map(item => item.brand))].sort((a, b) => a.localeCompare(b, "ja"));
+
+  brands.forEach(brand => {
+    const option = document.createElement("option");
+    option.value = brand;
+    option.textContent = brand;
+    brandSelect.appendChild(option);
+  });
+}
+
 function renderFilterButtons() {
   const buttonsEl = document.getElementById("filterButtons");
   const brands = ["all", ...new Set(products.map(item => item.brand))];
@@ -1212,13 +1078,64 @@ function renderFilterButtons() {
   }).join("");
 }
 
+function getFilteredProducts() {
+  const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+  const sort = document.getElementById("sortSelect").value;
+  const brandSelect = document.getElementById("brandSelect").value;
+  const stockOnly = document.getElementById("stockOnly").checked;
+
+  let filtered = [...products];
+
+  if (currentBrand !== "all") {
+    filtered = filtered.filter(item => item.brand === currentBrand);
+  }
+
+  if (brandSelect !== "all") {
+    filtered = filtered.filter(item => item.brand === brandSelect);
+  }
+
+  if (keyword) {
+    filtered = filtered.filter(item => {
+      const text = `${item.brand} ${item.name} ${item.subname} ${item.description} ${item.note}`.toLowerCase();
+      return text.includes(keyword);
+    });
+  }
+
+  if (stockOnly) {
+    filtered = filtered.filter(item => item.status === "available");
+  }
+
+  if (sort === "available") {
+    filtered.sort((a, b) => {
+      const aVal = a.status === "available" ? 1 : 0;
+      const bVal = b.status === "available" ? 1 : 0;
+      if (bVal !== aVal) return bVal - aVal;
+      return a.brand.localeCompare(b.brand, "ja");
+    });
+  } else if (sort === "brand") {
+    filtered.sort((a, b) => a.brand.localeCompare(b.brand, "ja"));
+  } else if (sort === "name") {
+    filtered.sort((a, b) => a.name.localeCompare(b.name, "ja"));
+  } else {
+    filtered.sort((a, b) => {
+      const aFeat = a.featured ? 1 : 0;
+      const bFeat = b.featured ? 1 : 0;
+      if (bFeat !== aFeat) return bFeat - aFeat;
+      const aAvail = a.status === "available" ? 1 : 0;
+      const bAvail = b.status === "available" ? 1 : 0;
+      if (bAvail !== aAvail) return bAvail - aAvail;
+      return a.brand.localeCompare(b.brand, "ja");
+    });
+  }
+
+  return filtered;
+}
+
 function renderProducts() {
   const grid = document.getElementById("productGrid");
   const countEl = document.getElementById("productCount");
 
-  const filtered = currentBrand === "all"
-    ? products
-    : products.filter(item => item.brand === currentBrand);
+  const filtered = getFilteredProducts();
 
   countEl.textContent = `${filtered.length}件表示`;
 
@@ -1230,7 +1147,10 @@ function renderProducts() {
   grid.innerHTML = filtered.map(item => `
     <article class="product-card">
       <div class="product-image">
-        <img src="images/${item.image}" alt="${item.brand} ${item.name}">
+        <div class="badge-group">
+          ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
+        </div>
+        <img src="images/${item.image}" alt="${item.brand} ${item.name}" loading="lazy" onerror="this.src='images/noimage.jpg'">
       </div>
       <div class="product-body">
         <div class="product-top">
@@ -1243,8 +1163,9 @@ function renderProducts() {
         <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
         <p class="product-desc">${item.description}</p>
         <div class="product-meta">
-          <span>メーカー：${item.brand}</span>
-          <span>審査制</span>
+          <span class="meta-chip">メーカー：${item.brand}</span>
+          <span class="meta-chip">審査制</span>
+          ${item.status === "available" ? `<span class="meta-chip">受付可能</span>` : ``}
         </div>
         <div class="product-actions">
           <a href="#apply" class="btn btn-primary">${getActionLabel(item.status)}</a>
@@ -1260,8 +1181,17 @@ function filterBrand(brand) {
   renderProducts();
 }
 
+function attachEvents() {
+  document.getElementById("searchInput").addEventListener("input", renderProducts);
+  document.getElementById("sortSelect").addEventListener("change", renderProducts);
+  document.getElementById("brandSelect").addEventListener("change", renderProducts);
+  document.getElementById("stockOnly").addEventListener("change", renderProducts);
+}
+
+renderBrandSelect();
 renderFilterButtons();
 renderProducts();
+attachEvents();
 </script>
 </body>
 </html>
