@@ -686,7 +686,7 @@
       return status === "available" ? "会員申請へ" : "空き待ち相談";
     }
 
-    function isSmallWatch(item){
+   function isSmallWatch(item){
   const text = `${item.brand} ${item.name} ${item.subname}`;
   return [
     "クラシックオールブラック",
@@ -698,12 +698,6 @@
     "ホイヤー01 ブラック"
   ].some(keyword => text.includes(keyword));
 }
-      return [
-        "クラシックオールブラック",
-        "GMTマスター2",
-        "コンキスタドール レディース"
-      ].some(keyword => text.includes(keyword));
-    }
 
     function isBigWatch(item){
       const text = `${item.brand} ${item.name} ${item.subname}`;
