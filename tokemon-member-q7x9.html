@@ -7,544 +7,377 @@
   <meta name="description" content="TOKEMON承認者専用ページです。モデル一覧・月額料金・利用条件をご確認いただけます。" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <style>
-    :root {
-      --bg: #0b0b0d;
-      --bg2: #101116;
-      --panel: rgba(255,255,255,0.05);
-      --text: #f3f4f6;
-      --muted: #b8bcc7;
-      --line: rgba(255,255,255,0.12);
-      --gold: #c9a96e;
-      --gold-2: #e2c48e;
-      --ok: #7fd487;
-      --busy: #ff9a96;
-      --shadow: 0 20px 50px rgba(0,0,0,0.35);
-      --radius: 20px;
-      --max: 1180px;
+    :root{
+      --bg:#0a0a0c;
+      --bg2:#121317;
+      --panel:rgba(255,255,255,.045);
+      --line:rgba(255,255,255,.10);
+      --text:#f4f4f6;
+      --muted:#b9bec8;
+      --gold:#caa56a;
+      --gold2:#ead2a0;
+      --gold-soft:rgba(202,165,106,.12);
+      --ok:#82d79a;
+      --ng:#ff9a92;
+      --shadow:0 22px 50px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1200px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-      color: var(--text);
-      line-height: 1.7;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Segoe UI",sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at top right, rgba(201,169,110,0.14), transparent 26%),
-        radial-gradient(circle at bottom left, rgba(201,169,110,0.08), transparent 24%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+        radial-gradient(circle at top right, rgba(202,165,106,.12), transparent 28%),
+        radial-gradient(circle at top left, rgba(255,255,255,.04), transparent 20%),
+        linear-gradient(180deg, #08080a 0%, #101116 100%);
+      line-height:1.7;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    .container{
+      width:min(calc(100% - 32px), var(--max));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(8,8,10,.78);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+    }
+
+    .brand-mark{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(202,165,106,.24), rgba(255,255,255,.04));
+      color:var(--gold2);
+      border:1px solid rgba(202,165,106,.45);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .nav a{color:var(--muted);font-size:.95rem}
+    .nav a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:700;
+      cursor:pointer;
+      transition:.22s ease;
+      white-space:nowrap;
+    }
+
+    .btn-primary{
+      color:#111;
+      background:linear-gradient(135deg, var(--gold2), var(--gold));
+      box-shadow:0 10px 24px rgba(202,165,106,.24);
+    }
+
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-secondary{
+      color:var(--text);
+      border-color:rgba(202,165,106,.35);
+      background:rgba(255,255,255,.02);
+    }
+    .btn-secondary:hover{
+      border-color:rgba(202,165,106,.7);
+      background:rgba(255,255,255,.04);
+    }
+
+    .hero-box,
+    .flow-item,
+    .filter-card,
+    .product-card,
+    .notice-box,
+    .cta-box,
+    .card,
+    .gate-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; width: 100%; }
-
-    .container {
-      width: min(100% - 32px, var(--max));
-      margin: 0 auto;
-    }
-
-    .glass, .card, .product, .hero-box, .notice-box, .flow-item, .gate-box, .filter-box {
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(201,169,110,0.30);
-      color: var(--gold-2);
-      background: rgba(201,169,110,0.10);
-      font-size: 0.86rem;
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
-    }
-
-    .gate {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .gate-box {
-      width: min(100%, 480px);
-      padding: 32px;
-      text-align: center;
-      backdrop-filter: blur(12px);
-    }
-
-    .gate-box h1 {
-      margin: 0 0 12px;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      line-height: 1.3;
-    }
-
-    .gate-box p {
-      color: var(--muted);
-      margin: 0 0 18px;
-    }
-
-    .gate-box input {
-      width: 100%;
-      min-height: 54px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      padding: 0 16px;
-      font-size: 1rem;
-      outline: none;
-      margin-bottom: 14px;
-    }
-
-    .gate-box input:focus {
-      border-color: rgba(201,169,110,0.55);
-      box-shadow: 0 0 0 3px rgba(201,169,110,0.12);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 20px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid transparent;
-      transition: .25s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold-2), var(--gold));
-      color: #111216;
-      box-shadow: 0 10px 24px rgba(201,169,110,0.25);
-    }
-
-    .btn-secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.02);
-      border-color: rgba(201,169,110,0.34);
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .error {
-      min-height: 22px;
-      margin-top: 10px;
-      color: var(--busy);
-      font-size: 0.92rem;
-    }
-
-    #protectedContent { display: none; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(11,11,13,0.82);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      border: 1px solid rgba(201,169,110,0.45);
-      display: grid;
-      place-items: center;
-      color: var(--gold-2);
-      background: linear-gradient(135deg, rgba(201,169,110,0.22), rgba(255,255,255,0.04));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
-      font-size: 0.95rem;
-    }
-
-    .nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .nav a {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .nav a:hover { color: var(--text); }
-
-    .hero {
-      padding: 64px 0 26px;
-    }
-
-    .hero-box {
-      padding: 34px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-box::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(201,169,110,0.16), transparent 34%);
-      pointer-events: none;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 4.8vw, 4rem);
-      line-height: 1.14;
-      margin: 0 0 14px;
-      letter-spacing: 0.03em;
-      position: relative;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 1.04rem;
-      margin: 0;
-      max-width: 64ch;
-      position: relative;
-    }
-
-    section {
-      padding: 22px 0 16px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 18px;
-      margin-bottom: 22px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(1.5rem, 3vw, 2.3rem);
-      margin: 0 0 6px;
-      padding-left: 14px;
-      border-left: 5px solid var(--gold);
-    }
-
-    .section-head p {
-      color: var(--muted);
-      margin: 0;
-      max-width: 60ch;
-    }
-
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 18px;
-    }
-
-    .flow-item {
-      padding: 24px;
-      position: relative;
-    }
-
-    .flow-item .num {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      color: var(--gold-2);
-      background: rgba(201,169,110,0.10);
-      border: 1px solid rgba(201,169,110,0.28);
-      font-weight: 700;
-    }
-
-    .flow-item h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-    }
-
-    .flow-item p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .filter-box {
-      padding: 18px;
-      margin-bottom: 18px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .filter-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 20px;
-    }
-
-    .product {
-      overflow: hidden;
-    }
-
-    .product-image {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .35s ease;
-    }
-
-    .product:hover .product-image img {
-      transform: scale(1.03);
-    }
-
-    .product-body {
-      padding: 20px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .product-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: start;
-    }
-
-    .product-title {
-      margin: 0;
-      font-size: 1.06rem;
-      font-weight: 700;
-    }
-
-    .product-ref {
-      color: var(--muted);
-      font-size: 0.86rem;
-      margin-top: 4px;
-    }
-
-    .product-price {
-      font-size: 1.28rem;
-      font-weight: 800;
-      color: var(--gold-2);
-      white-space: nowrap;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 0.86rem;
-      font-weight: 700;
-      width: fit-content;
-    }
-
-    .status::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    .status.available {
-      color: var(--ok);
-      background: rgba(76,175,80,0.14);
-      border: 1px solid rgba(76,175,80,0.24);
-    }
-
-    .status.rented {
-      color: var(--busy);
-      background: rgba(217,83,79,0.14);
-      border: 1px solid rgba(217,83,79,0.24);
-    }
-
-    .course-tag {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--gold-2);
-      background: rgba(201,169,110,0.10);
-      border: 1px solid rgba(201,169,110,0.26);
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(202,165,106,.10);
+      border:1px solid rgba(202,165,106,.24);
+      color:var(--gold2);
+      font-size:.86rem;
+      margin-bottom:16px;
+      letter-spacing:.08em;
+    }
+
+    .gate{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
     }
+
+    .gate-box{
+      width:min(100%, 480px);
+      padding:32px;
+      text-align:center;
+      backdrop-filter:blur(12px);
+    }
 
-    .product-desc {
-      color: var(--muted);
-      margin: 0;
-      min-height: 58px;
-      font-size: 0.94rem;
-    }
-
-    .product-meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    .product-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 18px;
-    }
-
-    .card {
-      padding: 24px;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.08rem;
-    }
-
-    .card ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .notice-box {
-      padding: 26px;
-      border: 1px solid rgba(201,169,110,0.24);
-    }
-
-    .notice-box h2 {
-      margin: 0 0 10px;
-      font-size: 1.5rem;
-      color: var(--gold-2);
-    }
-
-    .notice-box ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .cta {
-      padding: 36px 0 72px;
-    }
-
-    .cta-box {
-      padding: 34px;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at right top, rgba(201,169,110,0.16), transparent 32%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border: 1px solid rgba(201,169,110,0.24);
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .cta-box h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-    }
-
-    .cta-box p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 60ch;
-    }
-
-    .footer {
-      padding: 26px 0 50px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      font-size: 0.92rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-    }
-
-    .empty-message {
-      grid-column: 1 / -1;
-      padding: 28px;
-      text-align: center;
-      color: var(--muted);
-    }
-
-    @media (max-width: 1024px) {
-      .flow,
-      .products,
-      .info-grid,
-      .cta-box,
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    .gate-box h1{
+      margin:0 0 12px;
+      font-size:clamp(1.8rem, 4vw, 2.6rem);
+      line-height:1.3;
+    }
+
+    .gate-box p{
+      color:var(--muted);
+      margin:0 0 18px;
+    }
+
+    .gate-box input{
+      width:100%;
+      min-height:54px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      padding:0 16px;
+      font-size:1rem;
+      outline:none;
+      margin-bottom:14px;
+    }
 
-    @media (max-width: 720px) {
-      .nav { display: none; }
-      .topbar-inner { padding: 12px 0; }
-      .hero { padding-top: 40px; }
-      .hero-box,
-      .gate-box,
-      .card,
-      .notice-box,
-      .flow-item,
-      .cta-box,
-      .filter-box { padding: 22px; }
+    .gate-box input:focus{
+      border-color:rgba(202,165,106,.55);
+      box-shadow:0 0 0 3px rgba(202,165,106,.12);
+    }
+
+    .error{
+      min-height:22px;
+      margin-top:10px;
+      color:var(--ng);
+      font-size:.92rem;
+    }
+
+    #protectedContent{display:none}
+
+    .hero{padding:64px 0 26px}
+    .hero-box{
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top right, rgba(202,165,106,.16), transparent 34%);
+      pointer-events:none;
+    }
+
+    h1{
+      font-size:clamp(2rem, 4.8vw, 4rem);
+      line-height:1.14;
+      margin:0 0 14px;
+      letter-spacing:.03em;
+      position:relative;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-size:1.04rem;
+      margin:0;
+      max-width:64ch;
+      position:relative;
+    }
+
+    section{padding:22px 0 16px}
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:18px;
+      margin-bottom:22px;
+    }
+    .section-head h2{
+      font-size:clamp(1.5rem, 3vw, 2.3rem);
+      margin:0 0 6px;
+    }
+    .section-head p{
+      color:var(--muted);
+      margin:0;
+      max-width:60ch;
+    }
+
+    .flow{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:18px;
+    }
+    .flow-item{padding:24px}
+    .flow-item .num{
+      width:42px;height:42px;display:grid;place-items:center;border-radius:12px;margin-bottom:16px;
+      color:var(--gold2);background:rgba(202,165,106,.1);border:1px solid rgba(202,165,106,.26);font-weight:700;
+    }
+    .flow-item h3{margin:0 0 10px;font-size:1.06rem}
+    .flow-item p{margin:0;color:var(--muted);font-size:.96rem}
+
+    .filter-card{padding:18px;margin-bottom:18px;display:grid;gap:14px}
+    .filter-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .filter-grid{display:grid;grid-template-columns:1.45fr 1fr 1fr auto;gap:12px;align-items:center}
+
+    .filter-card input[type="text"],
+    .filter-card select{
+      width:100%;min-height:48px;padding:0 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);color:var(--text);font-size:14px;outline:none;
+    }
+    .filter-card input[type="text"]::placeholder{color:#b9bec8}
+    .filter-card select option{color:#111}
+    .check-wrap{display:inline-flex;align-items:center;gap:8px;min-height:48px;color:var(--muted);font-size:.92rem;white-space:nowrap}
+    .check-wrap input[type="checkbox"]{width:18px;height:18px;margin:0;accent-color:var(--gold)}
+
+    .products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+
+    .product-card{
+      overflow:hidden;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      position:relative;
+    }
+
+    .product-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(202,165,106,.35);
+      box-shadow:0 24px 52px rgba(0,0,0,.42);
+    }
+
+    .product-image{
+      position:relative;
+      overflow:visible;
+      display:block;
+      padding:0;
+      margin:0;
+      background:none;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+    }
+
+    .product-image img{
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:initial;
+      filter:none;
+      border-radius:0;
+    }
+
+    .badge-group{position:absolute;top:12px;left:12px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
+    .badge{display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700;backdrop-filter:blur(10px)}
+    .badge-featured{background:rgba(234,210,160,.95);color:#111}
+
+    .status{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;font-size:.86rem;font-weight:700;width:fit-content}
+    .status::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(255,255,255,.04)}
+    .status.available{color:var(--ok);background:rgba(67,160,95,.14);border:1px solid rgba(67,160,95,.24)}
+    .status.rented{color:var(--ng);background:rgba(229,83,83,.14);border:1px solid rgba(229,83,83,.24)}
+
+    .product-body{padding:20px;display:grid;gap:14px}
+    .product-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+    .product-title{margin:0;font-size:1.05rem;font-weight:700;line-height:1.45}
+    .product-ref{margin-top:4px;color:var(--muted);font-size:.88rem}
+    .product-note{color:var(--gold2);font-size:1.02rem;font-weight:800;white-space:nowrap}
+    .product-desc{margin:0;color:var(--muted);font-size:.94rem;min-height:54px}
+    .product-meta{display:flex;flex-wrap:wrap;gap:10px}
+    .meta-chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:var(--gold-soft);border:1px solid rgba(202,165,106,.14);color:#ead9b4;font-size:.84rem}
+    .product-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+    .info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .card{padding:24px}
+    .card h3{margin:0 0 10px;font-size:1.08rem}
+    .card ul{margin:0;padding-left:18px;color:var(--muted)}
+
+    .notice-box{padding:26px}
+    .notice-box h2{margin:0 0 10px;font-size:1.5rem;color:var(--gold2)}
+    .notice-box ul{margin:0;padding-left:18px;color:var(--muted)}
+
+    .cta{padding:36px 0 72px}
+    .cta-box{
+      padding:34px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+      border:1px solid rgba(202,165,106,.24);
+      background:radial-gradient(circle at right top, rgba(202,165,106,.16), transparent 32%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    .cta-box h2{margin:0 0 10px;font-size:clamp(1.6rem, 3vw, 2.45rem)}
+    .cta-box p{margin:0;color:var(--muted);max-width:62ch}
+
+    .footer{padding:26px 0 52px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+    .footer-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}
+    .footer small{display:block;margin-top:8px}
+    .empty-message{grid-column:1/-1;padding:28px;text-align:center;color:var(--muted);background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius)}
+    .back-to-top{position:fixed;right:18px;bottom:18px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg, var(--gold2), var(--gold));color:#111;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 24px rgba(202,165,106,.28);z-index:1200;font-size:22px;font-weight:700;transition:.2s ease;opacity:.95}
+    .back-to-top:hover{transform:translateY(-2px);opacity:1}
+
+    @media (max-width:1024px){
+      .flow,.info-grid,.cta-box,.footer-grid{grid-template-columns:1fr}
+      .products{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .filter-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:720px){
+      .nav{display:none}
+      .hero{padding-top:40px}
+      .products{grid-template-columns:1fr}
+      .filter-grid{grid-template-columns:1fr;gap:10px}
+      .check-wrap{width:100%;min-height:44px}
+      .section-head{align-items:start}
+      .topbar-inner{padding:12px 0}
+      .gate-box,.hero-box,.flow-item,.filter-card,.card,.notice-box,.cta-box{padding:22px}
+      .back-to-top{right:14px;bottom:14px;width:48px;height:48px;font-size:20px}
     }
   </style>
 </head>
@@ -583,7 +416,10 @@
           <div class="hero-box">
             <span class="eyebrow">承認者専用ページ</span>
             <h1>モデル・料金・ご利用条件を<br>ご確認いただけます</h1>
-            <p class="lead">ご希望のモデルをお選びいただき、在庫確認・内容確定後にSquare定期決済をご案内いたします。気になるモデルがございましたら、お申し込み欄よりご連絡ください。</p>
+            <p class="lead">
+              ご希望のモデルをお選びいただき、在庫確認・内容確定後にSquare定期決済をご案内いたします。<br>
+              気になるモデルがございましたら、お申し込み欄よりご連絡ください。
+            </p>
           </div>
         </div>
       </section>
@@ -597,26 +433,10 @@
             </div>
           </div>
           <div class="flow">
-            <article class="flow-item">
-              <div class="num">01</div>
-              <h3>モデルを選ぶ</h3>
-              <p>一覧よりご希望の時計をお選びください。レンタル中モデルは空き待ちも可能です。</p>
-            </article>
-            <article class="flow-item">
-              <div class="num">02</div>
-              <h3>在庫確認</h3>
-              <p>お申し込み後、在庫状況やご利用開始時期を確認のうえご案内いたします。</p>
-            </article>
-            <article class="flow-item">
-              <div class="num">03</div>
-              <h3>内容確定</h3>
-              <p>モデル、料金、ご利用条件を確認し、内容を確定いたします。</p>
-            </article>
-            <article class="flow-item">
-              <div class="num">04</div>
-              <h3>定期決済</h3>
-              <p>内容確定後、Square定期決済をご案内し、お手続き完了後にご利用開始となります。</p>
-            </article>
+            <article class="flow-item"><div class="num">01</div><h3>モデルを選ぶ</h3><p>一覧よりご希望の時計をお選びください。レンタル中モデルは空き待ちも可能です。</p></article>
+            <article class="flow-item"><div class="num">02</div><h3>在庫確認</h3><p>お申し込み後、在庫状況やご利用開始時期を確認のうえご案内いたします。</p></article>
+            <article class="flow-item"><div class="num">03</div><h3>内容確定</h3><p>モデル、料金、ご利用条件を確認し、内容を確定いたします。</p></article>
+            <article class="flow-item"><div class="num">04</div><h3>定期決済</h3><p>内容確定後、Square定期決済をご案内し、お手続き完了後にご利用開始となります。</p></article>
           </div>
         </div>
       </section>
@@ -629,15 +449,21 @@
               <p>掲載内容は承認者向けのご案内です。在庫状況は変動するため、最終確定は個別確認後となります。</p>
             </div>
           </div>
-
-          <div class="filter-box">
-            <div class="filter-row">
-              <strong style="font-size:1rem;">メーカーで絞り込み</strong>
-              <div id="productCount" style="color:var(--muted); font-size:0.92rem;">0件表示</div>
+          <div class="filter-card">
+            <div class="filter-head"><strong>条件で探す</strong><div id="productCount" style="color:var(--muted); font-size:.92rem;">0件表示</div></div>
+            <div class="filter-grid">
+              <input type="text" id="searchInput" placeholder="ブランド名・モデル名・説明文で検索" />
+              <select id="brandSelect"><option value="all">メーカーを選択</option></select>
+              <select id="sortSelect">
+                <option value="recommended">おすすめ順</option>
+                <option value="available">在庫あり優先</option>
+                <option value="brand">メーカー順</option>
+                <option value="name">モデル名順</option>
+              </select>
+              <label class="check-wrap" for="stockOnly"><input type="checkbox" id="stockOnly" /><span>在庫ありのみ</span></label>
             </div>
-            <div class="filter-buttons" id="filterButtons"></div>
+            <p style="margin:0; color:var(--muted); font-size:.92rem;">気になるモデルや在庫状況を、自由に絞り込んでご覧いただけます。</p>
           </div>
-
           <div class="products" id="productGrid"></div>
         </div>
       </section>
@@ -655,7 +481,7 @@
               <h3>料金について</h3>
               <ul>
                 <li>表示価格は月額・税抜です。</li>
-                <li>コース料金は目安であり、商品ごとに個別価格が異なります。</li>
+                <li>商品ごとに個別価格が異なります。</li>
                 <li>内容確定後に定期決済のご案内をいたします。</li>
               </ul>
             </article>
@@ -685,8 +511,8 @@
             <h2>ご案内</h2>
             <ul>
               <li>本ページの内容は承認者向けのご案内です。</li>
-              <li>参考コースは目安であり、商品ごとに料金が異なる場合がございます。</li>
               <li>掲載内容は在庫・状態により変更となる場合がございます。</li>
+              <li>最終のご利用条件・開始時期は個別確認後となります。</li>
             </ul>
           </div>
         </div>
@@ -711,7 +537,7 @@
       <div class="container footer-grid">
         <div>
           <strong>TOKEMON 承認者専用ページ</strong>
-          <div>モデル一覧・月額料金・ご利用条件をご確認いただけます。</div>
+          <small>モデル一覧・月額料金・ご利用条件をご確認いただけます。</small>
         </div>
         <div>
           <div><a href="privacy.html">プライバシーポリシー</a></div>
@@ -722,422 +548,221 @@
     </footer>
   </div>
 
- <script>
-const products = [
-  {
-    brand: "BREITLING",
-    name: "コルト パンダ",
-    subname: "パンダ文字盤",
-    price: "¥20,000/月",
-    status: "available",
-    image: "①.jpg",
-    course: "参考コース：プレミアム",
-    description: "白黒のコントラストが印象的で、存在感のあるモデルです。"
-  },
-  {
-    brand: "BREITLING",
-    name: "ヘッドウィンドウ",
-    subname: "ネイビー文字盤",
-    price: "¥20,000/月",
-    status: "available",
-    image: "②.jpg",
-    course: "参考コース：プレミアム",
-    description: "落ち着いたネイビー文字盤が魅力の、上品な印象の一本です。"
-  },
-  {
-    brand: "G-SHOCK",
-    name: "ソーラーブラック",
-    subname: "ブラック文字盤 / チタン",
-    price: "¥10,000/月",
-    status: "available",
-    image: "③.jpg",
-    course: "参考コース：スタンダード",
-    description: "実用性と重厚感を兼ね備え、日常使いもしやすいモデルです。"
-  },
-  {
-    brand: "ROLEX",
-    name: "サブマリーナ",
-    subname: "ブラック文字盤",
-    price: "¥24,000/月",
-    status: "rented",
-    image: "④.jpg",
-    course: "参考コース：プレミアム",
-    description: "ロレックスを代表する人気モデルです。現在は空き待ち受付中です。"
-  },
-  {
-    brand: "TAGHeuer",
-    name: "カレラ キャリバー5",
-    subname: "ブラックパープル文字盤",
-    price: "¥10,000/月",
-    status: "rented",
-    image: "⑤.jpg",
-    course: "参考コース：スタンダード",
-    description: "スポーティさと上品さを兼ね備えた人気モデルです。"
-  },
-  {
-    brand: "ZENITH",
-    name: "エルプリメロ オープン",
-    subname: "ブラック文字盤",
-    price: "¥20,000/月",
-    status: "available",
-    image: "⑥.jpg",
-    course: "参考コース：プレミアム",
-    description: "機械式ならではの魅力を楽しめる、個性ある一本です。"
-  },
-  {
-    brand: "PANERAI",
-    name: "ルミノールサブマーシブル",
-    subname: "ブラック文字盤",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "⑦PNG.PNG",
-    course: "参考コース：プレミアム",
-    description: "パネライらしい存在感ある大型ケース。無骨で男らしい一本。"
-  },
-  {
-    brand: "ROLEX",
-    name: "エアキング ダイヤモンドインデックス",
-    subname: "ブラック文字盤",
-    price: "¥30,000/月",
-    status: "available",
-    image: "⑧.PNG",
-    course: "参考コース：ダイヤモンド",
-    description: "ローマ数字とダイヤインデックスが特徴的。上品で高級感のある一本。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "ビッグバンキング",
-    subname: "オールブラック",
-    price: "¥26,000/月",
-    status: "rented",
-    image: "⑨.PNG",
-    course: "参考コース：プレミアム",
-    description: "圧倒的な存在感を誇るウブロ。オールブラックで重厚な印象。"
-  },
-  {
-    brand: "ROLEX",
-    name: "GMTマスター",
-    subname: "ペプシベゼル",
-    price: "¥34,000/月",
-    status: "rented",
-    image: "⑩.PNG",
-    course: "参考コース：ダイヤモンド",
-    description: "赤青ベゼルが特徴の人気モデル。資産性も高い一本。"
-  },
-  {
-    brand: "PANERAI",
-    name: "サブマーシブル",
-    subname: "ブラック文字盤",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "⑪.PNG",
-    course: "参考コース：プレミアム",
-    description: "ダイバーズモデルの代表格。視認性と存在感が魅力。"
-  },
-  {
-    brand: "FRANCK MULLER",
-    name: "トノウカーベックス",
-    subname: "ブラック",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "⑫.PNG",
-    course: "参考コース：プレミアム",
-    description: "独特なケースとデザイン。個性を演出できる一本。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "クラシックフュージョンチタニウム",
-    subname: "グリーン",
-    price: "¥24,000/月",
-    status: "rented",
-    image: "⑬.PNG",
-    course: "参考コース：プレミアム",
-    description: "落ち着いたグリーン文字盤。シンプルで高級感ある一本。"
-  },
-  {
-    brand: "ROLEX",
-    name: "デイトジャスト",
-    subname: "ゴールドコンビ ブルー文字盤",
-    price: "¥28,000/月",
-    status: "rented",
-    image: "⑭.PNG",
-    course: "参考コース：プレミアム",
-    description: "定番のドレスモデル。高級感と実用性を兼ね備えた一本。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "クラシックオールブラック",
-    subname: "オールブラック",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "⑮.PNG",
-    course: "参考コース：プレミアム",
-    description: "ブラックで統一された精悍なデザインが魅力のウブロ。"
-  },
-  {
-    brand: "IWC",
-    name: "パイロットウォッチ トップガン",
-    subname: "ブラック文字盤 / クロノグラフ",
-    price: "¥30,000/月",
-    status: "rented",
-    image: "⑯.PNG",
-    course: "参考コース：ダイヤモンド",
-    description: "視認性が高く無骨な雰囲気が魅力のトップガンモデルです。"
-  },
-  {
-    brand: "FRANCK MULLER",
-    name: "コンキスタドール レディース",
-    subname: "ブラック文字盤",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "⑰.PNG",
-    course: "参考コース：プレミアム",
-    description: "華やかさと個性を兼ね備えたフランクミュラーのレディースモデルです。"
-  },
-  {
-    brand: "PANERAI",
-    name: "ルミノールマリーナ ブラック",
-    subname: "ブラック文字盤",
-    price: "¥24,000/月",
-    status: "rented",
-    image: "⑱.PNG",
-    course: "参考コース：プレミアム",
-    description: "パネライらしい重厚感と存在感を楽しめる人気モデルです。"
-  },
-  {
-    brand: "ROLEX",
-    name: "デイトジャスト2",
-    subname: "ブラック文字盤",
-    price: "¥30,000/月",
-    status: "rented",
-    image: "⑲.PNG",
-    course: "参考コース：ダイヤモンド",
-    description: "存在感のあるケースサイズとブラック文字盤が魅力のロレックスです。"
-  },
-  {
-    brand: "TAGHeuer",
-    name: "ホイヤー01 ブラック",
-    subname: "ブラック文字盤 / クロノグラフ",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "⑳.PNG",
-    course: "参考コース：プレミアム",
-    description: "スケルトン感のあるダイヤルが印象的な、スポーティな一本です。"
-  },
-  {
-    brand: "TUDOR",
-    name: "クロノタイム タイガー パンダ文字盤",
-    subname: "パンダ文字盤 / クロノグラフ",
-    price: "¥28,000/月",
-    status: "rented",
-    image: "㉑.PNG",
-    course: "参考コース：プレミアム",
-    description: "タイガーモデルらしい個性が光る、人気のクロノグラフです。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "クラシックフュージョン オールブラック",
-    subname: "オールブラック",
-    price: "¥28,000/月",
-    status: "rented",
-    image: "㉒.PNG",
-    course: "参考コース：プレミアム",
-    description: "シンプルかつ精悍な印象で、ウブロらしい高級感を楽しめる一本です。"
-  },
-  {
-    brand: "ROLEX",
-    name: "GMTマスター2 赤黒ベゼル",
-    subname: "赤黒ベゼル",
-    price: "¥30,000/月",
-    status: "rented",
-    image: "㉓.PNG",
-    course: "参考コース：ダイヤモンド",
-    description: "赤黒ベゼルが目を引く、ロレックスの人気GMTモデルです。"
-  },
-  {
-    brand: "ROLEX",
-    name: "ダイヤモンドベゼル レディース",
-    subname: "レディース / ダイヤモンドベゼル",
-    price: "¥20,000/月",
-    status: "available",
-    image: "㉔.PNG",
-    course: "参考コース：プレミアム",
-    description: "華やかなダイヤモンドベゼルが魅力のレディースロレックスです。"
-  },
-  {
-    brand: "PANERAI",
-    name: "フェラーリ ブラック",
-    subname: "ブラック文字盤",
-    price: "¥22,000/月",
-    status: "rented",
-    image: "㉕PANERAI.PNG",
-    course: "参考コース：プレミアム",
-    description: "フェラーリネームが印象的な個性派パネライ。存在感のある一本です。"
-  },
-  {
-    brand: "ROLEX",
-    name: "デイトジャスト ダークペストリー",
-    subname: "ダーク文字盤",
-    price: "¥28,000/月",
-    status: "rented",
-    image: "㉖ROLEX.PNG",
-    course: "参考コース：プレミアム",
-    description: "落ち着いたダークトーンが魅力のデイトジャスト。上品さと実用性を兼ね備えています。"
-  },
-  {
-    brand: "BREITLING",
-    name: "ナビタイマーアビエーション",
-    subname: "クロノグラフ",
-    price: "¥22,000/月",
-    status: "available",
-    image: "㉗BREITLING.PNG",
-    course: "参考コース：プレミアム",
-    description: "航空時計らしいブライトリングの代表モデル。"
-  },
-  {
-    brand: "HUBLOT",
-    name: "クラシックフュージョン チタニウム ホワイト",
-    subname: "ホワイト文字盤",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "㉘HUBLOT.PNG",
-    course: "参考コース：プレミアム",
-    description: "ホワイト×チタンの高級感ある一本。"
-  },
-  {
-    brand: "ROLEX",
-    name: "サブマリーナ ブラック ゴールドコンビ",
-    subname: "ブラック文字盤",
-    price: "¥30,000/月",
-    status: "rented",
-    image: "㉙ROLEX.PNG",
-    course: "参考コース：ダイヤモンド",
-    description: "ブラック×ゴールドの存在感あるモデル。"
-  },
-  {
-    brand: "ROLEX",
-    name: "ターノグラフ ブルー",
-    subname: "ブルー文字盤",
-    price: "¥28,000/月",
-    status: "rented",
-    image: "㉚ROLEX.PNG",
-    course: "参考コース：プレミアム",
-    description: "ブルー文字盤と赤針が特徴的な一本。"
-  },
-  {
-    brand: "PANERAI",
-    name: "ブラック チタン",
-    subname: "ブラック文字盤",
-    price: "¥20,000/月",
-    status: "rented",
-    image: "㉛PANERAI.PNG",
-    course: "参考コース：プレミアム",
-    description: "チタンの軽さとパネライの重厚感を両立。"
-  }
-];
+  <a href="#top" class="back-to-top" aria-label="トップへ戻る">⌃</a>
 
-let currentBrand = "all";
-const correctPasscode = "TOKEMON2026";
-const sessionKey = "tokemon_member_access";
+  <script>
+    const products = [
+      { brand:"BREITLING", name:"コルト パンダ", subname:"パンダ文字盤", price:"¥20,000/月", status:"available", image:"①.avif", description:"白黒のコントラストが印象的で、存在感のあるモデルです。", course:"参考コース：プレミアム", featured:true },
+      { brand:"BREITLING", name:"ヘッドウィンドウ", subname:"ネイビー文字盤", price:"¥20,000/月", status:"available", image:"②.avif", description:"落ち着いたネイビー文字盤が魅力の、上品な印象の一本です。", course:"参考コース：プレミアム" },
+      { brand:"G-SHOCK", name:"ソーラーブラック", subname:"ブラック文字盤 / チタン", price:"¥10,000/月", status:"available", image:"③MTG.avif", description:"実用性と重厚感を兼ね備え、日常使いもしやすいモデルです。", course:"参考コース：スタンダード" },
+      { brand:"ROLEX", name:"サブマリーナ", subname:"ブラック文字盤", price:"¥24,000/月", status:"rented", image:"④ROLEXロレックス.avif", description:"ロレックスを代表する人気モデルです。現在は空き待ち受付中です。", course:"参考コース：プレミアム", featured:true },
+      { brand:"TAGHeuer", name:"カレラ キャリバー5", subname:"ブラックパープル文字盤", price:"¥10,000/月", status:"rented", image:"⑤タグホイヤ.avif", description:"スポーティさと上品さを兼ね備えた人気モデルです。", course:"参考コース：スタンダード" },
+      { brand:"ZENITH", name:"エルプリメロ オープン", subname:"ブラック文字盤", price:"¥20,000/月", status:"available", image:"⑥ZENITH.avif", description:"機械式ならではの魅力を楽しめる、個性ある一本です。", course:"参考コース：プレミアム", featured:true },
+      { brand:"PANERAI", name:"ルミノールサブマーシブル", subname:"ブラック文字盤", price:"¥20,000/月", status:"rented", image:"⑦パネライ.avif", description:"パネライらしい存在感ある大型ケース。無骨で男らしい一本です。", course:"参考コース：プレミアム", featured:true },
+      { brand:"ROLEX", name:"エアキング ダイヤ", subname:"ブラック文字盤", price:"¥30,000/月", status:"available", image:"⑧エアキング.avif", description:"ローマ数字とダイヤインデックスが特徴的。上品で高級感のある一本です。", course:"参考コース：ダイヤモンド" },
+      { brand:"HUBLOT", name:"ビッグバンキング", subname:"オールブラック", price:"¥26,000/月", status:"rented", image:"⑨ウブロビックバンキング.avif", description:"圧倒的な存在感を誇るウブロ。オールブラックで重厚な印象です。", course:"参考コース：プレミアム", featured:true },
+      { brand:"ROLEX", name:"GMTマスター", subname:"ペプシベゼル", price:"¥34,000/月", status:"rented", image:"⑩.avif", description:"赤青ベゼルが特徴の人気モデル。資産性も高い一本です。", course:"参考コース：ダイヤモンド", featured:true },
+      { brand:"PANERAI", name:"サブマーシブル", subname:"ブラック文字盤", price:"¥20,000/月", status:"rented", image:"⑪パネライ.avif", description:"ダイバーズモデルの代表格。視認性と存在感が魅力です。", course:"参考コース：プレミアム" },
+      { brand:"FRANCK MULLER", name:"トノウカーベックス", subname:"ブラック", price:"¥20,000/月", status:"rented", image:"⑫ﾄﾉｳｶﾍﾟｯﾄ.avif", description:"独特なケースとデザイン。個性を演出できる一本です。", course:"参考コース：プレミアム" },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"グリーン", price:"¥24,000/月", status:"rented", image:"⑬ウブロクラシックチタニウム.avif", description:"落ち着いたグリーン文字盤。シンプルで高級感ある一本です。", course:"参考コース：プレミアム" },
+      { brand:"ROLEX", name:"デイトジャスト", subname:"ゴールドコンビ ブルー文字盤", price:"¥28,000/月", status:"rented", image:"⑭ロレックスデイトジャスト.avif", description:"定番のドレスモデル。高級感と実用性を兼ね備えた一本です。", course:"参考コース：プレミアム" },
+      { brand:"HUBLOT", name:"クラシックオールブラック", subname:"オールブラック", price:"¥20,000/月", status:"rented", image:"⑮ウブロクラシッ.avif", description:"ブラックで統一された精悍なデザインが魅力のウブロです。", course:"参考コース：プレミアム" },
+      { brand:"IWC", name:"パイロットウォッチ トップガン", subname:"ブラック文字盤 / クロノグラフ", price:"¥30,000/月", status:"rented", image:"⑯トップガン.avif", description:"視認性が高く無骨な雰囲気が魅力のトップガンモデルです。", course:"参考コース：ダイヤモンド", featured:true },
+      { brand:"FRANCK MULLER", name:"コンキスタドール レディース", subname:"ブラック文字盤", price:"¥20,000/月", status:"rented", image:"⑰.avif", description:"華やかさと個性を兼ね備えたフランクミュラーのレディースモデルです。", course:"参考コース：プレミアム" },
+      { brand:"PANERAI", name:"ルミノールマリーナ ブラック", subname:"ブラック文字盤", price:"¥24,000/月", status:"rented", image:"⑱パネライ.avif", description:"パネライらしい重厚感と存在感を楽しめる人気モデルです。", course:"参考コース：プレミアム" },
+      { brand:"ROLEX", name:"デイトジャスト2", subname:"ブラック文字盤", price:"¥30,000/月", status:"rented", image:"⑲.avif", description:"存在感のあるケースサイズとブラック文字盤が魅力のロレックスです。", course:"参考コース：ダイヤモンド" },
+      { brand:"TAGHeuer", name:"ホイヤー01 ブラック", subname:"ブラック文字盤 / クロノグラフ", price:"¥20,000/月", status:"rented", image:"⑳.avif", description:"スケルトン感のあるダイヤルが印象的な、スポーティな一本です。", course:"参考コース：プレミアム" },
+      { brand:"TUDOR", name:"クロノタイム タイガー", subname:"パンダ文字盤", price:"¥28,000/月", status:"rented", image:"㉑クロノ.avif", description:"個性が光るクロノグラフ。存在感のある一本です。", course:"参考コース：プレミアム", featured:true },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"オールブラック", price:"¥20,000/月", status:"rented", image:"㉒クラシック.avif", description:"精悍なブラックデザインを楽しめる一本です。", course:"参考コース：プレミアム" },
+      { brand:"ROLEX", name:"GMTマスター2", subname:"赤黒ベゼル", price:"¥30,000/月", status:"rented", image:"㉓GMT.avif", description:"人気のGMTモデル。現在は空き待ち受付中です。", course:"参考コース：ダイヤモンド", featured:true },
+      { brand:"ROLEX", name:"ダイヤベゼル レディース", subname:"レディース", price:"¥20,000/月", status:"available", image:"㉔ロレックスダイヤベゼル.avif", description:"華やかな印象が魅力のレディースロレックスです。", course:"参考コース：プレミアム" },
+      { brand:"PANERAI", name:"フェラーリ", subname:"ブラック", price:"¥20,000/月", status:"rented", image:"㉕PANERAIフェラリ.avif", description:"個性派パネライとして存在感のある一本です。", course:"参考コース：プレミアム" },
+      { brand:"ROLEX", name:"デイトジャスト", subname:"ダーク文字盤", price:"¥20,000/月", status:"rented", image:"㉖ROLEX.avif", description:"落ち着いた印象で使いやすいロレックスです。", course:"参考コース：プレミアム" },
+      { brand:"BREITLING", name:"ナビタイマー", subname:"クロノグラフ", price:"¥22,000/月", status:"available", image:"㉗BREITLING.avif", description:"航空時計らしいブライトリングの代表モデルです。", course:"参考コース：プレミアム", featured:true },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"ホワイト", price:"¥20,000/月", status:"rented", image:"㉘HUBLOT.avif", description:"高級感あるホワイト文字盤が魅力の一本です。", course:"参考コース：プレミアム" },
+      { brand:"ROLEX", name:"サブマリーナ ブラック ゴールド", subname:"ブラック文字盤", price:"¥30,000/月", status:"rented", image:"㉙コンビロレックス.avif", description:"存在感のあるブラック×ゴールドのモデルです。", course:"参考コース：ダイヤモンド", featured:true },
+      { brand:"ROLEX", name:"ターノグラフ ブルー", subname:"ブルー文字盤", price:"¥28,000/月", status:"rented", image:"㉚ロレックスブル.avif", description:"ブルー文字盤と赤針が特徴的な一本です。", course:"参考コース：プレミアム" },
+      { brand:"PANERAI", name:"ブラック チタン", subname:"ブラック文字盤", price:"¥20,000/月", status:"rented", image:"㉛PANERAI.avif", description:"チタンの軽さとパネライの重厚感を両立した一本です。", course:"参考コース：プレミアム" },
 
-function getStatusLabel(status) {
-  if (status === "available") return "在庫あり";
-  if (status === "rented") return "レンタル中";
-  if (status === "maintenance") return "メンテナンス中";
-  return "";
-}
+      { brand:"HUBLOT", name:"ダイヤベゼル 11Pダイヤモンド", subname:"ブラック文字盤", price:"¥20,000/月", status:"available", image:"32 IMG_9393.avif", description:"ダイヤベゼルと11Pダイヤが華やかな高級感を演出します。", course:"参考コース：プレミアム" },
+      { brand:"SEIKO", name:"プルミエ", subname:"クロノグラフ", price:"¥10,000/月", status:"available", image:"33 IMG_9394.avif", description:"セイコーらしい実用性とデザイン性を兼ね備えた一本です。", course:"参考コース：スタンダード" },
+      { brand:"HUBLOT", name:"ブラック ゴールド コンビ", subname:"ブラック×ゴールド", price:"¥12,000/月", status:"available", image:"34 IMG_9395.avif", description:"ブラックとゴールドの組み合わせが目を引く存在感ある一本です。", course:"参考コース：スタンダード" },
+      { brand:"CARTIER", name:"パシャC", subname:"ブラック文字盤", price:"¥20,000/月", status:"available", image:"35 IMG_9395 (1).avif", description:"カルティエらしい上品さと個性を楽しめるモデルです。", course:"参考コース：プレミアム" },
+      { brand:"TAGHeuer", name:"ホイヤー01 ブルー", subname:"ブルー文字盤 / クロノグラフ", price:"¥20,000/月", status:"available", image:"36 IMG_9395 (2).avif", description:"鮮やかなブルーが映えるスポーティなクロノグラフです。", course:"参考コース：プレミアム" },
+      { brand:"BREITLING", name:"ベントレー", subname:"クロノグラフ", price:"¥22,000/月", status:"available", image:"37 IMG_9395 (3).avif", description:"重厚感と高級感を兼ね備えたブライトリング ベントレーです。", course:"参考コース：プレミアム" },
+      { brand:"HUBLOT", name:"ビッグバン エボリューション", subname:"ブラック文字盤", price:"¥24,000/月", status:"available", image:"38 IMG_9395 (4).avif", description:"ビッグバンらしい迫力と存在感を楽しめる一本です。", course:"参考コース：プレミアム" },
+      { brand:"FRANCK MULLER", name:"ロングアイランド", subname:"ブラック文字盤", price:"¥22,000/月", status:"available", image:"39 IMG_9395 (5).avif", description:"縦長ケースが印象的なフランクミュラーの人気モデルです。", course:"参考コース：プレミアム" },
+      { brand:"PANERAI", name:"ルミノールマリーナ", subname:"ブラック文字盤", price:"¥24,000/月", status:"available", image:"40 IMG_9395 (6).avif", description:"パネライらしい力強さと視認性を備えた代表モデルです。", course:"参考コース：プレミアム" },
+      { brand:"ROLEX", name:"ターノグラフ ホワイト", subname:"ホワイト文字盤", price:"¥30,000/月", status:"available", image:"41 IMG_9395 (7).avif", description:"爽やかなホワイト文字盤と赤針が印象的なロレックスです。", course:"参考コース：ダイヤモンド" },
+      { brand:"BREITLING", name:"クロノグラフ ブラック 40mm", subname:"ブラック文字盤", price:"¥14,000/月", status:"available", image:"42 IMG_9395.avif", description:"40mmケースで使いやすいブライトリングのクロノグラフです。", course:"参考コース：スタンダード" },
+      { brand:"BVLGARI", name:"ディアゴノ GMT", subname:"ブラック文字盤", price:"¥24,000/月", status:"available", image:"43 IMG_9395 (1).avif", description:"ブルガリらしい都会的なデザインとGMT機能が魅力です。", course:"参考コース：プレミアム" },
+      { brand:"ROLEX", name:"エクスプローラー2 42mm ホワイト", subname:"ホワイト文字盤", price:"¥32,000/月", status:"available", image:"44 IMG_9395 (2).avif", description:"42mmケースの存在感と白文字盤の視認性が魅力です。", course:"参考コース：ダイヤモンド" },
+      { brand:"CHANEL", name:"J12 ブルー", subname:"ブルー文字盤", price:"¥12,000/月", status:"available", image:"45 IMG_9395 (3).avif", description:"シャネルらしい洗練されたデザインを楽しめる一本です。", course:"参考コース：スタンダード" },
+      { brand:"CARTIER", name:"ロードスター クロノグラフ", subname:"ブラック文字盤", price:"¥24,000/月", status:"available", image:"46 IMG_9395 (4).avif", description:"カルティエのスポーティラインとして人気の高いモデルです。", course:"参考コース：プレミアム" },
+      { brand:"FRANCK MULLER", name:"コンキスタドール ホワイト", subname:"ホワイト文字盤", price:"¥22,000/月", status:"available", image:"47 IMG_9395 (5).avif", description:"ホワイト文字盤が映える華やかなフランクミュラーです。", course:"参考コース：プレミアム" },
+      { brand:"CARTIER", name:"ロードスター", subname:"ブラック文字盤", price:"¥12,000/月", status:"available", image:"48 IMG_9395 (6).avif", description:"カルティエらしい上品さを感じられる使いやすい一本です。", course:"参考コース：スタンダード" },
 
-function getActionLabel(status) {
-  if (status === "available") return "この時計を希望";
-  if (status === "rented") return "空き待ちを希望";
-  if (status === "maintenance") return "再開案内を希望";
-  return "詳細を確認";
-}
+      { brand:"PANERAI", name:"ルミノール GMT", subname:"ブラック文字盤 GMT", price:"¥24,000/月", status:"available", image:"50 IMG_9395 (7).avif", description:"GMT機能付きで実用性も高いパネライモデルです。", course:"参考コース：プレミアム" },
+      { brand:"PANERAI", name:"ルミノール マリーナ", subname:"ブラック文字盤", price:"¥24,000/月", status:"available", image:"51 IMG_9395.avif", description:"力強いケースデザインと高い視認性が魅力です。", course:"参考コース：プレミアム" },
+      { brand:"BREGUET", name:"タイプXX", subname:"ブラック文字盤 クロノグラフ", price:"¥28,000/月", status:"available", image:"52 IMG_9395 (1).avif", description:"ブレゲらしい気品とスポーティさを兼ね備えた一本です。", course:"参考コース：ダイヤモンド" },
+      { brand:"ROLEX", name:"ミルガウス", subname:"ブラック文字盤", price:"¥30,000/月", status:"available", image:"53 IMG_9395 (2).avif", description:"独特の秒針デザインが印象的な人気ロレックスです。", course:"参考コース：ダイヤモンド" },
+      { brand:"OMEGA", name:"スピードマスター", subname:"ブラック文字盤 クロノグラフ", price:"¥20,000/月", status:"available", image:"54 IMG_9395 (3).avif", description:"オメガを代表するクロノグラフとして高い人気を誇ります。", course:"参考コース：プレミアム" },
+      { brand:"GRAHAM", name:"シルバー文字盤 OXAS", subname:"クロノグラフ", price:"¥20,000/月", status:"available", image:"55 IMG_9395 (4).avif", description:"個性的なケースデザインが際立つグラハムの一本です。", course:"参考コース：プレミアム" },
+      { brand:"BREGUET", name:"XXI 43mm", subname:"ブラック文字盤 クロノグラフ", price:"¥28,000/月", status:"available", image:"56 IMG_9395 (5).avif", description:"43mmケースの迫力と高級感が魅力のブレゲです。", course:"参考コース：ダイヤモンド" },
+      { brand:"JAEGER-LECOULTRE", name:"アラームティック", subname:"ブラック文字盤 自動巻き", price:"¥28,000/月", status:"available", image:"57 IMG_9395 (8).avif", description:"ジャガー・ルクルトらしい機能美を楽しめる上質な一本です。", course:"参考コース：ダイヤモンド" },
+      { brand:"OMEGA", name:"コンステレーション", subname:"クロノメーター ゴールド文字盤 自動巻き", price:"¥10,000/月", status:"available", image:"58 IMG_9395 (9).avif", description:"クラシックなゴールド文字盤が映えるオメガの定番モデルです。", course:"参考コース：スタンダード" },
+      { brand:"MARVIN", name:"ブルー文字盤 ゴールドコンビ", subname:"自動巻き", price:"¥10,000/月", status:"available", image:"59 IMG_9395 (10).avif", description:"鮮やかなブルー文字盤とゴールドの組み合わせが上品な一本です。", course:"参考コース：スタンダード" },
+      { brand:"TIMEX", name:"フライバック クロノグラフ", subname:"T2N708 ブラック", price:"¥5,000/月", status:"available", image:"60 IMG_9395 (11).avif", description:"タイメックスらしいスポーティさを楽しめるブラッククロノグラフです。", course:"参考コース：スタンダード" },
+      { brand:"BREITLING", name:"スーパーアベンジャーII", subname:"クロノグラフ ブラック文字盤", price:"¥20,000/月", status:"available", image:"61 IMG_9395 (12).avif", description:"迫力あるケースサイズと精悍なブラックフェイスが魅力です。", course:"参考コース：プレミアム", featured:true }
+    ];
 
-function renderFilterButtons() {
-  const buttonsEl = document.getElementById("filterButtons");
-  const brands = ["all", ...new Set(products.map(item => item.brand))];
+    const correctPasscode = "TOKEMON2026";
+    const sessionKey = "tokemon_member_access";
 
-  buttonsEl.innerHTML = brands.map(brand => {
-    const label = brand === "all" ? "すべて" : brand;
-    const className = brand === currentBrand ? "btn btn-primary" : "btn btn-secondary";
-    return `<button type="button" class="${className}" onclick="filterBrand('${brand.replace(/'/g, "\\'")}')">${label}</button>`;
-  }).join("");
-}
+    function getStatusLabel(status){
+      return status === "available" ? "在庫あり" : "レンタル中";
+    }
 
-function renderProducts() {
-  const grid = document.getElementById("productGrid");
-  const countEl = document.getElementById("productCount");
+    function getActionLabel(status){
+      return status === "available" ? "この時計を希望" : "空き待ちを希望";
+    }
 
-  const filtered = currentBrand === "all"
-    ? products
-    : products.filter(item => item.brand === currentBrand);
+    function renderBrandSelect(){
+      const brandSelect = document.getElementById("brandSelect");
+      const brands = [...new Set(products.map(item => item.brand))].sort((a,b)=>a.localeCompare(b,"ja"));
+      brands.forEach(brand=>{
+        const option = document.createElement("option");
+        option.value = brand;
+        option.textContent = brand;
+        brandSelect.appendChild(option);
+      });
+    }
 
-  countEl.textContent = `${filtered.length}件表示`;
+    function getFilteredProducts(){
+      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+      const brand = document.getElementById("brandSelect").value;
+      const sort = document.getElementById("sortSelect").value;
+      const stockOnly = document.getElementById("stockOnly").checked;
 
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="card empty-message">該当する商品がありません。</div>`;
-    return;
-  }
+      let filtered = [...products];
 
-  grid.innerHTML = filtered.map(item => `
-    <article class="product">
-      <div class="product-image">
-        <img src="images/${item.image}" alt="${item.brand} ${item.name}">
-      </div>
-      <div class="product-body">
-        <div class="product-top">
-          <div>
-            <h3 class="product-title">${item.brand} ${item.name}</h3>
-            <div class="product-ref">${item.subname}</div>
+      if(brand !== "all"){
+        filtered = filtered.filter(item => item.brand === brand);
+      }
+
+      if(keyword){
+        filtered = filtered.filter(item => {
+          const text = `${item.brand} ${item.name} ${item.subname} ${item.description}`.toLowerCase();
+          return text.includes(keyword);
+        });
+      }
+
+      if(stockOnly){
+        filtered = filtered.filter(item => item.status === "available");
+      }
+
+      if(sort === "available"){
+        filtered.sort((a,b)=>{
+          const aVal = a.status === "available" ? 1 : 0;
+          const bVal = b.status === "available" ? 1 : 0;
+          if(bVal !== aVal) return bVal - aVal;
+          return a.brand.localeCompare(b.brand,"ja");
+        });
+      }else if(sort === "brand"){
+        filtered.sort((a,b)=>a.brand.localeCompare(b.brand,"ja"));
+      }else if(sort === "name"){
+        filtered.sort((a,b)=>a.name.localeCompare(b.name,"ja"));
+      }else{
+        filtered.sort((a,b)=>{
+          const aFeat = a.featured ? 1 : 0;
+          const bFeat = b.featured ? 1 : 0;
+          if(bFeat !== aFeat) return bFeat - aFeat;
+          const aAvail = a.status === "available" ? 1 : 0;
+          const bAvail = b.status === "available" ? 1 : 0;
+          if(bAvail !== aAvail) return bAvail - aAvail;
+          return a.brand.localeCompare(b.brand,"ja");
+        });
+      }
+
+      return filtered;
+    }
+
+    function renderProducts(){
+      const grid = document.getElementById("productGrid");
+      const countEl = document.getElementById("productCount");
+      const filtered = getFilteredProducts();
+
+      countEl.textContent = `${filtered.length}件表示`;
+
+      if(filtered.length === 0){
+        grid.innerHTML = `<div class="empty-message">該当する商品がありません。</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="product-card">
+          <div class="product-image">
+            <div class="badge-group">
+              ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
+            </div>
+            <img src="images/${item.image}" alt="${item.brand} ${item.name}" loading="lazy" onerror="this.style.display='none'">
           </div>
-          <div class="product-price">${item.price}</div>
-        </div>
-        <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
-        <span class="course-tag">${item.course}</span>
-        <p class="product-desc">${item.description}</p>
-        <div class="product-meta">
-          <span>メーカー：${item.brand}</span>
-          <span>税抜表示</span>
-        </div>
-        <div class="product-actions">
-          <a href="mailto:info@kan-worth.co.jp?subject=${encodeURIComponent('TOKEMON希望モデル：' + item.brand + ' ' + item.name)}" class="btn btn-primary">${getActionLabel(item.status)}</a>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
+          <div class="product-body">
+            <div class="product-top">
+              <div>
+                <h3 class="product-title">${item.brand} ${item.name}</h3>
+                <div class="product-ref">${item.subname}</div>
+              </div>
+              <div class="product-note">${item.price}</div>
+            </div>
+            <span class="status ${item.status}">${getStatusLabel(item.status)}</span>
+            <p class="product-desc">${item.description}</p>
+            <div class="product-meta">
+              <span class="meta-chip">メーカー：${item.brand}</span>
+              <span class="meta-chip">${item.course}</span>
+              <span class="meta-chip">税抜表示</span>
+            </div>
+            <div class="product-actions">
+              <a href="mailto:info@kan-worth.co.jp?subject=${encodeURIComponent('TOKEMON希望モデル：' + item.brand + ' ' + item.name)}" class="btn btn-primary">${getActionLabel(item.status)}</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
 
-function filterBrand(brand) {
-  currentBrand = brand;
-  renderFilterButtons();
-  renderProducts();
-}
+    function attachEvents(){
+      document.getElementById("searchInput").addEventListener("input", renderProducts);
+      document.getElementById("brandSelect").addEventListener("change", renderProducts);
+      document.getElementById("sortSelect").addEventListener("change", renderProducts);
+      document.getElementById("stockOnly").addEventListener("change", renderProducts);
+    }
 
-function checkPasscode() {
-  const input = document.getElementById("passcode").value;
-  const error = document.getElementById("errorMessage");
+    function openProtectedContent(){
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("protectedContent").style.display = "block";
+      renderBrandSelect();
+      renderProducts();
+      attachEvents();
+    }
 
-  if (input === correctPasscode) {
-    document.getElementById("gate").style.display = "none";
-    document.getElementById("protectedContent").style.display = "block";
-    sessionStorage.setItem(sessionKey, "true");
-    error.textContent = "";
-    renderFilterButtons();
-    renderProducts();
-  } else {
-    error.textContent = "パスコードが違います。";
-  }
-}
+    function checkPasscode(){
+      const input = document.getElementById("passcode").value;
+      const error = document.getElementById("errorMessage");
 
-window.onload = function() {
-  if (sessionStorage.getItem(sessionKey) === "true") {
-    document.getElementById("gate").style.display = "none";
-    document.getElementById("protectedContent").style.display = "block";
-    renderFilterButtons();
-    renderProducts();
-  }
-};
-</script>
+      if(input === correctPasscode){
+        sessionStorage.setItem(sessionKey, "true");
+        error.textContent = "";
+        openProtectedContent();
+      }else{
+        error.textContent = "パスコードが違います。";
+      }
+    }
+
+    window.onload = function(){
+      if(sessionStorage.getItem(sessionKey) === "true"){
+        openProtectedContent();
+      }
+    };
+  </script>
 </body>
 </html>
