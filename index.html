@@ -351,56 +351,24 @@
     }
 
     .product-image{
-      aspect-ratio:4 / 3;
-      background:linear-gradient(180deg,#f4f1ea 0%, #e7e1d6 100%);
       position:relative;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      border-radius:16px;
-      border:1.5px solid rgba(202,165,106,0.45);
-      box-shadow:
-        0 12px 28px rgba(0,0,0,0.14),
-        inset 0 0 0 1px rgba(255,255,255,0.68),
-        inset 0 0 0 4px rgba(202,165,106,0.08);
+      overflow:visible;
+      display:block;
+      padding:0;
+      margin:0;
+      background:none;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
     }
 
     .product-image img{
-      width:90%;
-      height:90%;
-      object-fit:contain;
-      filter:
-        brightness(1.01)
-        contrast(0.97)
-        saturate(0.95)
-        blur(0.2px);
-    }
-
-    .product-card.big-watch .product-image img{
-      width:94%;
-      height:94%;
-    }
-
-    .product-card.small-watch .product-image img{
-      width:82%;
-      height:82%;
-    }
-
-    .product-card.big-watch.heuer-blue .product-image img{
-      max-width:100%;
-      max-height:100%;
-    }
-
-    .product-card.hublot-black .product-image img{
-      max-width:72%;
-      max-height:72%;
-    }
-
-    .product-card.small-watch.hublot-black .product-image img{
-      max-width:68%;
-      max-height:68%;
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:initial;
+      filter:none;
+      border-radius:0;
     }
 
     .badge-group{position:absolute;top:12px;left:12px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
@@ -659,66 +627,66 @@
 
   <script>
     const products = [
-      { brand:"BREITLING", name:"コルト パンダ", subname:"パンダ文字盤", status:"available", image:"①.jpg", description:"白黒のコントラストが印象的なブライトリング。", featured:true },
-      { brand:"BREITLING", name:"ヘッドウィンドウ", subname:"ネイビー文字盤", status:"available", image:"②.jpg", description:"落ち着いたネイビー文字盤の上品モデル。" },
-      { brand:"G-SHOCK", name:"ソーラーブラック", subname:"ブラック文字盤 / チタン", status:"available", image:"③.jpg", description:"実用性と重厚感を兼ね備えた一本。" },
-      { brand:"ROLEX", name:"サブマリーナ", subname:"ブラック文字盤", status:"rented", image:"④.jpg", description:"ロレックス代表のダイバーズモデル。", featured:true },
-      { brand:"TAGHeuer", name:"カレラ キャリバー5", subname:"ブラックパープル文字盤", status:"rented", image:"⑤.jpg", description:"スポーティと上品さの融合モデル。" },
-      { brand:"ZENITH", name:"エルプリメロ オープン", subname:"ブラック文字盤", status:"available", image:"⑥.jpg", description:"機械式の魅力を感じる一本。", featured:true },
-      { brand:"PANERAI", name:"ルミノールサブマーシブル", subname:"ブラック文字盤", status:"rented", image:"⑦PNG.PNG", description:"無骨で男らしい大型モデル。", featured:true },
-      { brand:"ROLEX", name:"エアキング ダイヤ", subname:"ブラック文字盤", status:"available", image:"⑧.PNG", description:"上品なローマ数字モデル。" },
-      { brand:"HUBLOT", name:"ビッグバンキング", subname:"オールブラック", status:"rented", image:"⑨.PNG", description:"圧倒的存在感のウブロ。", featured:true },
-      { brand:"ROLEX", name:"GMTマスター", subname:"ペプシベゼル", status:"rented", image:"⑩.PNG", description:"赤青ベゼルの人気モデル。", featured:true },
-      { brand:"PANERAI", name:"サブマーシブル", subname:"ブラック文字盤", status:"rented", image:"⑪.PNG", description:"視認性抜群のダイバーズ。" },
-      { brand:"FRANCK MULLER", name:"トノウカーベックス", subname:"ブラック", status:"rented", image:"⑫.PNG", description:"個性あるデザイン。" },
-      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"グリーン", status:"rented", image:"⑬.PNG", description:"高級感あるグリーン文字盤。" },
-      { brand:"ROLEX", name:"デイトジャスト", subname:"ブルー文字盤 ゴールドコンビ", status:"rented", image:"⑭.PNG", description:"定番ドレスモデル。" },
-      { brand:"HUBLOT", name:"クラシックオールブラック", subname:"オールブラック", status:"rented", image:"⑮.PNG", description:"ブラックで統一された重厚な一本。" },
-      { brand:"IWC", name:"パイロットウォッチ トップガン", subname:"ブラック文字盤", status:"rented", image:"⑯.PNG", description:"無骨で視認性の高い人気モデル。", featured:true },
-      { brand:"FRANCK MULLER", name:"コンキスタドール レディース", subname:"ブラック文字盤", status:"rented", image:"⑰.PNG", description:"華やかなレディースモデル。" },
-      { brand:"PANERAI", name:"ルミノールマリーナ ブラック", subname:"ブラック文字盤", status:"rented", image:"⑱.PNG", description:"重厚感あるパネライの代表モデル。" },
-      { brand:"ROLEX", name:"デイトジャスト2", subname:"ブラック文字盤", status:"rented", image:"⑲.PNG", description:"存在感のあるケースサイズ。" },
-      { brand:"TAGHeuer", name:"ホイヤー01 ブラック", subname:"クロノグラフ", status:"rented", image:"⑳.PNG", description:"スケルトンデザインが魅力。" },
-      { brand:"TUDOR", name:"クロノタイム タイガー", subname:"パンダ文字盤", status:"rented", image:"㉑.PNG", description:"個性が光るクロノグラフ。", featured:true },
-      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"オールブラック", status:"rented", image:"㉒.PNG", description:"精悍なブラックモデル。" },
-      { brand:"ROLEX", name:"GMTマスター2", subname:"赤黒ベゼル", status:"rented", image:"㉓.PNG", description:"人気GMTモデル。", featured:true },
-      { brand:"ROLEX", name:"ダイヤベゼル レディース", subname:"レディース", status:"available", image:"㉔.PNG", description:"華やかなレディースモデル。" },
-      { brand:"PANERAI", name:"フェラーリ", subname:"ブラック", status:"rented", image:"㉕PANERAI.PNG", description:"個性派パネライ。" },
-      { brand:"ROLEX", name:"デイトジャスト", subname:"ダーク文字盤", status:"rented", image:"㉖ROLEX.PNG", description:"落ち着いた印象。" },
-      { brand:"BREITLING", name:"ナビタイマー", subname:"クロノグラフ", status:"available", image:"㉗BREITLING.PNG", description:"航空時計の代表モデル。", featured:true },
-      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"ホワイト", status:"rented", image:"㉘HUBLOT.PNG", description:"高級感あるホワイト。" },
-      { brand:"ROLEX", name:"サブマリーナ", subname:"ブラック ゴールド", status:"rented", image:"㉙ROLEX.PNG", description:"存在感あるモデル。", featured:true },
-      { brand:"ROLEX", name:"ターノグラフ", subname:"ブルー", status:"rented", image:"㉚ROLEX.PNG", description:"赤針が特徴。" },
-      { brand:"PANERAI", name:"ブラック チタン", subname:"ブラック文字盤", status:"rented", image:"㉛PANERAI.PNG", description:"軽さと重厚感を両立。" },
-      { brand:"HUBLOT", name:"ダイヤベゼル 11Pダイヤモンド", subname:"ブルーシェル文字盤", status:"available", image:"㉜.PNG", description:"華やかさと上品さを兼ね備えたウブロ。" },
-      { brand:"SEIKO", name:"プルミエ", subname:"ブラック 自動巻 SS", status:"available", image:"㉝.PNG", description:"多機能感のある精悍なデザイン。" },
-      { brand:"HUBLOT", name:"ブラック ゴールド コンビ", subname:"レディース", status:"rented", image:"㉞.PNG", description:"ゴールドのアクセントが美しいレディースモデル。" },
-      { brand:"BVLGARI", name:"アショーマ", subname:"48mm YGコンビ", status:"available", image:"㉟.PNG", description:"スクエアフォルムが印象的なブルガリ。" },
-      { brand:"TAGHeuer", name:"ホイヤー01", subname:"ブルー", status:"available", image:"㊱.PNG", description:"力強いブルーが映えるスポーティモデル。" },
-      { brand:"BREITLING", name:"ベントレー", subname:"ブラック クロノグラフ", status:"rented", image:"㊲.PNG", description:"重厚感あるベゼルと精悍なブラック文字盤。" },
-      { brand:"BREITLING", name:"トランスオーシャン", subname:"ホワイト 44mm", status:"available", image:"㊳.PNG", description:"洗練されたホワイトフェイスの上品モデル。" },
-      { brand:"BREITLING", name:"アベンジャー", subname:"ブラック", status:"available", image:"㊴.PNG", description:"無骨さと実用性を備えた一本。" },
-      { brand:"PANERAI", name:"ルミノールマリーナ", subname:"ブラック文字盤 44mm", status:"rented", image:"㊵.PNG", description:"パネライらしい存在感を楽しめる定番モデル。" },
-      { brand:"ROLEX", name:"ターノグラフ", subname:"ホワイト", status:"rented", image:"㊶.PNG", description:"ホワイト文字盤と赤針が魅力のロレックス。" },
-      { brand:"BREITLING", name:"クロノグラフ", subname:"ブラック 40mm", status:"available", image:"㊷.PNG", description:"ブラックフェイスが映えるクロノグラフ。" },
-      { brand:"BVLGARI", name:"ディアゴノ GMT", subname:"GMT40SG", status:"rented", image:"㊸.PNG", description:"ゴールドベゼルが目を引くGMTモデル。" },
-      { brand:"ROLEX", name:"エクスプローラー2", subname:"42mm ホワイト", status:"rented", image:"㊹.PNG", description:"ホワイトフェイスが印象的な人気モデル。" },
-      { brand:"CHANEL", name:"J12", subname:"ブルー", status:"available", image:"㊺.PNG", description:"シャネルらしい洗練を感じるブルーモデル。" },
-      { brand:"Cartier", name:"ロードスター クロノグラフ", subname:"ブラック文字盤", status:"rented", image:"㊻.PNG", description:"力強さと上品さをあわせ持つクロノグラフ。" },
-      { brand:"FRANCK MULLER", name:"コンキスタドール", subname:"ホワイト文字盤", status:"rented", image:"㊼.PNG", description:"フランクミュラーらしい曲線美が魅力。" },
-      { brand:"Cartier", name:"ロードスター", subname:"ブラック文字盤", status:"rented", image:"㊽.PNG", description:"カルティエらしい個性を感じる一本。" },
-      { brand:"PANERAI", name:"ルミノール GMT", subname:"ブラック文字盤 自動巻き", status:"rented", image:"50 IMG_9395 (1).PNG", description:"GMT機能を備えた存在感抜群のパネライ。", featured:true },
-      { brand:"PANERAI", name:"ルミノール マリーナ", subname:"ネイビー文字盤 自動巻き", status:"rented", image:"51 IMG_9395 (2).PNG", description:"深みのあるネイビー文字盤が上質感を引き立てる人気モデル。" },
-      { brand:"BREGUET", name:"タイプXX", subname:"クロノグラフ ブラック文字盤", status:"rented", image:"52 IMG_9395 (3).PNG", description:"ブレゲらしいクラシックさとスポーティさを兼ね備えた一本。", featured:true },
-      { brand:"ROLEX", name:"ミルガウス", subname:"ブラック文字盤 自動巻き", status:"rented", image:"53 IMG_9395 (4).PNG", description:"オレンジ秒針が印象的なロレックスの個性派モデル。" },
-      { brand:"OMEGA", name:"スピードマスター", subname:"クロノグラフ ブルー文字盤", status:"available", image:"54 IMG_9395 (5).PNG", description:"ブルーベゼルとクロノグラフが映えるオメガの人気モデル。", featured:true },
-      { brand:"GRAHAM", name:"シルバー文字盤 OXAS", subname:"希少モデル", status:"available", image:"55 IMG_9395 (6).PNG", description:"縦長ケースが印象的なグラハムの希少感あるモデル。" },
-      { brand:"BREGUET", name:"XXI 43mm", subname:"ブラック文字盤", status:"rented", image:"56 IMG_9395 (7).PNG", description:"43mmケースの存在感とブレゲらしい重厚感を味わえる一本。", featured:true },
-      { brand:"JAEGER-LECOULTRE", name:"アラームティック", subname:"ブラック文字盤 自動巻き", status:"rented", image:"57 IMG_9395 (8).PNG", description:"ジャガー・ルクルトらしい機能美を楽しめる上質な一本。" },
-      { brand:"OMEGA", name:"コンステレーション", subname:"クロノメーター ゴールド文字盤 自動巻き", status:"available", image:"58 IMG_9395 (9).PNG", description:"クラシックなゴールド文字盤が映えるオメガの定番モデル。" },
-      { brand:"MARVIN", name:"ブルー文字盤 ゴールドコンビ", subname:"自動巻き", status:"available", image:"59 IMG_9395 (10).PNG", description:"鮮やかなブルー文字盤とゴールドの組み合わせが上品な一本。" },
-      { brand:"TIMEX", name:"フライバック クロノグラフ", subname:"T2N708 ブラック", status:"available", image:"60 IMG_9395 (11).PNG", description:"タイメックスらしいスポーティさを楽しめるブラッククロノグラフ。" },
-      { brand:"BREITLING", name:"スーパーアベンジャーII", subname:"クロノグラフ ブラック文字盤", status:"available", image:"61 IMG_9395 (12).PNG", description:"迫力あるケースサイズと精悍なブラックフェイスが魅力。", featured:true }
+      { brand:"BREITLING", name:"コルト パンダ", subname:"パンダ文字盤", status:"available", image:"①.avif", description:"白黒のコントラストが印象的なブライトリング。", featured:true },
+      { brand:"BREITLING", name:"ヘッドウィンドウ", subname:"ネイビー文字盤", status:"available", image:"②.avif", description:"落ち着いたネイビー文字盤の上品モデル。" },
+      { brand:"G-SHOCK", name:"ソーラーブラック", subname:"ブラック文字盤 / チタン", status:"available", image:"③MTG.avif", description:"実用性と重厚感を兼ね備えた一本。" },
+      { brand:"ROLEX", name:"サブマリーナ", subname:"ブラック文字盤", status:"rented", image:"④ROLEX　ロレックス.avif", description:"ロレックス代表のダイバーズモデル。", featured:true },
+      { brand:"TAGHeuer", name:"カレラ キャリバー5", subname:"ブラックパープル文字盤", status:"rented", image:"⑤タグホイヤ.avif", description:"スポーティと上品さの融合モデル。" },
+      { brand:"ZENITH", name:"エルプリメロ オープン", subname:"ブラック文字盤", status:"available", image:"⑥ZENITH.avif", description:"機械式の魅力を感じる一本。", featured:true },
+      { brand:"PANERAI", name:"ルミノールサブマーシブル", subname:"ブラック文字盤", status:"rented", image:"⑦パネライ.avif", description:"無骨で男らしい大型モデル。", featured:true },
+      { brand:"ROLEX", name:"エアキング ダイヤ", subname:"ブラック文字盤", status:"available", image:"⑧エアキング.avif", description:"上品なローマ数字モデル。" },
+      { brand:"HUBLOT", name:"ビッグバンキング", subname:"オールブラック", status:"rented", image:"⑨ウブロ　ビックバンキング.avif", description:"圧倒的存在感のウブロ。", featured:true },
+      { brand:"ROLEX", name:"GMTマスター", subname:"ペプシベゼル", status:"rented", image:"⑩.avif", description:"赤青ベゼルの人気モデル。", featured:true },
+      { brand:"PANERAI", name:"サブマーシブル", subname:"ブラック文字盤", status:"rented", image:"⑪パネライ.avif", description:"視認性抜群のダイバーズ。" },
+      { brand:"FRANCK MULLER", name:"トノウカーベックス", subname:"ブラック", status:"rented", image:"⑫ﾄﾉｳｶﾍﾟｯﾄ.avif", description:"個性あるデザイン。" },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"グリーン", status:"rented", image:"⑬ウブロクラシックチタニウム.avif", description:"高級感あるグリーン文字盤。" },
+      { brand:"ROLEX", name:"デイトジャスト", subname:"ブルー文字盤 ゴールドコンビ", status:"rented", image:"⑭ロレックスデイトジャスト.avif", description:"定番ドレスモデル。" },
+      { brand:"HUBLOT", name:"クラシックオールブラック", subname:"オールブラック", status:"rented", image:"⑮ウブロクラシッ.avif", description:"ブラックで統一された重厚な一本。" },
+      { brand:"IWC", name:"パイロットウォッチ トップガン", subname:"ブラック文字盤", status:"rented", image:"⑯トップガン.avif", description:"無骨で視認性の高い人気モデル。", featured:true },
+      { brand:"FRANCK MULLER", name:"コンキスタドール レディース", subname:"ブラック文字盤", status:"rented", image:"⑰.avif", description:"華やかなレディースモデル。" },
+      { brand:"PANERAI", name:"ルミノールマリーナ ブラック", subname:"ブラック文字盤", status:"rented", image:"⑱パネライ.avif", description:"重厚感あるパネライの代表モデル。" },
+      { brand:"ROLEX", name:"デイトジャスト2", subname:"ブラック文字盤", status:"rented", image:"⑲.avif", description:"存在感のあるケースサイズ。" },
+      { brand:"TAGHeuer", name:"ホイヤー01 ブラック", subname:"クロノグラフ", status:"rented", image:"⑳.avif", description:"スケルトンデザインが魅力。" },
+      { brand:"TUDOR", name:"クロノタイム タイガー", subname:"パンダ文字盤", status:"rented", image:"㉑クロノ.avif", description:"個性が光るクロノグラフ。", featured:true },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"オールブラック", status:"rented", image:"㉒クラシック.avif", description:"精悍なブラックモデル。" },
+      { brand:"ROLEX", name:"GMTマスター2", subname:"赤黒ベゼル", status:"rented", image:"㉓GMT.avif", description:"人気GMTモデル。", featured:true },
+      { brand:"ROLEX", name:"ダイヤベゼル レディース", subname:"レディース", status:"available", image:"㉔ロレックスダイヤベゼル.avif", description:"華やかなレディースモデル。" },
+      { brand:"PANERAI", name:"フェラーリ", subname:"ブラック", status:"rented", image:"㉕PANERAIフェラリ.avif", description:"個性派パネライ。" },
+      { brand:"ROLEX", name:"デイトジャスト", subname:"ダーク文字盤", status:"rented", image:"㉖ROLEX.avif", description:"落ち着いた印象。" },
+      { brand:"BREITLING", name:"ナビタイマー", subname:"クロノグラフ", status:"available", image:"㉗BREITLING.avif", description:"航空時計の代表モデル。", featured:true },
+      { brand:"HUBLOT", name:"クラシックフュージョン", subname:"ホワイト", status:"rented", image:"㉘HUBLOT.avif", description:"高級感あるホワイト。" },
+      { brand:"ROLEX", name:"サブマリーナ", subname:"ブラック ゴールド", status:"rented", image:"㉙コンビロレックス.avif", description:"存在感あるモデル。", featured:true },
+      { brand:"ROLEX", name:"ターノグラフ", subname:"ブルー", status:"rented", image:"㉚ロレックス　ブル.avif", description:"赤針が特徴。" },
+      { brand:"PANERAI", name:"ブラック チタン", subname:"ブラック文字盤", status:"rented", image:"㉛PANERAI.avif", description:"軽さと重厚感を両立。" },
+      { brand:"HUBLOT", name:"ダイヤベゼル 11Pダイヤモンド", subname:"ブルーシェル文字盤", status:"available", image:"㉜ダイヤベゼル.avif", description:"華やかさと上品さを兼ね備えたウブロ。" },
+      { brand:"SEIKO", name:"プルミエ", subname:"ブラック 自動巻 SS", status:"available", image:"㉝SEIKOプルミエ.avif", description:"多機能感のある精悍なデザイン。" },
+      { brand:"HUBLOT", name:"ブラック ゴールド コンビ", subname:"レディース", status:"rented", image:"㉞コンビ.avif", description:"ゴールドのアクセントが美しいレディースモデル。" },
+      { brand:"BVLGARI", name:"アショーマ", subname:"48mm YGコンビ", status:"available", image:"㉟アショーマ.avif", description:"スクエアフォルムが印象的なブルガリ。" },
+      { brand:"TAGHeuer", name:"ホイヤー01", subname:"ブルー", status:"available", image:"㊱TAG Heuerブルー.avif", description:"力強いブルーが映えるスポーティモデル。" },
+      { brand:"BREITLING", name:"ベントレー", subname:"ブラック クロノグラフ", status:"rented", image:"㊲BREITLINGBENT.avif", description:"重厚感あるベゼルと精悍なブラック文字盤。" },
+      { brand:"BREITLING", name:"トランスオーシャン", subname:"ホワイト 44mm", status:"available", image:"㊳トランスオーシャン.avif", description:"洗練されたホワイトフェイスの上品モデル。" },
+      { brand:"BREITLING", name:"アベンジャー", subname:"ブラック", status:"available", image:"㊴.avif", description:"無骨さと実用性を備えた一本。" },
+      { brand:"PANERAI", name:"ルミノールマリーナ", subname:"ブラック文字盤 44mm", status:"rented", image:"㊵PANERAIパネライ.avif", description:"パネライらしい存在感を楽しめる定番モデル。" },
+      { brand:"ROLEX", name:"ターノグラフ", subname:"ホワイト", status:"rented", image:"㊶タノグラフホワイト.avif", description:"ホワイト文字盤と赤針が魅力のロレックス。" },
+      { brand:"BREITLING", name:"クロノグラフ", subname:"ブラック 40mm", status:"available", image:"㊷コルト.avif", description:"ブラックフェイスが映えるクロノグラフ。" },
+      { brand:"BVLGARI", name:"ディアゴノ GMT", subname:"GMT40SG", status:"rented", image:"㊸ディアゴノ.avif", description:"ゴールドベゼルが目を引くGMTモデル。" },
+      { brand:"ROLEX", name:"エクスプローラー2", subname:"42mm ホワイト", status:"rented", image:"㊹ROLEXロレックス　ホワイト.avif", description:"ホワイトフェイスが印象的な人気モデル。" },
+      { brand:"CHANEL", name:"J12", subname:"ブルー", status:"available", image:"㊺J12.avif", description:"シャネルらしい洗練を感じるブルーモデル。" },
+      { brand:"Cartier", name:"ロードスター クロノグラフ", subname:"ブラック文字盤", status:"rented", image:"㊻Cartierカルティエ.avif", description:"力強さと上品さをあわせ持つクロノグラフ。" },
+      { brand:"FRANCK MULLER", name:"コンキスタドール", subname:"ホワイト文字盤", status:"rented", image:"㊼FRANCK MULLERホワイト.avif", description:"フランクミュラーらしい曲線美が魅力。" },
+      { brand:"Cartier", name:"ロードスター", subname:"ブラック文字盤", status:"rented", image:"㊽カルティエ.avif", description:"カルティエらしい個性を感じる一本。" },
+      { brand:"PANERAI", name:"ルミノール GMT", subname:"ブラック文字盤 自動巻き", status:"rented", image:"50 IMG_9395 (1).avif", description:"GMT機能を備えた存在感抜群のパネライ。", featured:true },
+      { brand:"PANERAI", name:"ルミノール マリーナ", subname:"ネイビー文字盤 自動巻き", status:"rented", image:"51 IMG_9395 (2).avif", description:"深みのあるネイビー文字盤が上質感を引き立てる人気モデル。" },
+      { brand:"BREGUET", name:"タイプXX", subname:"クロノグラフ ブラック文字盤", status:"rented", image:"52 IMG_9395 (3).avif", description:"ブレゲらしいクラシックさとスポーティさを兼ね備えた一本。", featured:true },
+      { brand:"ROLEX", name:"ミルガウス", subname:"ブラック文字盤 自動巻き", status:"rented", image:"53 IMG_9395 (4).avif", description:"オレンジ秒針が印象的なロレックスの個性派モデル。" },
+      { brand:"OMEGA", name:"スピードマスター", subname:"クロノグラフ ブルー文字盤", status:"available", image:"54 IMG_9395 (5).avif", description:"ブルーベゼルとクロノグラフが映えるオメガの人気モデル。", featured:true },
+      { brand:"GRAHAM", name:"シルバー文字盤 OXAS", subname:"希少モデル", status:"available", image:"55 IMG_9395 (6).avif", description:"縦長ケースが印象的なグラハムの希少感あるモデル。" },
+      { brand:"BREGUET", name:"XXI 43mm", subname:"ブラック文字盤", status:"rented", image:"56 IMG_9395 (7).avif", description:"43mmケースの存在感とブレゲらしい重厚感を味わえる一本。", featured:true },
+      { brand:"JAEGER-LECOULTRE", name:"アラームティック", subname:"ブラック文字盤 自動巻き", status:"rented", image:"57 IMG_9395 (8).avif", description:"ジャガー・ルクルトらしい機能美を楽しめる上質な一本。" },
+      { brand:"OMEGA", name:"コンステレーション", subname:"クロノメーター ゴールド文字盤 自動巻き", status:"available", image:"58 IMG_9395 (9).avif", description:"クラシックなゴールド文字盤が映えるオメガの定番モデル。" },
+      { brand:"MARVIN", name:"ブルー文字盤 ゴールドコンビ", subname:"自動巻き", status:"available", image:"59 IMG_9395 (10).avif", description:"鮮やかなブルー文字盤とゴールドの組み合わせが上品な一本。" },
+      { brand:"TIMEX", name:"フライバック クロノグラフ", subname:"T2N708 ブラック", status:"available", image:"60 IMG_9395 (11).avif", description:"タイメックスらしいスポーティさを楽しめるブラッククロノグラフ。" },
+      { brand:"BREITLING", name:"スーパーアベンジャーII", subname:"クロノグラフ ブラック文字盤", status:"available", image:"61 IMG_9395 (12).avif", description:"迫力あるケースサイズと精悍なブラックフェイスが魅力。", featured:true }
     ];
 
     function getStatusLabel(status){
@@ -727,35 +695,6 @@
 
     function getActionLabel(status){
       return status === "available" ? "会員申請へ" : "空き待ち相談";
-    }
-
-    function isSmallWatch(item){
-      const text = `${item.brand} ${item.name} ${item.subname}`;
-      return [
-        "クラシックオールブラック",
-        "GMTマスター2",
-        "コンキスタドール レディース",
-        "トップガン",
-        "デイトジャスト2",
-        "ターノグラフ ブルー",
-        "ホイヤー01 ブラック"
-      ].some(keyword => text.includes(keyword));
-    }
-
-    function isBigWatch(item){
-      const text = `${item.brand} ${item.name} ${item.subname}`;
-      if(text.includes("ホイヤー01") && text.includes("ブルー")){
-        return "big-watch heuer-blue";
-      }
-      return [
-        "ターノグラフ ホワイト",
-        "エクスプローラー2"
-      ].some(keyword => text.includes(keyword)) ? "big-watch" : "";
-    }
-
-    function isHublotBlack(item){
-      const text = `${item.brand} ${item.name} ${item.subname}`;
-      return text.includes("クラシックオールブラック");
     }
 
     function renderBrandSelect(){
@@ -831,7 +770,7 @@
       }
 
       grid.innerHTML = filtered.map(item => `
-        <article class="product-card ${isSmallWatch(item) ? 'small-watch' : ''} ${isBigWatch(item)} ${isHublotBlack(item) ? 'hublot-black' : ''}">
+        <article class="product-card">
           <div class="product-image">
             <div class="badge-group">
               ${item.featured ? `<span class="badge badge-featured">おすすめ</span>` : ``}
